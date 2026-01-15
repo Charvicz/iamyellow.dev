@@ -1,337 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yellow's Hub</title>
-  <meta name="description" content="Centrální hub projektů, zájmů a odkazů." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Yellow Hub – osobní hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Osobní hub projektů, kategorií a odkazů.">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-<body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Yellow Hub - top">
-      <span class="dot" aria-hidden="true"></span>
-      <span>Yellow Hub</span>
-    </a>
-
-    <div class="topbar-actions">
-      <button class="chip" id="modeToggle" type="button" aria-pressed="false" title="Přepnout režim zobrazení">
-        Explorer Mode
-      </button>
-      <a class="chip" href="#fresh" title="Poslední obsah">Fresh</a>
-      <a class="chip" href="#projects" title="Projekty">Projekty</a>
-      <a class="chip" href="#worlds" title="Kategorie">Kategorie</a>
-      <a class="chip" href="#links" title="Odkazy">Odkazy</a>
+<body class="theme-default">
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-name">Yellow Hub</span>
+      </div>
+      <nav class="main-nav">
+        <a href="#projects">Projekty</a>
+        <a href="#categories">Kategorie</a>
+        <a href="#links">Link hub</a>
+      </nav>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="section hero">
-      <div class="bg-orb orb-1" aria-hidden="true"></div>
-      <div class="bg-orb orb-2" aria-hidden="true"></div>
-      <div class="bg-grid" aria-hidden="true"></div>
-
-      <div class="container hero-inner" data-aos="fade-up">
-        <p class="kicker">central hub</p>
-
-        <h1>
-          Projekty, zájmy a experimenty.
-          <span class="accent">Všechno na jednom místě.</span>
-        </h1>
-
-        <p class="sub">
-          Scroll layout, co se postupně odhaluje. Rychlej přehled bez menu chaosu.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn" href="#fresh">Explore ↓</a>
-          <a class="btn ghost" href="#links">Link Hub</a>
-        </div>
-
-        <div class="scroll-hint" aria-hidden="true">
-          <span class="mouse"></span>
-          <span>scroll to reveal</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FRESH DROP (YT + IG rows) -->
-    <section id="fresh" class="section">
-      <div class="container">
-        <div class="section-head" data-aos="fade-up">
-          <h2>Fresh drop</h2>
-          <p class="muted">Poslední obsah vedle sebe. YouTube auto, Instagram embed.</p>
-        </div>
-
-        <div class="feed-block" data-aos="fade-up">
-          <div class="feed-head">
-            <h3 class="feed-title">YouTube — poslední 3 videa</h3>
-            <a class="chip small" id="ytChannelLink" href="#" target="_blank" rel="noreferrer">Channel →</a>
-          </div>
-
-          <div class="feed-row" id="ytRow" aria-live="polite"></div>
-          <p class="tiny muted" id="ytStatus">Načítám poslední videa…</p>
-        </div>
-
-        <div class="feed-block" data-aos="fade-up">
-          <div class="feed-head">
-            <h3 class="feed-title">Instagram — poslední 3 posty</h3>
-            <a class="chip small" id="igProfileLink" href="#" target="_blank" rel="noreferrer">Profile →</a>
-          </div>
-
-          <div class="feed-row ig-row" id="igRow"></div>
-          <p class="tiny muted" id="igStatus">
-            Doplň do <b>app.js</b> 3 URL postů (Instagram to bez tokenu automaticky spolehlivě nedá).
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container hero-content">
+        <div>
+          <p class="hero-kicker">v1 • osobní hub</p>
+          <h1>Jedno místo pro projekty, poznámky a experimenty.</h1>
+          <p class="hero-text">
+            Krátký přehled toho, co teď řeším, co chystám a kam vedou hlavní odkazy.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOW -->
-    <section id="now" class="section">
-      <div class="container">
-        <div class="section-head" data-aos="fade-up">
-          <h2>Aktuálně</h2>
-          <p class="muted">Krátký přehled toho, co teď řeším. (Upravíš později podle reality.)</p>
-        </div>
-
-        <div class="grid grid-3">
-          <article class="card" data-aos="fade-up" data-aos-delay="0">
-            <div class="card-top"><span class="badge">Focus</span></div>
-            <h3>Yellow Hub v1</h3>
-            <p class="muted">One-page hub se scroll reveal layoutem + přepínáním režimu.</p>
-            <div class="tags">
-              <span class="tag">frontend</span><span class="tag">layout</span><span class="tag">motion</span>
-            </div>
-            <a class="link" href="#projects">Otevřít projekty →</a>
-          </article>
-
-          <article class="card" data-aos="fade-up" data-aos-delay="80">
-            <div class="card-top"><span class="badge">Learning</span></div>
-            <h3>Vyladění prezentace</h3>
-            <p class="muted">Čistší texty, konzistentní styl, reálný odkazy. Ready na online.</p>
-            <div class="tags">
-              <span class="tag">ux</span><span class="tag">copy</span><span class="tag">consistency</span>
-            </div>
-            <a class="link" href="#worlds">Otevřít kategorie →</a>
-          </article>
-
-          <article class="card" data-aos="fade-up" data-aos-delay="160">
-            <div class="card-top"><span class="badge">Next</span></div>
-            <h3>Naplnit obsahem</h3>
-            <p class="muted">Přepsat placeholdery, doplnit projekty, a dát ven první verzi.</p>
-            <div class="tags">
-              <span class="tag">content</span><span class="tag">links</span><span class="tag">release</span>
-            </div>
-            <a class="link" href="#links">Otevřít Link Hub →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-head sticky-head" data-aos="fade-up">
-          <h2>Projekty</h2>
-          <p class="muted">Karty + tagy + odkazy. Přehledně a bez balastu.</p>
-
-          <div class="filters">
-            <button class="chip small is-active" data-filter="all" type="button">All</button>
-            <button class="chip small" data-filter="web" type="button">Web</button>
-            <button class="chip small" data-filter="app" type="button">App</button>
-            <button class="chip small" data-filter="tool" type="button">Tool</button>
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary">Otevřít projekty</a>
+            <a href="#categories" class="btn ghost">Otevřít kategorie</a>
+            <a href="#links" class="btn ghost">Otevřít link hub</a>
           </div>
         </div>
-
-        <div class="grid grid-2" id="projectsGrid">
-          <article class="card project" data-tags="web tool" data-aos="fade-up">
-            <div class="card-top"><span class="badge">Web / Tool</span></div>
-            <h3>Projekt A (placeholder)</h3>
-            <p class="muted">Jedna věta: co to je a proč to existuje.</p>
-            <div class="tags"><span class="tag">tag</span><span class="tag">tag</span><span class="tag">tag</span></div>
-            <div class="card-actions">
-              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Demo</a>
-              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
-            </div>
-          </article>
-
-          <article class="card project" data-tags="app" data-aos="fade-up" data-aos-delay="60">
-            <div class="card-top"><span class="badge">App</span></div>
-            <h3>Projekt B (placeholder)</h3>
-            <p class="muted">Jedna věta: co řeší a pro koho to je.</p>
-            <div class="tags"><span class="tag">mobile</span><span class="tag">ux</span></div>
-            <div class="card-actions">
-              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Showcase</a>
-              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
-            </div>
-          </article>
-
-          <article class="card project" data-tags="web" data-aos="fade-up">
-            <div class="card-top"><span class="badge">Web</span></div>
-            <h3>Projekt C (placeholder)</h3>
-            <p class="muted">Jedna věta: proč je to zajímavý / unikátní.</p>
-            <div class="tags"><span class="tag">aos</span><span class="tag">grid</span><span class="tag">motion</span></div>
-            <div class="card-actions">
-              <a class="btn tiny ghost" href="#top">Top</a>
-              <a class="btn tiny" href="#links">Links</a>
-            </div>
-          </article>
-
-          <article class="card project" data-tags="tool" data-aos="fade-up" data-aos-delay="60">
-            <div class="card-top"><span class="badge">Tool</span></div>
-            <h3>Projekt D (placeholder)</h3>
-            <p class="muted">Jedna věta: mini tool / automatizace / helper.</p>
-            <div class="tags"><span class="tag">workflow</span><span class="tag">templates</span></div>
-            <div class="card-actions">
-              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Docs</a>
-              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
-    <!-- WORLDS -->
-    <section id="worlds" class="section">
-      <div class="container">
-        <div class="section-head" data-aos="fade-up">
-          <h2>Kategorie</h2>
-          <p class="muted">Zájmy a oblasti, který propojuju.</p>
-
-          <div class="searchbar">
-            <input id="worldSearch" class="input" type="search" placeholder="Hledej kategorii nebo tag… (např. dron, psych, game)" />
-            <button class="btn tiny ghost" type="button" id="clearSearch">Clear</button>
-          </div>
-        </div>
-
-        <div class="grid grid-3" id="worldsGrid">
-          <article class="card world" data-keys="psychologie mind games behavior analysis" data-aos="fade-up">
-            <div class="card-top"><span class="badge">🧠 Psychologie</span></div>
-            <h3>Mind games & chování</h3>
-            <p class="muted">Pozorování, vzorce, situace. Věci co jsou real, ne pohádka.</p>
-            <div class="tags"><span class="tag">behavior</span><span class="tag">analysis</span><span class="tag">mindgames</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">Notes →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Doporučení →</a>
-            </div>
-          </article>
-
-          <article class="card world" data-keys="gaming hry steam atmosphere" data-aos="fade-up" data-aos-delay="60">
-            <div class="card-top"><span class="badge">🎮 Gaming</span></div>
-            <h3>Gameplay & atmosféra</h3>
-            <p class="muted">Hry co tě vtáhnou. Vibe > hype.</p>
-            <div class="tags"><span class="tag">steam</span><span class="tag">atmo</span><span class="tag">challenge</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">Steam profil →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Top list →</a>
-            </div>
-          </article>
-
-          <article class="card world" data-keys="dron drone instagram video photo" data-aos="fade-up" data-aos-delay="120">
-            <div class="card-top"><span class="badge">🚁 Dron</span></div>
-            <h3>Shots & content</h3>
-            <p class="muted">Lokace, záběry, edit. Progress log v praxi.</p>
-            <div class="tags"><span class="tag">video</span><span class="tag">reels</span><span class="tag">outdoor</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">Instagram →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Lokace →</a>
-            </div>
-          </article>
-
-          <article class="card world" data-keys="kresleni art creativity sketch" data-aos="fade-up">
-            <div class="card-top"><span class="badge">🎨 Kreativita</span></div>
-            <h3>Kreslení & nápady</h3>
-            <p class="muted">Průběžný skill-up. Občas challenge, občas chill.</p>
-            <div class="tags"><span class="tag">sketch</span><span class="tag">practice</span><span class="tag">ideas</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">Galerie →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Prompts →</a>
-            </div>
-          </article>
-
-          <article class="card world" data-keys="tech tinkering hardware software privacy" data-aos="fade-up" data-aos-delay="60">
-            <div class="card-top"><span class="badge">💻 Tech</span></div>
-            <h3>Tinkering</h3>
-            <p class="muted">Praktický věci. Míň buzzwords, víc value.</p>
-            <div class="tags"><span class="tag">hardware</span><span class="tag">web</span><span class="tag">privacy</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">GitHub →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Stack →</a>
-            </div>
-          </article>
-
-          <article class="card world" data-keys="learning certifikaty notes progress" data-aos="fade-up" data-aos-delay="120">
-            <div class="card-top"><span class="badge">📚 Learning</span></div>
-            <h3>Progress log</h3>
-            <p class="muted">Co se učím + krátký shrnutí. Žádnej link spam.</p>
-            <div class="tags"><span class="tag">notes</span><span class="tag">skills</span><span class="tag">certs</span></div>
-            <div class="links">
-              <a class="link" href="#" target="_blank" rel="noreferrer">Certifikáty →</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Roadmap →</a>
-            </div>
-          </article>
-        </div>
+    <!-- Stav / roadmap -->
+    <section class="section" id="status">
+      <div class="container section-header">
+        <h2>Co se tady děje</h2>
+        <p>Stručný roadmap: kde je hub teď a co přijde dál.</p>
+      </div>
+      <div class="container cards-3">
+        <article class="card">
+          <h3>Teď řeším</h3>
+          <p>Doladění textů, základní projekty a první veřejná verze.</p>
+        </article>
+        <article class="card">
+          <h3>Další krok</h3>
+          <p>Reálné case studies, víc příkladů a lepší napojení na profily.</p>
+        </article>
+        <article class="card">
+          <h3>Ready na online</h3>
+          <p>Čistý obsah, konzistentní styl a odkazy, které dávají smysl.</p>
+        </article>
       </div>
     </section>
 
-    <!-- LINKS -->
-    <section id="links" class="section">
-      <div class="container">
-        <div class="section-head" data-aos="fade-up">
-          <h2>Link Hub</h2>
-          <p class="muted">Rychlý rozcestník na profily a stránky.</p>
-        </div>
+    <!-- Projekty -->
+    <section class="section" id="projects">
+      <div class="container section-header">
+        <h2>Projekty</h2>
+        <p>Jedna věta: co to je a proč to existuje.</p>
+      </div>
+      <div class="container cards-3">
+        <article class="card tag-pill">
+          <header>
+            <h3>Mobile / UX</h3>
+            <span class="tag">mobileux</span>
+          </header>
+          <p>Jedna věta: co řeší a pro koho to je.</p>
+        </article>
 
-        <div class="grid grid-2">
-          <article class="card" data-aos="fade-up">
-            <h3>Profily</h3>
-            <ul class="list">
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">GitHub →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Instagram (dron) →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Steam →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">YouTube →</a></li>
-            </ul>
-          </article>
+        <article class="card tag-pill">
+          <header>
+            <h3>Motion / AOS</h3>
+            <span class="tag">aos</span>
+          </header>
+          <p>Jedna věta: proč je to pro tebe zajímavé / unikátní.</p>
+        </article>
 
-          <article class="card" data-aos="fade-up" data-aos-delay="60">
-            <h3>Stránky</h3>
-            <ul class="list">
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Showcase projekty →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Blog / Notes →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Galerie →</a></li>
-              <li><a class="link" href="#" target="_blank" rel="noreferrer">Roadmap →</a></li>
-            </ul>
-          </article>
-        </div>
+        <article class="card tag-pill">
+          <header>
+            <h3>Workflow nástroje</h3>
+            <span class="tag">workflow</span>
+          </header>
+          <p>Jedna věta: mini tool / automatizace / helper.</p>
+        </article>
+      </div>
+    </section>
 
-        <div class="footer" data-aos="fade-up">
-          <p class="muted">Built as a living hub. Updated occasionally.</p>
-          <div class="footer-actions">
-            <a class="btn tiny ghost" href="#top">Back to top ↑</a>
-            <span class="tiny muted">v1</span>
+    <!-- Kategorie / zájmy -->
+    <section class="section" id="categories">
+      <div class="container section-header">
+        <h2>Zájmy a oblasti</h2>
+        <p>Oblasti, které propojuješ – od behavior po hardware.</p>
+      </div>
+      <div class="container cards-3">
+        <article class="card">
+          <h3>Behavior & mind games</h3>
+          <p>Pozorování, vzorce, situace. Věci, co jsou real, ne pohádka.</p>
+          <div class="tags-inline">
+            <span class="tag">behavior</span>
+            <span class="tag">analysis</span>
+            <span class="tag">mindgames</span>
           </div>
-        </div>
+        </article>
+
+        <article class="card">
+          <h3>Hry & atmosféra</h3>
+          <p>Hry, které vtáhnou. Vibe &gt; hype.</p>
+          <div class="tags-inline">
+            <span class="tag">steam</span>
+            <span class="tag">atmo</span>
+            <span class="tag">challenge</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Video & outdoor</h3>
+          <p>Lokace, záběry, edit. Progress log v praxi.</p>
+          <div class="tags-inline">
+            <span class="tag">video</span>
+            <span class="tag">reels</span>
+            <span class="tag">outdoor</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Sketch & nápady</h3>
+          <p>Průběžný skill‑up. Občas challenge, občas chill.</p>
+          <div class="tags-inline">
+            <span class="tag">sketch</span>
+            <span class="tag">practice</span>
+            <span class="tag">ideas</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Hardware & web</h3>
+          <p>Praktické věci. Míň buzzwords, víc value.</p>
+          <div class="tags-inline">
+            <span class="tag">hardware</span>
+            <span class="tag">web</span>
+            <span class="tag">privacy</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Notes & learning</h3>
+          <p>Co se učíš + krátké shrnutí. Žádný link spam.</p>
+          <div class="tags-inline">
+            <span class="tag">notes</span>
+            <span class="tag">skills</span>
+            <span class="tag">certs</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Link hub -->
+    <section class="section" id="links">
+      <div class="container section-header">
+        <h2>Link hub</h2>
+        <p>Rychlý rozcestník na profily a stránky.</p>
+      </div>
+      <div class="container cards-3">
+        <article class="card">
+          <h3>Profesionální profily</h3>
+          <ul class="link-list">
+            <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Side projekty</h3>
+          <ul class="link-list">
+            <li><a href="#" target="_blank" rel="noopener">Projekt 1</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Projekt 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Další věci</h3>
+          <ul class="link-list">
+            <li><a href="#" target="_blank" rel="noopener">Blog / notes</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Kontakt</a></li>
+          </ul>
+        </article>
       </div>
     </section>
   </main>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Yellow Hub</span>
+      <button class="mode-toggle" type="button">Přepnout režim</button>
+    </div>
+  </footer>
 
-  <!-- Instagram embed loader (načte a vykreslí blockquote embedy) -->
-  <script async src="https://www.instagram.com/embed.js"></script>
-
-  <script src="app.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
