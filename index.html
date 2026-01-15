@@ -3,10 +3,377 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>iamyellow.dev</title>
+  <title>Hub</title>
+  <meta name="description" content="Centrální hub projektů a zájmů. Bez osobních údajů." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Clean modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <h1>jede to 🔥</h1>
-  <p>Deploy z GitHubu funguje.</p>
+  <!-- Top micro nav (no personal info) -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Hub</span>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="chip" id="modeToggle" type="button" aria-pressed="false" title="Přepnout režim">
+        Explorer Mode
+      </button>
+      <a class="chip" href="#links" title="Rychlé odkazy">Links</a>
+      <a class="chip" href="#top" title="Nahoru">Top</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="section hero">
+      <div class="bg-orb orb-1"></div>
+      <div class="bg-orb orb-2"></div>
+
+      <div class="container hero-inner" data-aos="fade-up">
+        <p class="kicker">centrální hub</p>
+        <h1>
+          Všechno, co tvořím a co mě baví.
+          <span class="accent">Bez osobních údajů.</span>
+        </h1>
+        <p class="sub">
+          Projekty, hry, dron, psychologie, kreativita. Scrolluj a postupně se to odhalí.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#now">Explore ↓</a>
+          <a class="btn ghost" href="#worlds">Kategorie</a>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="mouse"></span>
+          <span>scroll to reveal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW / CURRENT -->
+    <section id="now" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h2>Teď / Aktuálně</h2>
+          <p class="muted">Sekce co dává stránce život. Krátký, konkrétní, clean.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card" data-aos="fade-up" data-aos-delay="0">
+            <div class="card-top">
+              <span class="badge">🔥 Aktuální projekt</span>
+            </div>
+            <h3>Central Hub Web</h3>
+            <p class="muted">
+              One-page scroll story, který propojí všechny koníčky a profily.
+            </p>
+            <div class="tags">
+              <span class="tag">UI</span>
+              <span class="tag">Scroll</span>
+              <span class="tag">AOS</span>
+            </div>
+            <a class="link" href="#projects">Mrkni na projekty →</a>
+          </article>
+
+          <article class="card" data-aos="fade-up" data-aos-delay="80">
+            <div class="card-top">
+              <span class="badge">🎯 Co se učím</span>
+            </div>
+            <h3>Web + produktový myšlení</h3>
+            <p class="muted">
+              Dělat věci, co lidi fakt používají. Ne jen “hezký demo”.
+            </p>
+            <div class="tags">
+              <span class="tag">UX</span>
+              <span class="tag">Copy</span>
+              <span class="tag">Frontend</span>
+            </div>
+            <a class="link" href="#worlds">Moje světy →</a>
+          </article>
+
+          <article class="card" data-aos="fade-up" data-aos-delay="160">
+            <div class="card-top">
+              <span class="badge">🎬 Co frčí</span>
+            </div>
+            <h3>Mind games & atmosféra</h3>
+            <p class="muted">
+              Psychologie, strategie, real vibe. Minimum magie, maximum hlava.
+            </p>
+            <div class="tags">
+              <span class="tag">Psych</span>
+              <span class="tag">Anime</span>
+              <span class="tag">Games</span>
+            </div>
+            <a class="link" href="#links">Externí profily →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head sticky-head" data-aos="fade-up">
+          <h2>Projekty</h2>
+          <p class="muted">
+            Karty + tagy + link. Žádný wall of text.
+          </p>
+
+          <div class="filters">
+            <button class="chip small is-active" data-filter="all" type="button">All</button>
+            <button class="chip small" data-filter="web" type="button">Web</button>
+            <button class="chip small" data-filter="app" type="button">App</button>
+            <button class="chip small" data-filter="tool" type="button">Tool</button>
+          </div>
+        </div>
+
+        <div class="grid grid-2" id="projectsGrid">
+          <!-- Edituj linky + názvy podle sebe -->
+          <article class="card project" data-tags="web tool" data-aos="fade-up">
+            <div class="card-top">
+              <span class="badge">Web / Tool</span>
+            </div>
+            <h3>Firmy bez webu (idea)</h3>
+            <p class="muted">Mapa + filtr + výpis firem (koncept). Cíl: rychlý leady.</p>
+            <div class="tags">
+              <span class="tag">Map</span>
+              <span class="tag">Leads</span>
+              <span class="tag">Filter</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Demo</a>
+              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <article class="card project" data-tags="app" data-aos="fade-up" data-aos-delay="60">
+            <div class="card-top">
+              <span class="badge">App</span>
+            </div>
+            <h3>Mobilní utility</h3>
+            <p class="muted">Menší appky co řeší reálnej pain: rychlý notes, checklisty, atd.</p>
+            <div class="tags">
+              <span class="tag">Mobile</span>
+              <span class="tag">UX</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Showcase</a>
+              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <article class="card project" data-tags="web" data-aos="fade-up">
+            <div class="card-top">
+              <span class="badge">Web</span>
+            </div>
+            <h3>Hub Page v2</h3>
+            <p class="muted">Scroll-story + AOS + “Explorer/List Mode”.</p>
+            <div class="tags">
+              <span class="tag">AOS</span>
+              <span class="tag">Grid</span>
+              <span class="tag">Motion</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn tiny ghost" href="#top">Top</a>
+              <a class="btn tiny" href="#links">Links</a>
+            </div>
+          </article>
+
+          <article class="card project" data-tags="tool" data-aos="fade-up" data-aos-delay="60">
+            <div class="card-top">
+              <span class="badge">Tool</span>
+            </div>
+            <h3>Workflow helper</h3>
+            <p class="muted">Šablony, checklisty, malý automatizace. (Zatím placeholder.)</p>
+            <div class="tags">
+              <span class="tag">Productivity</span>
+              <span class="tag">Templates</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn tiny ghost" href="#" target="_blank" rel="noreferrer">Docs</a>
+              <a class="btn tiny" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORLDS / CATEGORIES -->
+    <section id="worlds" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h2>Světy / kategorie</h2>
+          <p class="muted">
+            Grid 2–3 sloupce, responzivně. Každá karta má mini popis + linky.
+          </p>
+
+          <div class="searchbar">
+            <input id="worldSearch" class="input" type="search" placeholder="Hledej kategorii nebo tag… (např. dron, psych, game)" />
+            <button class="btn tiny ghost" type="button" id="clearSearch">Clear</button>
+          </div>
+        </div>
+
+        <div class="grid grid-3" id="worldsGrid">
+          <article class="card world" data-keys="psychologie mind games behavior anime" data-aos="fade-up">
+            <div class="card-top">
+              <span class="badge">🧠 Psychologie</span>
+            </div>
+            <h3>Mind games & chování</h3>
+            <p class="muted">Pozorování, vzorce, čtení situací. Real-world vibe.</p>
+            <div class="tags">
+              <span class="tag">behavior</span>
+              <span class="tag">analysis</span>
+              <span class="tag">mindgames</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Poznámky / články →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Seznam doporučení →</a>
+            </div>
+          </article>
+
+          <article class="card world" data-keys="gaming hry steam atmosphere" data-aos="fade-up" data-aos-delay="60">
+            <div class="card-top">
+              <span class="badge">🎮 Gaming</span>
+            </div>
+            <h3>Gameplay & atmosféra</h3>
+            <p class="muted">Hry co tě vtáhnou. Ne nutně příběh, ale vibe.</p>
+            <div class="tags">
+              <span class="tag">steam</span>
+              <span class="tag">atmo</span>
+              <span class="tag">challenge</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Steam profil →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Top hry list →</a>
+            </div>
+          </article>
+
+          <article class="card world" data-keys="dron drone instagram video photo" data-aos="fade-up" data-aos-delay="120">
+            <div class="card-top">
+              <span class="badge">🚁 Dron</span>
+            </div>
+            <h3>Shots & content</h3>
+            <p class="muted">Hezký místa, čistý záběry, postupný zlepšování editů.</p>
+            <div class="tags">
+              <span class="tag">video</span>
+              <span class="tag">reels</span>
+              <span class="tag">outdoor</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Instagram (dron) →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Mapa lokací →</a>
+            </div>
+          </article>
+
+          <article class="card world" data-keys="kresleni art creativity sketch" data-aos="fade-up">
+            <div class="card-top">
+              <span class="badge">🎨 Kreativita</span>
+            </div>
+            <h3>Kreslení & nápady</h3>
+            <p class="muted">Občasný kreslení, porovnávání stylů, zlepšování.</p>
+            <div class="tags">
+              <span class="tag">sketch</span>
+              <span class="tag">practice</span>
+              <span class="tag">ideas</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Galerie →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Prompt list →</a>
+            </div>
+          </article>
+
+          <article class="card world" data-keys="tech tinkering hardware software privacy" data-aos="fade-up" data-aos-delay="60">
+            <div class="card-top">
+              <span class="badge">💻 Tech</span>
+            </div>
+            <h3>Tinkering</h3>
+            <p class="muted">Zkoušení, ladění, věci co jsou praktický (ne hype).</p>
+            <div class="tags">
+              <span class="tag">hardware</span>
+              <span class="tag">web</span>
+              <span class="tag">privacy</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">GitHub →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Stack / setup →</a>
+            </div>
+          </article>
+
+          <article class="card world" data-keys="learning certifikaty notes progress" data-aos="fade-up" data-aos-delay="120">
+            <div class="card-top">
+              <span class="badge">📚 Learning</span>
+            </div>
+            <h3>Progress log</h3>
+            <p class="muted">Co se učím + mini shrnutí. Bez link-spamu.</p>
+            <div class="tags">
+              <span class="tag">notes</span>
+              <span class="tag">skills</span>
+              <span class="tag">certs</span>
+            </div>
+            <div class="links">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Certifikáty (hub) →</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Roadmap →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS HUB -->
+    <section id="links" class="section">
+      <div class="container">
+        <div class="section-head" data-aos="fade-up">
+          <h2>Link Hub</h2>
+          <p class="muted">Rychlý rozcestník. Bez jména, bez mailu, bez fotky.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <article class="card" data-aos="fade-up">
+            <h3>Profily</h3>
+            <ul class="list">
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">GitHub →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Instagram (dron) →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Steam →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">YouTube / TikTok →</a></li>
+            </ul>
+          </article>
+
+          <article class="card" data-aos="fade-up" data-aos-delay="60">
+            <h3>Stránky</h3>
+            <ul class="list">
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Showcase projekty →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Blog / Notes →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Gallery →</a></li>
+              <li><a class="link" href="#" target="_blank" rel="noreferrer">Roadmap →</a></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="footer" data-aos="fade-up">
+          <p class="muted">Built as a living hub. Updated when life updates.</p>
+          <div class="footer-actions">
+            <a class="btn tiny ghost" href="#top">Back to top ↑</a>
+            <span class="tiny muted">No personal data here.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
