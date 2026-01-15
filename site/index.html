@@ -1,209 +1,178 @@
-<!DOCTYPE html>
-<html lang="cs">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Yellow Hub – osobní hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Osobní hub projektů, kategorií a odkazů.">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yellow — Digital Hub</title>
+  <meta name="description" content="A clean hub for my work: drone, video, and projects." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="canonical" href="https://iamyellow.dev/" />
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+  <link rel="manifest" href="/site.webmanifest">
+
+
 </head>
-<body class="theme-default">
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <span class="brand-mark"></span>
-        <span class="brand-name">Yellow Hub</span>
-      </div>
-      <nav class="main-nav">
-        <a href="#projects">Projekty</a>
-        <a href="#categories">Kategorie</a>
-        <a href="#links">Link hub</a>
-      </nav>
-    </div>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Go to top">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#focus">Focus</a>
+      <a href="#paths">Explore</a>
+      <a href="#links">Links</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="container hero-content">
-        <div>
-          <p class="hero-kicker">v1 • osobní hub</p>
-          <h1>Jedno místo pro projekty, poznámky a experimenty.</h1>
-          <p class="hero-text">
-            Krátký přehled toho, co teď řeším, co chystám a kam vedou hlavní odkazy.
-          </p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn primary">Otevřít projekty</a>
-            <a href="#categories" class="btn ghost">Otevřít kategorie</a>
-            <a href="#links" class="btn ghost">Otevřít link hub</a>
-          </div>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Minimal. Modern. Useful.</p>
+        <h1>
+          I’m <span class="accent">Yellow</span> — I build, create, and ship ideas.
+        </h1>
+        <p class="subtitle">
+          This is my hub. If you want details, scroll — the site reveals itself as you go.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#paths">Explore my work</a>
+          <a class="btn ghost" href="#links">Socials</a>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="mouse"></span>
+          <span class="hint-text">Scroll</span>
         </div>
       </div>
     </section>
 
-    <!-- Stav / roadmap -->
-    <section class="section" id="status">
-      <div class="container section-header">
-        <h2>Co se tady děje</h2>
-        <p>Stručný roadmap: kde je hub teď a co přijde dál.</p>
+    <!-- FOCUS -->
+    <section id="focus" class="section">
+      <div class="section-head reveal">
+        <h2>What I do</h2>
+        <p>
+          A few lanes I actively spend time in. Not everything, just the stuff that matters.
+        </p>
       </div>
-      <div class="container cards-3">
-        <article class="card">
-          <h3>Teď řeším</h3>
-          <p>Doladění textů, základní projekty a první veřejná verze.</p>
+
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="tag">Drone</span>
+          </div>
+          <h3>Aerial shots & editing</h3>
+          <p>
+            I capture clean drone footage and turn it into short, watchable clips.
+          </p>
+          <a class="card-link" href="#paths">See paths →</a>
         </article>
-        <article class="card">
-          <h3>Další krok</h3>
-          <p>Reálné case studies, víc příkladů a lepší napojení na profily.</p>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="tag">Video</span>
+          </div>
+          <h3>YouTube content</h3>
+          <p>
+            Experiments, projects, and whatever I’m building right now — packaged as video.
+          </p>
+          <a class="card-link" href="#paths">See paths →</a>
         </article>
-        <article class="card">
-          <h3>Ready na online</h3>
-          <p>Čistý obsah, konzistentní styl a odkazy, které dávají smysl.</p>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <span class="tag">Projects</span>
+          </div>
+          <h3>Stuff I ship</h3>
+          <p>
+            Tools, small products, and ideas that go from “hmm” to “done”.
+          </p>
+          <a class="card-link" href="#paths">See paths →</a>
         </article>
       </div>
     </section>
 
-    <!-- Projekty -->
-    <section class="section" id="projects">
-      <div class="container section-header">
-        <h2>Projekty</h2>
-        <p>Jedna věta: co to je a proč to existuje.</p>
+    <!-- PATHS (branching point) -->
+    <section id="paths" class="section">
+      <div class="section-head reveal">
+        <h2>Explore</h2>
+        <p>
+          Pick a direction. Each one can become its own page later.
+        </p>
       </div>
-      <div class="container cards-3">
-        <article class="card tag-pill">
-          <header>
-            <h3>Mobile / UX</h3>
-            <span class="tag">mobileux</span>
-          </header>
-          <p>Jedna věta: co řeší a pro koho to je.</p>
-        </article>
 
-        <article class="card tag-pill">
-          <header>
-            <h3>Motion / AOS</h3>
-            <span class="tag">aos</span>
-          </header>
-          <p>Jedna věta: proč je to pro tebe zajímavé / unikátní.</p>
-        </article>
-
-        <article class="card tag-pill">
-          <header>
-            <h3>Workflow nástroje</h3>
-            <span class="tag">workflow</span>
-          </header>
-          <p>Jedna věta: mini tool / automatizace / helper.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Kategorie / zájmy -->
-    <section class="section" id="categories">
-      <div class="container section-header">
-        <h2>Zájmy a oblasti</h2>
-        <p>Oblasti, které propojuješ – od behavior po hardware.</p>
-      </div>
-      <div class="container cards-3">
-        <article class="card">
-          <h3>Behavior & mind games</h3>
-          <p>Pozorování, vzorce, situace. Věci, co jsou real, ne pohádka.</p>
-          <div class="tags-inline">
-            <span class="tag">behavior</span>
-            <span class="tag">analysis</span>
-            <span class="tag">mindgames</span>
+      <div class="paths">
+        <a class="path reveal" href="#" data-toast="Make /drone/ later">
+          <div class="path-title">
+            <h3>Drone</h3>
+            <span class="path-pill">/drone</span>
           </div>
-        </article>
+          <p>Highlights, best shots, gear, and links.</p>
+        </a>
 
-        <article class="card">
-          <h3>Hry & atmosféra</h3>
-          <p>Hry, které vtáhnou. Vibe &gt; hype.</p>
-          <div class="tags-inline">
-            <span class="tag">steam</span>
-            <span class="tag">atmo</span>
-            <span class="tag">challenge</span>
+        <a class="path reveal" href="https://youtube.com/@iamyellowdev?si=LYmWIPxfhBCjm26n" data-toast="Make /youtube/ later">
+          <div class="path-title">
+            <h3>YouTube</h3>
+            <span class="path-pill">/youtube</span>
           </div>
-        </article>
+          <p>Latest uploads + the direction of my channel.</p>
+        </a>
 
-        <article class="card">
-          <h3>Video & outdoor</h3>
-          <p>Lokace, záběry, edit. Progress log v praxi.</p>
-          <div class="tags-inline">
-            <span class="tag">video</span>
-            <span class="tag">reels</span>
-            <span class="tag">outdoor</span>
+        <a class="path reveal" href="#" data-toast="Make /projects/ later">
+          <div class="path-title">
+            <h3>Projects</h3>
+            <span class="path-pill">/projects</span>
           </div>
-        </article>
+          <p>Short, professional summaries — no blog energy.</p>
+        </a>
 
-        <article class="card">
-          <h3>Sketch & nápady</h3>
-          <p>Průběžný skill‑up. Občas challenge, občas chill.</p>
-          <div class="tags-inline">
-            <span class="tag">sketch</span>
-            <span class="tag">practice</span>
-            <span class="tag">ideas</span>
+        <a class="path reveal" href="#" data-toast="Make /contact/ later">
+          <div class="path-title">
+            <h3>Contact</h3>
+            <span class="path-pill">/contact</span>
           </div>
-        </article>
-
-        <article class="card">
-          <h3>Hardware & web</h3>
-          <p>Praktické věci. Míň buzzwords, víc value.</p>
-          <div class="tags-inline">
-            <span class="tag">hardware</span>
-            <span class="tag">web</span>
-            <span class="tag">privacy</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Notes & learning</h3>
-          <p>Co se učíš + krátké shrnutí. Žádný link spam.</p>
-          <div class="tags-inline">
-            <span class="tag">notes</span>
-            <span class="tag">skills</span>
-            <span class="tag">certs</span>
-          </div>
-        </article>
+          <p>Clean contact, no cringe, no forms needed.</p>
+        </a>
       </div>
     </section>
 
-    <!-- Link hub -->
-    <section class="section" id="links">
-      <div class="container section-header">
-        <h2>Link hub</h2>
-        <p>Rychlý rozcestník na profily a stránky.</p>
+    <!-- FOOTER -->
+    <footer id="links" class="footer">
+      <div class="footer-inner reveal">
+        <div>
+          <h2>Links</h2>
+          <p class="muted">Keep it simple. Tap and go.</p>
+        </div>
+
+        <div class="socials">
+          <!-- Replace # with your real links -->
+          <a class="social" href="https://www.instagram.com/fly_with_yellow?igsh=NnV1Njh1OWV3aTQ4" target="_blank" rel="noopener">Instagram</a>
+          <a class="social" href="https://youtube.com/@iamyellowdev?si=LYmWIPxfhBCjm26n" target="_blank" rel="noopener">YouTube</a>
+          <a class="social" href="https://github.com/Charvicz" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="fineprint">
+          <span>© <span id="year"></span> Yellow</span>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="muted">Built clean, updated often.</span>
+        </div>
       </div>
-      <div class="container cards-3">
-        <article class="card">
-          <h3>Profesionální profily</h3>
-          <ul class="link-list">
-            <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Side projekty</h3>
-          <ul class="link-list">
-            <li><a href="#" target="_blank" rel="noopener">Projekt 1</a></li>
-            <li><a href="#" target="_blank" rel="noopener">Projekt 2</a></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Další věci</h3>
-          <ul class="link-list">
-            <li><a href="#" target="_blank" rel="noopener">Blog / notes</a></li>
-            <li><a href="#" target="_blank" rel="noopener">Kontakt</a></li>
-          </ul>
-        </article>
-      </div>
-    </section>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <span>© 2026 Yellow Hub</span>
-      <button class="mode-toggle" type="button">Přepnout režim</button>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
