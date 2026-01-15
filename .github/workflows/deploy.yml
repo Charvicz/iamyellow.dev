@@ -19,9 +19,13 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: ${{ secrets.FTP_PORT }}
-          server-dir: ${{ secrets.FTP_PATH }}
-          local-dir: ./
+          protocol: ftp
+          server-dir: /www/
+          local-dir: site/
           exclude: |
+            **/.git/**
             **/.git*
             **/.github/**
             **/node_modules/**
+            **/.ftp-deploy-sync-state.json
+
