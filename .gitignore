@@ -1,0 +1,4 @@
+.vscode/
+git add .gitignore
+git commit -m "Add gitignore for VSCode config"
+git push
