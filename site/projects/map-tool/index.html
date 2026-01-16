@@ -176,13 +176,19 @@
 
           const detail = await getPlaceDetails(place.place_id);
 
-          if (detail && !detail.website) {
-            const key = normalizeFirmName(detail.name);
-            if (!seenFirmNames.has(key)) {
-              seenFirmNames.add(key);
-              noWebResults.push(detail);
+          if (detail) {
+            const website = detail.website || "";
+            const treatAsNoWebsite = !website || isSocialOrListingUrl(website);
+
+            if (treatAsNoWebsite) {
+                const key = normalizeFirmName(detail.name);
+                if (!seenFirmNames.has(key)) {
+                seenFirmNames.add(key);
+                noWebResults.push(detail);
+                }
             }
-          }
+            }
+
 
           updateProgress();
         }
@@ -242,6 +248,33 @@
       document.getElementById("radiusValue").textContent = val + " km";
       if(selectedLocation) updateMarkerCircle();
     }
+
+    function isSocialOrListingUrl(url){
+        try{
+            const host = new URL(url).hostname.replace(/^www\./, '').toLowerCase();
+
+            const blocked = new Set([
+            "facebook.com","m.facebook.com","fb.com",
+            "instagram.com",
+            "tiktok.com",
+            "twitter.com","x.com",
+            "linkedin.com",
+            "youtube.com","youtu.be",
+            "linktr.ee",
+            "maps.google.com","google.com","goo.gl","maps.app.goo.gl",
+            "booking.com","tripadvisor.com","foursquare.com",
+            "firmy.cz","mapy.cz"
+            ]);
+
+            // subdomény typu something.facebook.com
+            for (const d of blocked){
+            if (host === d || host.endsWith("." + d)) return true;
+            }
+            return false;
+        } catch(e){
+            return false;
+        }
+        }
 
     function updateProgress() {
       document.getElementById("progressCount").textContent = `${noWebResults.length} without website`;
