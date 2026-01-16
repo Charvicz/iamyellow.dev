@@ -361,3 +361,161 @@ h1{
   .paths{ grid-template-columns: 1fr; }
   .nav{ display:none; } /* čistý look na mobilu */
 }
+
+/* Living wallpaper */
+.ambient-bg{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: #0B0C10;
+}
+
+.ambient-bg::before{
+  /* subtle moving glow */
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(600px 600px at 50% 15%, rgba(255,216,77,0.10), transparent 60%),
+    radial-gradient(500px 500px at 20% 70%, rgba(255,216,77,0.06), transparent 60%),
+    radial-gradient(700px 700px at 80% 75%, rgba(255,255,255,0.05), transparent 65%);
+  filter: blur(18px);
+  transform: translate3d(0,0,0);
+  animation: ambientMove 18s ease-in-out infinite;
+}
+
+@keyframes ambientMove{
+  0%   { transform: translate3d(0,0,0) scale(1); opacity: .85; }
+  50%  { transform: translate3d(2%, -1%,0) scale(1.03); opacity: .95; }
+  100% { transform: translate3d(0,0,0) scale(1); opacity: .85; }
+}
+
+/* Noise using SVG turbulence (data URI) */
+.ambient-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity: .055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  background-size: 260px 260px;
+  animation: noiseShift 2.2s steps(2) infinite;
+}
+
+@keyframes noiseShift{
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(-2%,1%,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+
+/* Scanlines */
+.scanlines{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .0; /* default off, we animate it on subtle */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06) 0px,
+    rgba(255,255,255,0.06) 1px,
+    transparent 4px,
+    transparent 8px
+  );
+  mix-blend-mode: overlay;
+  animation: scanFlicker 9s ease-in-out infinite;
+}
+
+@keyframes scanFlicker{
+  0%, 65% { opacity: 0; transform: translateY(0); }
+  70% { opacity: .12; transform: translateY(2px); }
+  73% { opacity: 0; transform: translateY(0); }
+  92% { opacity: .08; transform: translateY(-1px); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+
+/* Make sure content sits above background */
+body > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Yellow dot */
+.yellow-dot{
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  background: #FFD84D;
+  box-shadow:
+    0 0 0 1px rgba(255,216,77,0.15),
+    0 0 calc(18px + var(--pulse, 0) * 26px) rgba(255,216,77, calc(.18 + var(--pulse, 0) * .24)),
+    0 0 calc(44px + var(--pulse, 0) * 70px) rgba(255,216,77, calc(.10 + var(--pulse, 0) * .18));
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+.yellow-dot:hover{
+  transform: translateY(-1px);
+}
+
+.yellow-dot.is-holding{
+  box-shadow:
+    0 0 0 1px rgba(255,216,77,0.28),
+    0 0 40px rgba(255,216,77,0.45),
+    0 0 110px rgba(255,216,77,0.25);
+}
+
+/* Scroll words */
+.pulse-words{
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  opacity: calc(0 + var(--words, 0));
+  transform: translateY(calc(10px - var(--words, 0) * 10px));
+  transition: opacity .15s linear, transform .15s linear;
+}
+
+.pulse-words span{
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.86);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Unlock toast */
+.unlock-toast{
+  margin-top: 12px;
+  min-height: 22px;
+  color: rgba(255,255,255,0.86);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.unlock-toast.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Yellow Mode theme (secret) */
+html.yellow-mode .ambient-bg::before{
+  opacity: 1;
+  filter: blur(16px);
+}
+
+html.yellow-mode .scanlines{
+  animation-duration: 6s;
+}
+
+html.yellow-mode .yellow-dot{
+  box-shadow:
+    0 0 0 1px rgba(255,216,77,0.22),
+    0 0 55px rgba(255,216,77,0.50),
+    0 0 160px rgba(255,216,77,0.28);
+}

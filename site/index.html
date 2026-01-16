@@ -56,7 +56,25 @@
           <span class="hint-text">Scroll</span>
         </div>
       </div>
-    </section>
+
+      <div class="ambient-bg" aria-hidden="true"></div>
+      <div class="scanlines" aria-hidden="true"></div>
+
+      <section class="hero">
+        <div class="hero-inner">
+          <!-- Yellow pulse -->
+          <button id="yellowDot" class="yellow-dot" type="button" aria-label="Yellow dot"></button>
+
+          <!-- Scroll words -->
+          <div class="pulse-words" aria-hidden="true">
+            <span>Create</span>
+            <span>Fly</span>
+            <span>Build</span>
+          </div>
+
+          <!-- Unlock toast -->
+          <div id="unlockToast" class="unlock-toast" role="status" aria-live="polite"></div>
+          </section>
 
     <!-- FOCUS -->
     <section id="focus" class="section">
@@ -129,12 +147,12 @@
           <p>Latest uploads + the direction of my channel.</p>
         </a>
 
-        <a class="path reveal" href="/projects/index.html" data-toast="Make /projects/ later">
+        <a class="path reveal" href="projects/">
           <div class="path-title">
             <h3>Projects</h3>
             <span class="path-pill">/projects</span>
           </div>
-          <p>Short, professional summaries — no blog energy.</p>
+          <p>Short, professional summaries.</p>
         </a>
 
         <a class="path reveal" href="#" data-toast="Make /contact/ later">
@@ -142,7 +160,7 @@
             <h3>Contact</h3>
             <span class="path-pill">/contact</span>
           </div>
-          <p>Clean contact, no cringe, no forms needed.</p>
+          <p>Clean contact.</p>
         </a>
       </div>
     </section>
