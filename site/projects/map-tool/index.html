@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Firmy bez webu — Yellow</title>
+  <title>Firms Without a Website — Yellow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Global site styles + page-only polish -->
@@ -28,31 +28,31 @@
 
   <main style="padding-top: 70px;">
     <div class="container">
-      <h1>Firmy bez webu</h1>
+      <h1>Firms Without a Website</h1>
       <div id="subtitle">
-        Klikni na mapu → nastav vzdálenost → spusť scan. Grid scan projde víc bodů než limit ~60 z jednoho nearbySearch.
+        Click the map → set radius → start scan. Grid scan covers multiple points (not just the ~60 results from one nearbySearch).
       </div>
 
       <div class="controls">
         <div class="control-row">
-          <label>📍 Klikni na mapu</label>
+          <label>📍 Click on the map</label>
 
-          <label>Vzdálenost: <span id="radiusValue">10 km</span></label>
+          <label>Radius: <span id="radiusValue">10 km</span></label>
           <input type="range" id="radiusSlider" min="2" max="50" value="10">
 
-          <label>Cíl: <input type="number" id="targetInput" min="1" max="1000" value="20"></label>
+          <label>Target: <input type="number" id="targetInput" min="1" max="1000" value="20"></label>
 
           <button id="btnSearch" class="max" disabled>🔥 START GRID SCAN</button>
         </div>
 
         <div class="control-row">
           <span>
-            Progreso: <span id="progressCount">0 bez webu</span> |
-            <span id="scannedCount">0</span> prohledáno
+            Progress: <span id="progressCount">0 without website</span> |
+            <span id="scannedCount">0</span> scanned
           </span>
           <button id="btnExport" disabled>📥 CSV</button>
           <button id="btnStop" disabled>⏹️ STOP</button>
-          <button id="btnClear">🗑️ Vyčistit</button>
+          <button id="btnClear">🗑️ Clear</button>
         </div>
       </div>
 
@@ -65,10 +65,10 @@
 
       <div id="loading" class="loading" style="display:none;">
         <div class="spinner"></div>
-        <div id="spinnerText">Hledám firmy bez webu…</div>
+        <div id="spinnerText">Scanning businesses…</div>
         <div id="progressText" style="font-size:14px; opacity:0.8;"></div>
         <div style="font-size:12px; opacity:0.6;">
-          Tip: API klíč zamkni na tvoji doménu (HTTP referrers) + omez jen na Maps JS + Places API.
+          Tip: lock your API key to your domain (HTTP referrers) + restrict only to Maps JS + Places API.
         </div>
       </div>
 
@@ -76,11 +76,11 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Firma</th>
-            <th>Adresa</th>
-            <th>Telefon</th>
-            <th>⭐</th>
-            <th>Akce</th>
+            <th>Business</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Reviews</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -95,16 +95,12 @@
     let noWebResults = [];
     let scannedPlaces = 0;
     let apiCalls = 0;
-    let targetCount = 20; // UI keeps it, scan doesn't hard-stop by it (unless you add stop logic)
+    let targetCount = 20;
 
-    // Dedupe
     const seenFirmNames = new Set();
     const seenPlaceIds = new Set();
-
-    // Anti-parallel safety
     let isRequestRunning = false;
 
-    // ---------- Helpers ----------
     function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
 
     function normalizeFirmName(name) {
@@ -114,7 +110,6 @@
         .replace(/\s+/g, ' ');
     }
 
-    // Haversine distance in meters
     function distanceMeters(lat1, lng1, lat2, lng2) {
       const R = 6371000;
       const toRad = d => d * Math.PI / 180;
@@ -127,15 +122,13 @@
       return 2 * R * Math.asin(Math.sqrt(a));
     }
 
-    // Create grid points around selected location, capped so it doesn't explode
     function createGridPoints(centerLatLng, radiusM) {
       const lat = centerLatLng.lat();
       const lng = centerLatLng.lng();
 
-      // Step size (meters): keep it sane
-      let stepM = Math.max(1200, Math.floor(radiusM / 4)); // auto density
+      let stepM = Math.max(1200, Math.floor(radiusM / 4));
       let n = Math.ceil(radiusM / stepM);
-      n = Math.min(n, 4); // cap grid radius => max 9x9 => 81-ish points
+      n = Math.min(n, 4);
 
       const metersPerDegLat = 111320;
       const metersPerDegLng = 111320 * Math.cos(lat * Math.PI / 180);
@@ -156,7 +149,6 @@
         }
       }
 
-      // Sort by distance to center (start near the pin)
       points.sort((a, b) => {
         const da = distanceMeters(lat, lng, a.lat(), a.lng());
         const db = distanceMeters(lat, lng, b.lat(), b.lng());
@@ -166,7 +158,6 @@
       return { points, stepM, n };
     }
 
-    // ---------- Map init ----------
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
         center: {lat:50.0755, lng:14.4378},
@@ -184,7 +175,7 @@
 
       document.getElementById("radiusSlider").addEventListener("input", updateRadiusLabel);
       document.getElementById("targetInput").addEventListener("input", (e) => {
-        targetCount = parseInt(e.target.value) || 20;
+        targetCount = parseInt(e.target.value, 10) || 20;
       });
 
       document.getElementById("btnSearch").addEventListener("click", startGridScan);
@@ -195,11 +186,10 @@
       updateRadiusLabel();
     }
 
-    // ---------- Scan logic ----------
     async function startGridScan() {
-      if (!selectedLocation) return showError("📍 Klikni na mapu!");
+      if (!selectedLocation) return showError("📍 Click on the map first.");
 
-      targetCount = parseInt(document.getElementById("targetInput").value) || 20;
+      targetCount = parseInt(document.getElementById("targetInput").value, 10) || 20;
 
       isScanning = true;
       scannedPlaces = 0;
@@ -215,21 +205,18 @@
       clearTable();
       hideMessages();
 
-      const radiusM = parseInt(document.getElementById("radiusSlider").value) * 1000;
-
+      const radiusM = parseInt(document.getElementById("radiusSlider").value, 10) * 1000;
       const { points, stepM, n } = createGridPoints(selectedLocation, radiusM);
-      showWarning(`🔎 GRID SCAN běží: ${points.length} bodů (step ~${Math.round(stepM)}m, grid ${(2*n+1)}×${(2*n+1)}).`);
 
-      // Sequential scan (no parallel requests)
+      showWarning(`🔎 GRID SCAN running: ${points.length} points (step ~${Math.round(stepM)}m, grid ${(2*n+1)}×${(2*n+1)}).`);
+
       for (let i = 0; i < points.length; i++) {
         if (!isScanning) break;
 
         document.getElementById("progressText").textContent =
-          `Grid bod ${i+1}/${points.length} | prohledáno: ${scannedPlaces} | API calls: ${apiCalls}`;
+          `Grid point ${i+1}/${points.length} | scanned: ${scannedPlaces} | API calls: ${apiCalls}`;
 
         await scanOnePoint(points[i], radiusM);
-
-        // small pause between points (be nice to API)
         await sleep(700);
       }
 
@@ -251,13 +238,12 @@
       if (!isScanning) return doneResolve();
 
       if (status !== 'OK' || !results) {
-        // Don't stop entire grid scan; just skip this point.
-        showWarning("⚠️ Google nevrátil další výsledky pro jeden grid bod (pokračuju dál).");
+        showWarning("⚠️ No more results for one grid point (continuing).");
         return doneResolve();
       }
 
       (async () => {
-        if (isRequestRunning) return; // safety
+        if (isRequestRunning) return;
         isRequestRunning = true;
 
         for (let i = 0; i < results.length; i++) {
@@ -273,7 +259,6 @@
 
           const detail = await getPlaceDetails(place.place_id);
 
-          // Only add firms without website field
           if (detail && !detail.website) {
             const key = normalizeFirmName(detail.name);
             if (!seenFirmNames.has(key)) {
@@ -287,14 +272,12 @@
 
         isRequestRunning = false;
 
-        // next page for THIS point?
         if (isScanning && pagination && pagination.hasNextPage) {
           setTimeout(() => {
             if (!isScanning) return doneResolve();
             pagination.nextPage();
           }, 2000);
         } else {
-          // finished this point
           doneResolve();
         }
       })();
@@ -313,7 +296,7 @@
               address: detail.formatted_address || 'N/A',
               website: detail.website || '',
               phone: detail.formatted_phone_number || '',
-              reviews: detail.user_ratings_total || 0,
+              reviews: detail.user_ratings_total ?? 0,
               url: detail.url || ''
             });
           } else {
@@ -324,30 +307,31 @@
     }
 
     function finalizeScan(totalPoints = null) {
-        isScanning = false;
+      isScanning = false;
 
-        const time = ((performance.now() - window.startTime) / 1000).toFixed(1);
-        const extra = totalPoints ? ` | grid body: ${totalPoints}` : '';
+      const time = ((performance.now() - window.startTime) / 1000).toFixed(1);
+      const extra = totalPoints ? ` | grid points: ${totalPoints}` : '';
 
-        showSuccess(`Hotovo: ${noWebResults.length} bez webu | ${scannedPlaces} unikátně zkontrolováno | ${apiCalls} API calls | ${time}s${extra}`);
+      // ✅ Sort by reviews (desc) — hard-safe (string/undefined safe)
+      noWebResults.sort((a, b) => {
+        const ra = Number(a?.reviews ?? 0);
+        const rb = Number(b?.reviews ?? 0);
+        return rb - ra;
+      });
 
-        // ✅ NEW: sort by review count (highest first)
-        noWebResults.sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
+      showSuccess(`✅ Done: ${noWebResults.length} without website | ${scannedPlaces} checked | ${apiCalls} API calls | ${time}s${extra}`);
 
-        renderTable(noWebResults);
-        document.getElementById("btnExport").disabled = !noWebResults.length;
-        updateStats();
-        showLoading(false);
-        }
-
+      renderTable(noWebResults);
+      document.getElementById("btnExport").disabled = !noWebResults.length;
+      updateStats();
+      showLoading(false);
+    }
 
     function stopScan() {
-      // stop button
       isScanning = false;
       finalizeScan();
     }
 
-    // ---------- UI helpers ----------
     function updateRadiusLabel() {
       const val = document.getElementById("radiusSlider").value;
       document.getElementById("radiusValue").textContent = val + " km";
@@ -355,21 +339,18 @@
     }
 
     function updateProgress() {
-      document.getElementById("progressCount").textContent = `${noWebResults.length} bez webu`;
+      document.getElementById("progressCount").textContent = `${noWebResults.length} without website`;
       document.getElementById("scannedCount").textContent = scannedPlaces;
-      document.getElementById("progressText").textContent = `${scannedPlaces} prohledáno | ${apiCalls} API calls`;
+      document.getElementById("progressText").textContent = `${scannedPlaces} scanned | ${apiCalls} API calls`;
     }
 
     function updateMarkerCircle() {
       if (marker) marker.setMap(null);
       if (circle) circle.setMap(null);
 
-      marker = new google.maps.Marker({
-        position: selectedLocation,
-        map
-      });
+      marker = new google.maps.Marker({ position: selectedLocation, map });
 
-      const radiusM = parseInt(document.getElementById("radiusSlider").value) * 1000;
+      const radiusM = parseInt(document.getElementById("radiusSlider").value, 10) * 1000;
       circle = new google.maps.Circle({
         center: selectedLocation,
         radius: radiusM,
@@ -393,7 +374,7 @@
           <td><strong>${p.name}</strong></td>
           <td style="font-size:13px;">${p.address}</td>
           <td style="font-family:monospace;font-size:13px;">${p.phone || '-'}</td>
-          <td>${p.reviews} ⭐</td>
+          <td>${Number(p.reviews ?? 0).toLocaleString()} ⭐</td>
           <td><a href="${p.url}" target="_blank" rel="noopener">🗺️ Google</a></td>
         </tr>
       `).join('');
@@ -403,7 +384,7 @@
 
     function updateStats() {
       document.getElementById("stats").innerHTML =
-        `📊 Bez webu: ${noWebResults.length} | Prohledáno: ${scannedPlaces} | API calls: ${apiCalls}`;
+        `📊 Without website: ${noWebResults.length} | Scanned: ${scannedPlaces} | API calls: ${apiCalls}`;
       document.getElementById("stats").style.display = scannedPlaces ? 'block' : 'none';
     }
 
@@ -454,7 +435,7 @@
       document.getElementById("btnStop").disabled = true;
       document.getElementById("btnClear").disabled = false;
 
-      document.getElementById("progressCount").textContent = "0 bez webu";
+      document.getElementById("progressCount").textContent = "0 without website";
       document.getElementById("scannedCount").textContent = "0";
       document.getElementById("progressText").textContent = "";
 
@@ -470,23 +451,22 @@
     }
 
     function exportCSV() {
-      const csv = ['#;Název;Adresa;Telefon;Recenze;Google URL'].concat(
-        noWebResults.map((p,i) => `${i+1};"${(p.name||'').replace(/"/g,'""')}";"${(p.address||'').replace(/"/g,'""')}";${p.phone||''};${p.reviews||0};${p.url||''}`)
+      const csv = ['#;Name;Address;Phone;Reviews;Google URL'].concat(
+        noWebResults.map((p,i) => `${i+1};"${(p.name||'').replace(/"/g,'""')}";"${(p.address||'').replace(/"/g,'""')}";${p.phone||''};${Number(p.reviews ?? 0)};${p.url||''}`)
       ).join('\n');
 
       const a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
-      a.download = `firmy_bez_webu_${noWebResults.length}_${new Date().toLocaleDateString('cs-CZ')}.csv`;
+      a.download = `firms_without_website_${noWebResults.length}.csv`;
       a.click();
     }
   </script>
 
-  <!-- Google Maps JS (insert your NEW restricted key here) -->
+  <!-- Google Maps JS (PUT YOUR NEW RESTRICTED KEY HERE) -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVH-eyhfPeF3AOzMad2QUytXWyQtzB-wI&libraries=places&callback=initMap"
     async defer></script>
 
-  <!-- Optional: your site JS (reveal animations etc.) -->
   <script src="../../assets/app.js"></script>
 </body>
 </html>
