@@ -324,18 +324,22 @@
     }
 
     function finalizeScan(totalPoints = null) {
-      isScanning = false;
+        isScanning = false;
 
-      const time = ((performance.now() - window.startTime) / 1000).toFixed(1);
-      const extra = totalPoints ? ` | grid body: ${totalPoints}` : '';
+        const time = ((performance.now() - window.startTime) / 1000).toFixed(1);
+        const extra = totalPoints ? ` | grid body: ${totalPoints}` : '';
 
-      showSuccess(`✅ Hotovo: ${noWebResults.length} bez webu | ${scannedPlaces} unikátně zkontrolováno | ${apiCalls} API calls | ${time}s${extra}`);
+        showSuccess(`Hotovo: ${noWebResults.length} bez webu | ${scannedPlaces} unikátně zkontrolováno | ${apiCalls} API calls | ${time}s${extra}`);
 
-      renderTable(noWebResults);
-      document.getElementById("btnExport").disabled = !noWebResults.length;
-      updateStats();
-      showLoading(false);
-    }
+        // ✅ NEW: sort by review count (highest first)
+        noWebResults.sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
+
+        renderTable(noWebResults);
+        document.getElementById("btnExport").disabled = !noWebResults.length;
+        updateStats();
+        showLoading(false);
+        }
+
 
     function stopScan() {
       // stop button
