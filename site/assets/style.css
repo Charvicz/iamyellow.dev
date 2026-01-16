@@ -436,56 +436,36 @@ h1{
 }
 
 /* Make sure content sits above background */
-body > *{
+.ambient-bg,
+.scanlines{
+  z-index: 0;
+}
+
+main, header{
   position: relative;
   z-index: 1;
 }
 
-/* Yellow dot */
+
 .yellow-dot{
-  width: 84px;
-  height: 84px;
+  width: 26px;
+  height: 26px;
   border-radius: 999px;
   border: 0;
   cursor: pointer;
-  background: #FFD84D;
+  background: var(--accent);
   box-shadow:
-    0 0 0 1px rgba(255,216,77,0.15),
-    0 0 calc(18px + var(--pulse, 0) * 26px) rgba(255,216,77, calc(.18 + var(--pulse, 0) * .24)),
-    0 0 calc(44px + var(--pulse, 0) * 70px) rgba(255,216,77, calc(.10 + var(--pulse, 0) * .18));
+    0 0 0 6px rgba(255,216,77,0.10),
+    0 0 26px rgba(255,216,77,0.18);
   transition: transform .15s ease, box-shadow .2s ease;
 }
-
-.yellow-dot:hover{
-  transform: translateY(-1px);
-}
-
+.yellow-dot:hover{ transform: translateY(-1px) scale(1.06); }
 .yellow-dot.is-holding{
   box-shadow:
-    0 0 0 1px rgba(255,216,77,0.28),
-    0 0 40px rgba(255,216,77,0.45),
-    0 0 110px rgba(255,216,77,0.25);
+    0 0 0 10px rgba(255,216,77,0.14),
+    0 0 50px rgba(255,216,77,0.28);
 }
 
-/* Scroll words */
-.pulse-words{
-  display: flex;
-  gap: 14px;
-  margin-top: 14px;
-  opacity: calc(0 + var(--words, 0));
-  transform: translateY(calc(10px - var(--words, 0) * 10px));
-  transition: opacity .15s linear, transform .15s linear;
-}
-
-.pulse-words span{
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.86);
-  font-weight: 700;
-  letter-spacing: .2px;
-}
 
 /* Unlock toast */
 .unlock-toast{
@@ -518,4 +498,45 @@ html.yellow-mode .yellow-dot{
     0 0 0 1px rgba(255,216,77,0.22),
     0 0 55px rgba(255,216,77,0.50),
     0 0 160px rgba(255,216,77,0.28);
+}
+
+/* Make hero feel like a proper welcome */
+.hero{
+  align-items: flex-start;
+  padding-top: 140px;
+}
+
+.kicker-row{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* smooth pohyb */
+.kicker-row .kicker{
+  transition: transform .18s ease;
+}
+
+/* když držíš tečku => posuň kicker */
+.kicker-row #yellowDot.is-holding + .kicker{
+  transform: translateX(6px);
+}
+
+
+.kicker-row .yellow-dot{
+  order: -1;              /* tečka půjde vlevo */
+}
+
+
+html.yellow-mode body{
+  background: radial-gradient(900px 600px at 55% 20%, rgba(255,216,77,0.14), transparent 60%),
+              radial-gradient(900px 600px at 85% 60%, rgba(255,255,255,0.05), transparent 65%),
+              var(--bg);
+}
+html.yellow-mode .card{
+  border-color: rgba(255,216,77,0.22);
+  background: linear-gradient(180deg, rgba(255,216,77,0.08), rgba(255,255,255,0.03));
+}
+html.yellow-mode .nav a:hover{
+  background: rgba(255,216,77,0.10);
 }

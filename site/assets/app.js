@@ -1,83 +1,62 @@
 // Scroll reveal (IntersectionObserver)
 const reveals = document.querySelectorAll(".reveal");
+if (reveals.length) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("is-visible");
+    });
+  }, { threshold: 0.18 });
 
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add("is-visible");
-  });
-}, { threshold: 0.18 });
+  reveals.forEach(el => io.observe(el));
+}
 
-reveals.forEach(el => io.observe(el));
+// Year in footer (safe)
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Year in footer
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Tiny toast helper for "paths" placeholders
-const toast = document.getElementById("toast");
+// Tiny toast helper (safe)
+const toastEl = document.getElementById("toast");
 let toastTimer = null;
 
 function showToast(text){
-  toast.textContent = text;
-  toast.classList.add("show");
+  if (!toastEl) return;
+  toastEl.textContent = text;
+  toastEl.classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 1700);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1700);
 }
 
+// Only block click if data-toast has a message
 document.querySelectorAll("[data-toast]").forEach(el => {
   el.addEventListener("click", (e) => {
-    // For now, prevent dead links; later replace href with real pages
+    const msg = el.getAttribute("data-toast") || "";
+    if (!msg) return;
     e.preventDefault();
-    showToast(el.getAttribute("data-toast"));
+    showToast(msg);
   });
 });
 
+// Easter eggs
 (() => {
   const dot = document.getElementById("yellowDot");
-  const toast = document.getElementById("unlockToast");
+  const unlockToast = document.getElementById("unlockToast");
 
-  // If this page doesn't have the dot, do nothing.
   if (!dot) return;
 
-  // ---------- Base path helper (because you host under /site/) ----------
-  // If later you move to domain root, it still works.
   function basePrefix() {
     const p = window.location.pathname;
     return p.includes("/site/") ? "/site" : "";
   }
 
-  // ---------- 1) Scroll-reactive pulse ----------
-  function clamp01(x){ return Math.max(0, Math.min(1, x)); }
-
-  function onScrollPulse(){
-    const y = window.scrollY || 0;
-    const h = window.innerHeight || 800;
-
-    // pulse increases slowly with scroll (0..1 over ~1.2 screens)
-    const pulse = clamp01(y / (h * 1.2));
-    // words fade in a bit later
-    const words = clamp01((y - h * 0.15) / (h * 0.65));
-
-    document.documentElement.style.setProperty("--pulse", String(pulse));
-    document.documentElement.style.setProperty("--words", String(words));
-  }
-
-  window.addEventListener("scroll", onScrollPulse, { passive: true });
-  onScrollPulse();
-
-  // ---------- 2) Hold 2s on dot = Yellow Mode ----------
-  let holdTimer = null;
-  let holding = false;
-
-  function showToast(msg){
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add("show");
-    window.clearTimeout(showToast._t);
-    showToast._t = window.setTimeout(() => toast.classList.remove("show"), 1800);
+  function showUnlock(msg){
+    if (!unlockToast) return;
+    unlockToast.textContent = msg;
+    unlockToast.classList.add("show");
+    window.clearTimeout(showUnlock._t);
+    showUnlock._t = window.setTimeout(() => unlockToast.classList.remove("show"), 1800);
   }
 
   function microBeep(){
-    // optional: tiny beep via WebAudio, no files needed
     try{
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const o = ctx.createOscillator();
@@ -91,6 +70,10 @@ document.querySelectorAll("[data-toast]").forEach(el => {
     }catch(e){}
   }
 
+  // Hold 2s => Yellow Mode
+  let holdTimer = null;
+  let holding = false;
+
   function startHold(){
     if (holding) return;
     holding = true;
@@ -98,7 +81,7 @@ document.querySelectorAll("[data-toast]").forEach(el => {
 
     holdTimer = window.setTimeout(() => {
       document.documentElement.classList.toggle("yellow-mode");
-      showToast("Yellow Mode unlocked ✨");
+      showUnlock("Yellow Mode unlocked ✨");
       microBeep();
       holding = false;
       dot.classList.remove("is-holding");
@@ -117,7 +100,7 @@ document.querySelectorAll("[data-toast]").forEach(el => {
   dot.addEventListener("pointerleave", cancelHold);
   dot.addEventListener("touchcancel", cancelHold);
 
-  // ---------- 3) Click counter: 7 clicks unlocks a button ----------
+  // 7 clicks => unlock button
   let clickCount = 0;
   let unlockedBtn = null;
 
@@ -134,12 +117,12 @@ document.querySelectorAll("[data-toast]").forEach(el => {
   dot.addEventListener("click", () => {
     clickCount++;
     if (clickCount === 7) {
-      showToast("✨ ok you found it");
+      showUnlock("✨ ok you found it");
       makeUnlockedButton();
     }
   });
 
-  // ---------- 4) Konami code -> /secret/ ----------
+  // Konami => /secret/
   const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
   let kIdx = 0;
 
