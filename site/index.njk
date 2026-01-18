@@ -1,0 +1,132 @@
+---
+layout: layout.njk
+title: "Yellow — Digital Hub"
+description: "A clean hub for my work: drone, video, and projects."
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker-row">
+      <button id="yellowDot" class="yellow-dot" type="button" aria-label="Yellow dot"></button>
+      <p class="kicker">Minimal. Modern. Useful.</p>
+    </div>
+
+    <div id="unlockToast" class="unlock-toast" role="status" aria-live="polite"></div>
+
+    <h1>
+      I’m <span class="accent">Yellow</span> — I build, create, and ship ideas.
+    </h1>
+
+    <p class="subtitle">
+      This is my hub. If you want details, scroll — the site reveals itself as you go.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#paths">Explore my work</a>
+      <a class="btn ghost" href="#links">Socials</a>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span class="mouse"></span>
+      <span class="hint-text">Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS -->
+<section id="focus" class="section">
+  <div class="section-head reveal">
+    <h2>What I do</h2>
+    <p>A few lanes I actively spend time in. Not everything, just the stuff that matters.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal">
+      <div class="card-top"><span class="tag">Drone</span></div>
+      <h3>Aerial shots & editing</h3>
+      <p>I capture clean drone footage and turn it into short, watchable clips.</p>
+      <a class="card-link" href="#paths">See paths →</a>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-top"><span class="tag">Video</span></div>
+      <h3>YouTube content</h3>
+      <p>Experiments, projects, and whatever I’m building right now — packaged as video.</p>
+      <a class="card-link" href="#paths">See paths →</a>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-top"><span class="tag">Projects</span></div>
+      <h3>Stuff I ship</h3>
+      <p>Tools, small products, and ideas that go from “hmm” to “done”.</p>
+      <a class="card-link" href="#paths">See paths →</a>
+    </article>
+  </div>
+</section>
+
+<!-- PATHS -->
+<section id="paths" class="section">
+  <div class="section-head reveal">
+    <h2>Explore</h2>
+    <p>Pick a direction.</p>
+  </div>
+
+  <div class="paths">
+    <a class="path reveal" href="#" data-toast="Make /drone/ later">
+      <div class="path-title">
+        <h3>Drone</h3>
+        <span class="path-pill">/drone</span>
+      </div>
+      <p>Highlights, best shots, gear, and links.</p>
+    </a>
+
+    <a class="path reveal" href="https://youtube.com/@iamyellowdev?si=LYmWIPxfhBCjm26n">
+      <div class="path-title">
+        <h3>YouTube</h3>
+        <span class="path-pill">/youtube</span>
+      </div>
+      <p>Latest uploads + the direction of my channel.</p>
+    </a>
+
+    <a class="path reveal" href="/projects/">
+      <div class="path-title">
+        <h3>Projects</h3>
+        <span class="path-pill">/projects</span>
+      </div>
+      <p>Short, professional summaries.</p>
+    </a>
+
+    <a class="path reveal" href="#" data-toast="Make /contact/ later">
+      <div class="path-title">
+        <h3>Contact</h3>
+        <span class="path-pill">/contact</span>
+      </div>
+      <p>Clean contact.</p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="links" class="footer">
+  <div class="footer-inner reveal">
+    <div>
+      <h2>Links</h2>
+      <p class="muted">Keep it simple. Tap and go.</p>
+    </div>
+
+    <div class="socials">
+      <a class="social" href="https://www.instagram.com/fly_with_yellow?igsh=NnV1Njh1OWV3aTQ4" target="_blank" rel="noopener">Instagram</a>
+      <a class="social" href="https://youtube.com/@iamyellowdev?si=LYmWIPxfhBCjm26n" target="_blank" rel="noopener">YouTube</a>
+      <a class="social" href="https://github.com/Charvicz" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="fineprint">
+      <span>© <span id="year"></span> Yellow</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span class="muted">Built clean, updated often.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>

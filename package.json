@@ -1,0 +1,23 @@
+{
+  "name": "iamyellow.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Charvicz/iamyellow.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Charvicz/iamyellow.dev/issues"
+  },
+  "homepage": "https://github.com/Charvicz/iamyellow.dev#readme"
+}

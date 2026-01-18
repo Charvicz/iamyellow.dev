@@ -1,0 +1,213 @@
+---
+layout: layout.njk
+title: Projects — Yellow
+description: Selected projects by Yellow — clean demos, tools, and experiments.
+---
+
+<section class="hero hero-compact">
+  <div class="hero-inner">
+    <p class="kicker">Selected work</p>
+
+    <h1>
+      Projects — <span class="accent">clean</span>, practical, and shipped.
+    </h1>
+
+    <p class="subtitle">
+      A curated list. No essays — just what it does and where to try it.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#project-list">Browse projects</a>
+      <a class="btn ghost" href="/#links">My socials</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-head reveal">
+    <h2>Overview</h2>
+    <p>Filter by category. Keep it fast.</p>
+
+    <div class="filters" role="tablist" aria-label="Project filters">
+      <button class="filter is-active" data-filter="all" type="button">All</button>
+      <button class="filter" data-filter="web" type="button">Web</button>
+      <button class="filter" data-filter="tool" type="button">Tool</button>
+      <button class="filter" data-filter="video" type="button">Video</button>
+      <button class="filter" data-filter="school" type="button">School</button>
+    </div>
+  </div>
+
+  <div id="project-list" class="grid" style="margin-top: 14px;">
+    <!-- 1) Map tool -->
+    <article class="card reveal project" data-tags="web tool">
+      <div class="card-top">
+        <span class="tag">Web • Tool</span>
+      </div>
+
+      <h3>Firms Without a Website (Map tool)</h3>
+      <p>
+        Drop a pin, scan nearby businesses, and quickly see who’s missing a real website.
+      </p>
+
+      <div class="meta">
+        <span class="pill">Maps</span>
+        <span class="pill">Places</span>
+        <span class="pill">JS</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small primary" href="/projects/map-tool/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </article>
+
+    <!-- 2) Graduation project -->
+    <article class="card reveal project" data-tags="web school">
+      <div class="card-top">
+        <span class="tag">Web • School</span>
+      </div>
+
+      <h3>Insurance Agency Website (Graduation Project)</h3>
+      <p>
+        Student project: a full website concept for an insurance agency (not an official company site).
+      </p>
+
+      <div class="meta">
+        <span class="pill">Python</span>
+        <span class="pill">SQLite</span>
+        <span class="pill">Web</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small ghost" href="#" onclick="return false;">Case study</a>
+        <a class="btn small ghost" href="#" onclick="return false;">Screenshots</a>
+      </div>
+    </article>
+
+    <!-- 3) Placeholder -->
+    <article class="card reveal project" data-tags="tool">
+      <div class="card-top">
+        <span class="tag">Tool</span>
+      </div>
+
+      <h3>Next Project</h3>
+      <p>Add your next tool here. Keep the description short and outcome-focused.</p>
+
+      <div class="meta">
+        <span class="pill">Soon</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small ghost" href="#" onclick="return false;">Details</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer footer-compact">
+  <div class="footer-inner reveal">
+    <div class="fineprint">
+      <a class="social" href="/" style="display:inline-flex;">← Back to Home</a>
+      <span class="dot" aria-hidden="true">•</span>
+      <span class="muted">Projects update over time.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Page-only JS (filters) -->
+<script>
+  (function () {
+    const filterButtons = document.querySelectorAll(".filter");
+    const projects = document.querySelectorAll(".project");
+    if (!filterButtons.length || !projects.length) return;
+
+    function setActive(btn){
+      filterButtons.forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+    }
+
+    function applyFilter(tag){
+      projects.forEach(card => {
+        const tags = (card.getAttribute("data-tags") || "").split(/\s+/).filter(Boolean);
+        const show = tag === "all" || tags.includes(tag);
+        card.style.display = show ? "" : "none";
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tag = btn.getAttribute("data-filter");
+        setActive(btn);
+        applyFilter(tag);
+      });
+    });
+
+    applyFilter("all");
+  })();
+</script>
+
+<!-- Page-only styles -->
+<style>
+  .hero.hero-compact{
+    min-height: auto;
+    padding-top: 120px;
+    padding-bottom: 28px;
+  }
+  .section.section-tight{
+    padding-top: 28px;
+  }
+
+  .filters{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .filter{
+    appearance:none;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.80);
+    padding: 10px 12px;
+    border-radius: 999px;
+    font-weight: 650;
+    font-size: 13px;
+    cursor:pointer;
+    transition: background .2s ease, border-color .2s ease, transform .15s ease;
+  }
+  .filter:hover{ transform: translateY(-1px); }
+  .filter.is-active{
+    border-color: rgba(255,216,77,0.35);
+    background: rgba(255,216,77,0.12);
+    color: rgba(255,255,255,0.92);
+  }
+
+  .meta{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 12px;
+  }
+  .pill{
+    font-size: 12px;
+    color: rgba(255,255,255,0.74);
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+
+  .actions{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .btn.small{
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .footer.footer-compact{
+    padding-top: 30px;
+  }
+</style>
