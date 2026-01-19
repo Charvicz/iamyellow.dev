@@ -7,7 +7,7 @@
   <title>{{ title or "Yellow" }}</title>
   <meta name="description" content="{{ description or '' }}" />
 
-  <link rel="stylesheet" href="/assets/style.css?v=2">
+  <link rel="stylesheet" href="/assets/style.css?v=3">
   <meta name="theme-color" content="#0B0C10">
 </head>
 
@@ -23,7 +23,7 @@
   <script src="/assets/app.js?v=2" defer></script>
 
   {% if extra_js %}
-    <script src="{{ ('/assets/' + extra_js) | url }}"></script>
+  <script src="/assets/app.js?v=3" defer></script>
   {% endif %}
 </body>
 </html>
