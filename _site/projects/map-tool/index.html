@@ -1,469 +1,59 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Firms Without a Website — Yellow</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+---
+layout: layout.njk
+title: Insurance Agency Website — Video
+description: Demo video + a quick breakdown of how the project works.
+---
 
-  <!-- Global site styles + page-only polish -->
-  <link rel="stylesheet" href="/assets/style.css">
-  <link rel="stylesheet" href="/projects/map-tool/map-tool.css">
+<section class="section">
+  <div class="section-head">
+    <h2>Insurance Agency Website — Demo Video</h2>
+    <p class="muted">
+      A short walkthrough of the project and how it works behind the scenes.
+    </p>
+  </div>
 
-  <link rel="icon" href="/favicon.ico">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#0B0C10">
-</head>
-
-<body>
-  <header class="topbar">
-    <a class="brand" href="/" aria-label="Go home">
-      <span class="brand-dot" aria-hidden="true"></span>
-      <span>Yellow</span>
-    </a>
-    <nav class="nav">
-      <a href="/projects/">Projects</a>
-      <a href="/#links">Links</a>
-    </nav>
-  </header>
-
-  <main style="padding-top: 70px;">
-    <div class="container">
-      <h1>Firms Without a Website</h1>
-      <div id="subtitle">
-        Click the map → set radius → start scan. Grid scan covers multiple points.
-      </div>
-
-      <div class="controls">
-        <div class="control-row">
-          <label>📍 Click on the map</label>
-
-          <label>Radius: <span id="radiusValue">10 km</span></label>
-          <input type="range" id="radiusSlider" min="2" max="50" value="10">
-
-          <label>Target: <input type="number" id="targetInput" min="1" max="1000" value="20"></label>
-
-          <button id="btnSearch" class="max" disabled>🔥 START GRID SCAN</button>
-        </div>
-
-        <div class="control-row">
-          <span>
-            Progress: <span id="progressCount">0 without website</span> |
-            <span id="scannedCount">0</span> scanned
-          </span>
-          <button id="btnExport" disabled>📥 CSV</button>
-          <button id="btnStop" disabled>⏹️ STOP</button>
-          <button id="btnClear">🗑️ Clear</button>
-        </div>
-      </div>
-
-      <div id="errorMsg" class="error" style="display:none;"></div>
-      <div id="successMsg" class="success" style="display:none;"></div>
-      <div id="warningMsg" class="warning" style="display:none;"></div>
-
-      <div id="map"></div>
-      <div id="stats" style="display:none;"></div>
-
-      <div id="loading" class="loading" style="display:none;">
-        <div class="spinner"></div>
-        <div id="spinnerText">Scanning businesses…</div>
-        <div id="progressText" style="font-size:14px; opacity:0.8;"></div>
-      </div>
-
-      <table id="resultsTable" style="display:none;">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Business</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Reviews</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+  <div class="video-wrap reveal">
+    <div class="video">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/KL4Ip-cSKlI"
+        title="Insurance Agency Website — Demo"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
     </div>
-  </main>
 
-  <script>
-    let map, marker=null, circle=null, placesService;
-    let selectedLocation = null, isScanning=false;
-
-    let noWebResults = [];
-    let scannedPlaces = 0;
-    let apiCalls = 0;
-    let targetCount = 20;
-
-    const seenFirmNames = new Set();
-    const seenPlaceIds = new Set();
-    let isRequestRunning = false;
-
-    function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
-
-    function normalizeFirmName(name) {
-      return (name || '')
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, ' ');
-    }
-
-    function distanceMeters(lat1, lng1, lat2, lng2) {
-      const R = 6371000;
-      const toRad = d => d * Math.PI / 180;
-      const dLat = toRad(lat2 - lat1);
-      const dLng = toRad(lng2 - lng1);
-      const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-        Math.sin(dLng / 2) ** 2;
-      return 2 * R * Math.asin(Math.sqrt(a));
-    }
-
-    function createGridPoints(centerLatLng, radiusM) {
-      const lat = centerLatLng.lat();
-      const lng = centerLatLng.lng();
-
-      let stepM = Math.max(1200, Math.floor(radiusM / 4));
-      let n = Math.ceil(radiusM / stepM);
-      n = Math.min(n, 4);
-
-      const metersPerDegLat = 111320;
-      const metersPerDegLng = 111320 * Math.cos(lat * Math.PI / 180);
-
-      const dLat = stepM / metersPerDegLat;
-      const dLng = stepM / metersPerDegLng;
-
-      const points = [];
-      for (let iy = -n; iy <= n; iy++) {
-        for (let ix = -n; ix <= n; ix++) {
-          const pLat = lat + iy * dLat;
-          const pLng = lng + ix * dLng;
-
-          const distM = distanceMeters(lat, lng, pLat, pLng);
-          if (distM <= radiusM * 1.05) {
-            points.push(new google.maps.LatLng(pLat, pLng));
-          }
-        }
-      }
-
-      points.sort((a, b) => {
-        const da = distanceMeters(lat, lng, a.lat(), a.lng());
-        const db = distanceMeters(lat, lng, b.lat(), b.lng());
-        return da - db;
-      });
-
-      return { points, stepM, n };
-    }
-
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: {lat:50.0755, lng:14.4378},
-        zoom: 12
-      });
-
-      placesService = new google.maps.places.PlacesService(map);
-
-      map.addListener("click", e => {
-        selectedLocation = e.latLng;
-        updateMarkerCircle();
-        document.getElementById("btnSearch").disabled = false;
-        hideMessages();
-      });
-
-      document.getElementById("radiusSlider").addEventListener("input", updateRadiusLabel);
-      document.getElementById("targetInput").addEventListener("input", (e) => {
-        targetCount = parseInt(e.target.value, 10) || 20;
-      });
-
-      document.getElementById("btnSearch").addEventListener("click", startGridScan);
-      document.getElementById("btnStop").addEventListener("click", stopScan);
-      document.getElementById("btnExport").addEventListener("click", exportCSV);
-      document.getElementById("btnClear").addEventListener("click", clearAll);
-
-      updateRadiusLabel();
-    }
-
-    async function startGridScan() {
-      if (!selectedLocation) return showError("📍 Click on the map first.");
-
-      targetCount = parseInt(document.getElementById("targetInput").value, 10) || 20;
-
-      isScanning = true;
-      scannedPlaces = 0;
-      apiCalls = 0;
-      noWebResults = [];
-
-      seenFirmNames.clear();
-      seenPlaceIds.clear();
-      isRequestRunning = false;
-
-      window.startTime = performance.now();
-      showLoading(true);
-      clearTable();
-      hideMessages();
-
-      const radiusM = parseInt(document.getElementById("radiusSlider").value, 10) * 1000;
-      const { points, stepM, n } = createGridPoints(selectedLocation, radiusM);
-
-      showWarning(`🔎 GRID SCAN running: ${points.length} points (step ~${Math.round(stepM)}m, grid ${(2*n+1)}×${(2*n+1)}).`);
-
-      for (let i = 0; i < points.length; i++) {
-        if (!isScanning) break;
-
-        document.getElementById("progressText").textContent =
-          `Grid point ${i+1}/${points.length} | scanned: ${scannedPlaces} | API calls: ${apiCalls}`;
-
-        await scanOnePoint(points[i], radiusM);
-        await sleep(700);
-      }
-
-      finalizeScan(points.length);
-    }
-
-    function scanOnePoint(pointLatLng, radiusM) {
-      return new Promise((resolve) => {
-        placesService.nearbySearch(
-          { location: pointLatLng, radius: radiusM, type: 'establishment' },
-          (results, status, pagination) => {
-            handleNearbyPage(results, status, pagination, resolve);
-          }
-        );
-      });
-    }
-
-    function handleNearbyPage(results, status, pagination, doneResolve) {
-      if (!isScanning) return doneResolve();
-
-      if (status !== 'OK' || !results) {
-        showWarning("⚠️ No more results for one grid point (continuing).");
-        return doneResolve();
-      }
-
-      (async () => {
-        if (isRequestRunning) return;
-        isRequestRunning = true;
-
-        for (let i = 0; i < results.length; i++) {
-          if (!isScanning) break;
-
-          const place = results[i];
-          if (!place || !place.place_id) continue;
-
-          if (seenPlaceIds.has(place.place_id)) continue;
-          seenPlaceIds.add(place.place_id);
-
-          scannedPlaces++;
-
-          const detail = await getPlaceDetails(place.place_id);
-
-          if (detail && !detail.website) {
-            const key = normalizeFirmName(detail.name);
-            if (!seenFirmNames.has(key)) {
-              seenFirmNames.add(key);
-              noWebResults.push(detail);
-            }
-          }
-
-          updateProgress();
-        }
-
-        isRequestRunning = false;
-
-        if (isScanning && pagination && pagination.hasNextPage) {
-          setTimeout(() => {
-            if (!isScanning) return doneResolve();
-            pagination.nextPage();
-          }, 2000);
-        } else {
-          doneResolve();
-        }
-      })();
-    }
-
-    function getPlaceDetails(placeId) {
-      apiCalls++;
-      return new Promise((resolve) => {
-        placesService.getDetails({
-          placeId: placeId,
-          fields: ['name','formatted_address','website','formatted_phone_number','user_ratings_total','url']
-        }, (detail, status) => {
-          if (status === 'OK' && detail) {
-            resolve({
-              name: detail.name || 'N/A',
-              address: detail.formatted_address || 'N/A',
-              website: detail.website || '',
-              phone: detail.formatted_phone_number || '',
-              reviews: detail.user_ratings_total ?? 0,
-              url: detail.url || ''
-            });
-          } else {
-            resolve(null);
-          }
-        });
-      });
-    }
-
-    function finalizeScan(totalPoints = null) {
-      isScanning = false;
-
-      const time = ((performance.now() - window.startTime) / 1000).toFixed(1);
-      const extra = totalPoints ? ` | grid points: ${totalPoints}` : '';
-
-      // ✅ Sort by reviews (desc) — hard-safe (string/undefined safe)
-      noWebResults.sort((a, b) => {
-        const ra = Number(a?.reviews ?? 0);
-        const rb = Number(b?.reviews ?? 0);
-        return rb - ra;
-      });
-
-      showSuccess(`✅ Done: ${noWebResults.length} without website | ${scannedPlaces} checked | ${apiCalls} API calls | ${time}s${extra}`);
-
-      renderTable(noWebResults);
-      document.getElementById("btnExport").disabled = !noWebResults.length;
-      updateStats();
-      showLoading(false);
-    }
-
-    function stopScan() {
-      isScanning = false;
-      finalizeScan();
-    }
-
-    function updateRadiusLabel() {
-      const val = document.getElementById("radiusSlider").value;
-      document.getElementById("radiusValue").textContent = val + " km";
-      if (selectedLocation) updateMarkerCircle();
-    }
-
-    function updateProgress() {
-      document.getElementById("progressCount").textContent = `${noWebResults.length} without website`;
-      document.getElementById("scannedCount").textContent = scannedPlaces;
-      document.getElementById("progressText").textContent = `${scannedPlaces} scanned | ${apiCalls} API calls`;
-    }
-
-    function updateMarkerCircle() {
-      if (marker) marker.setMap(null);
-      if (circle) circle.setMap(null);
-
-      marker = new google.maps.Marker({ position: selectedLocation, map });
-
-      const radiusM = parseInt(document.getElementById("radiusSlider").value, 10) * 1000;
-      circle = new google.maps.Circle({
-        center: selectedLocation,
-        radius: radiusM,
-        map,
-        strokeColor: "#ff0000",
-        strokeOpacity: 0.8,
-        strokeWeight: 3,
-        fillColor: "#ff0000",
-        fillOpacity: 0.2
-      });
-
-      map.setCenter(selectedLocation);
-      map.setZoom(14);
-    }
-
-    function renderTable(data) {
-      const tbody = document.querySelector("#resultsTable tbody");
-      tbody.innerHTML = data.map((p, i) => `
-        <tr class="no-web">
-          <td>${i+1}</td>
-          <td><strong>${p.name}</strong></td>
-          <td style="font-size:13px;">${p.address}</td>
-          <td style="font-family:monospace;font-size:13px;">${p.phone || '-'}</td>
-          <td>${Number(p.reviews ?? 0).toLocaleString()} ⭐</td>
-          <td><a href="${p.url}" target="_blank" rel="noopener">🗺️ Google</a></td>
-        </tr>
-      `).join('');
-
-      document.getElementById("resultsTable").style.display = data.length ? 'table' : 'none';
-    }
-
-    function updateStats() {
-      document.getElementById("stats").innerHTML =
-        `📊 Without website: ${noWebResults.length} | Scanned: ${scannedPlaces} | API calls: ${apiCalls}`;
-      document.getElementById("stats").style.display = scannedPlaces ? 'block' : 'none';
-    }
-
-    function showLoading(show) {
-      document.getElementById("loading").style.display = show ? 'block' : 'none';
-      document.getElementById("btnSearch").disabled = show || !selectedLocation;
-      document.getElementById("btnStop").disabled = !show;
-      document.getElementById("btnClear").disabled = show;
-    }
-
-    function showError(msg) {
-      document.getElementById("errorMsg").innerHTML = msg || '';
-      document.getElementById("errorMsg").style.display = 'block';
-    }
-    function showSuccess(msg) {
-      document.getElementById("successMsg").textContent = msg;
-      document.getElementById("successMsg").style.display = 'block';
-      setTimeout(() => document.getElementById("successMsg").style.display = 'none', 7000);
-    }
-    function showWarning(msg) {
-      document.getElementById("warningMsg").innerHTML = msg;
-      document.getElementById("warningMsg").style.display = 'block';
-    }
-    function hideMessages() {
-      document.getElementById("errorMsg").style.display = 'none';
-      document.getElementById("successMsg").style.display = 'none';
-      document.getElementById("warningMsg").style.display = 'none';
-    }
-
-    function clearAll() {
-      isScanning = false;
-
-      noWebResults = [];
-      scannedPlaces = 0;
-      apiCalls = 0;
-
-      seenFirmNames.clear();
-      seenPlaceIds.clear();
-      isRequestRunning = false;
-
-      clearTable();
-      if (marker) marker.setMap(null);
-      if (circle) circle.setMap(null);
-
-      selectedLocation = null;
-
-      document.getElementById("btnSearch").disabled = true;
-      document.getElementById("btnStop").disabled = true;
-      document.getElementById("btnClear").disabled = false;
-
-      document.getElementById("progressCount").textContent = "0 without website";
-      document.getElementById("scannedCount").textContent = "0";
-      document.getElementById("progressText").textContent = "";
-
-      showLoading(false);
-      hideMessages();
-    }
-
-    function clearTable() {
-      document.getElementById("resultsTable").style.display = 'none';
-      document.getElementById("stats").style.display = 'none';
-      document.getElementById("btnExport").disabled = true;
-      document.querySelector("#resultsTable tbody").innerHTML = "";
-    }
-
-    function exportCSV() {
-      const csv = ['#;Name;Address;Phone;Reviews;Google URL'].concat(
-        noWebResults.map((p,i) => `${i+1};"${(p.name||'').replace(/"/g,'""')}";"${(p.address||'').replace(/"/g,'""')}";${p.phone||''};${Number(p.reviews ?? 0)};${p.url||''}`)
-      ).join('\n');
-
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
-      a.download = `firms_without_website_${noWebResults.length}.csv`;
-      a.click();
-    }
-  </script>
-
-  <!-- Google Maps JS (PUT YOUR NEW RESTRICTED KEY HERE) -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVH-eyhfPeF3AOzMad2QUytXWyQtzB-wI&libraries=places&callback=initMap"
-    async defer></script>
-
-  <script src="/assets/app.js"></script>
-</body>
-</html>
+    <div class="video-actions">
+      <a class="btn primary" href="https://www.youtube.com/watch?v=KL4Ip-cSKlI" target="_blank" rel="noopener">
+        Watch on YouTube →
+      </a>
+      <a class="btn ghost" href="/projects/">
+        Back to Projects
+      </a>
+    </div>
+  </div>
+
+  <div class="grid reveal" style="margin-top: 18px;">
+    <article class="card" style="grid-column: span 12;">
+      <div class="card-top">
+        <span class="tag">How it works</span>
+      </div>
+
+      <h3>Overview</h3>
+      <p>
+        This is a school project — a concept website for an insurance agency (not a real company).
+        The backend is built with Python, data is stored in SQLite, and the frontend is a clean static UI.
+      </p>
+
+      <p class="muted" style="margin-top: 10px;">
+        What the video shows:
+      </p>
+      <ul class="muted" style="margin-top: 8px; line-height: 1.7;">
+        <li>site structure & navigation</li>
+        <li>forms and data flow</li>
+        <li>basic content management & SQLite storage</li>
+        <li>validation and core safety checks</li>
+      </ul>
+    </article>
+  </div>
+</section>
