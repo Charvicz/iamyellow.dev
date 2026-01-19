@@ -2,7 +2,7 @@ name: Deploy to Best-Hosting (FTP)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -11,6 +11,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npx @11ty/eleventy
 
       - name: Upload via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -21,11 +33,10 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           protocol: ftp
           server-dir: /www/
-          local-dir: site/
+          local-dir: _site/
           exclude: |
             **/.git/**
             **/.git*
             **/.github/**
             **/node_modules/**
             **/.ftp-deploy-sync-state.json
-

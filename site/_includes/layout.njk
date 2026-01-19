@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}" />
 
-<link rel="stylesheet" href="{{ baseUrl }}/assets/style.css">
+  <title>{{ title or "Yellow" }}</title>
+  <meta name="description" content="{{ description or '' }}" />
 
+  <link rel="stylesheet" href="{{ '/assets/style.css' | url }}">
   <meta name="theme-color" content="#0B0C10">
 </head>
 
@@ -20,8 +20,10 @@
 
   {% include "theme-panel.njk" %}
 
-    <script src="{{ baseUrl }}/assets/app.js"></script>
-    {% if extra_js %}
-    <script src="{{ baseUrl }}/assets/{{ extra_js }}"></script>
-    {% endif %}
-    </html>
+  <script src="{{ '/assets/app.js' | url }}"></script>
+
+  {% if extra_js %}
+    <script src="{{ ('/assets/' + extra_js) | url }}"></script>
+  {% endif %}
+</body>
+</html>
