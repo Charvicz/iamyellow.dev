@@ -142,7 +142,7 @@ document.querySelectorAll("[data-toast]").forEach(el => {
 })();
 
 const s = document.createElement("script");
-s.src = "/assets/theme-panel.js";
+s.src = "/assets/theme-panel.js?v=2";
 s.defer = true;
 document.head.appendChild(s);
 
