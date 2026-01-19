@@ -1,5 +1,5 @@
 module.exports = function (eleventyConfig) {
-  // ✅ Copy static assets to output
+  // Copy static assets to output
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "site/favicon.ico": "favicon.ico" });
   eleventyConfig.addPassthroughCopy({ "site/site.webmanifest": "site.webmanifest" });
@@ -7,25 +7,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "site/favicon-16x16.png": "favicon-16x16.png" });
   eleventyConfig.addPassthroughCopy({ "site/apple-touch-icon.png": "apple-touch-icon.png" });
 
-  return {
-    dir: {
-      input: "site",
-      includes: "_includes",
-      output: "_site",
-    },
-
-    // ✅ protože to budeš mít na doméně jako https://iamyellow.dev/site/...
-    pathPrefix: "/site/",
-  };
-};
-
-
-module.exports = function (eleventyConfig) {
-  // passthrough copy...
-  eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });
-
-  // ✅ přidej tohle:
-  eleventyConfig.addGlobalData("baseUrl", "/site");
+  // (volitelně) base pro šablony – root webu
+  eleventyConfig.addGlobalData("baseUrl", "");
 
   return {
     dir: {
@@ -33,6 +16,6 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       output: "_site",
     },
-    pathPrefix: "/site/",
+
   };
 };
