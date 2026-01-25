@@ -1,0 +1,61 @@
+.theme-panel{
+  position:fixed;
+  right:14px;
+  top:120px;
+  z-index:9999;
+  font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial;
+}
+
+.theme-toggle{
+  width:44px;height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(18,20,26,.78);
+  color:#e9eef5;
+  cursor:pointer;
+  backdrop-filter: blur(10px);
+}
+
+.theme-box{
+  margin-top:10px;
+  width:220px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(18,20,26,.78);
+  color:#e9eef5;
+  padding:12px;
+  backdrop-filter: blur(10px);
+}
+
+.theme-title{
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.theme-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.theme-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(11,12,16,.55);
+  cursor:pointer;
+}
+
+.theme-item[aria-disabled="true"]{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.theme-hint{
+  margin-top:10px;
+  font-size:12px;
+  opacity:.75;
+}
