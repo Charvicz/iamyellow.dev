@@ -1,72 +1,80 @@
+/* Panel UI */
 .theme-panel{
-  position:fixed;
-  right:14px;
-  top:120px;
-  z-index:9999;
+  position: fixed;
+  right: 14px;
+  top: 120px;
+  z-index: 9999;
   font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial;
 }
 
 .theme-toggle{
-  width:44px;height:44px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(18,20,26,.78);
-  color:#e9eef5;
-  cursor:pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(18,20,26,.78);
+  color: #e9eef5;
+  cursor: pointer;
   backdrop-filter: blur(10px);
 }
 
 .theme-box{
-  margin-top:10px;
-  width:220px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(18,20,26,.78);
-  color:#e9eef5;
-  padding:12px;
+  margin-top: 10px;
+  width: 220px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(18,20,26,.78);
+  color: #e9eef5;
+  padding: 12px;
   backdrop-filter: blur(10px);
 }
 
 .theme-title{
-  font-weight:700;
-  margin-bottom:10px;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
 .theme-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .theme-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 10px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(11,12,16,.55);
-  cursor:pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(11,12,16,0.55);
+  cursor: pointer;
 }
 
 .theme-item[aria-disabled="true"]{
-  opacity:.45;
-  cursor:not-allowed;
+  opacity: .45;
+  cursor: not-allowed;
 }
 
 .theme-hint{
-  margin-top:10px;
-  font-size:12px;
-  opacity:.75;
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .75;
 }
 
 /* =========================
-   RETRO CRT THEME
+   THEMES (mění vizuál webu)
    ========================= */
+
+/* Default = nic extra, jen fallback */
+html.theme-default {}
+
+/* RETRO CRT */
 html.theme-retro body{
   background: #050b07;
   color: rgba(210,255,210,0.92);
   text-shadow: 0 0 10px rgba(120,255,170,0.12);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 html.theme-retro .topbar{
@@ -79,7 +87,7 @@ html.theme-retro .brand-dot{
   background: #7dffb2;
 }
 
-/* cards = “terminálový rámy” */
+/* rámy + kartičky */
 html.theme-retro .card,
 html.theme-retro .path,
 html.theme-retro .theme-box{
@@ -88,7 +96,6 @@ html.theme-retro .theme-box{
   box-shadow: 0 0 0 1px rgba(120,255,170,0.06), 0 0 30px rgba(0,255,160,0.06);
 }
 
-/* tlačítka víc retro */
 html.theme-retro .btn.primary{
   background: rgba(120,255,170,0.14);
   border: 1px solid rgba(120,255,170,0.35);
@@ -99,7 +106,7 @@ html.theme-retro .btn.ghost{
   border: 1px solid rgba(120,255,170,0.22);
 }
 
-/* scanlines + CRT vignetting */
+/* CRT scanlines */
 html.theme-retro body::before{
   content:"";
   position: fixed;
@@ -118,6 +125,7 @@ html.theme-retro body::before{
   z-index: 9998;
 }
 
+/* vignetting */
 html.theme-retro body::after{
   content:"";
   position: fixed;
@@ -126,8 +134,4 @@ html.theme-retro body::after{
   background: radial-gradient(circle at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%);
   opacity: .85;
   z-index: 9997;
-}
-
-html.theme-retro body{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
