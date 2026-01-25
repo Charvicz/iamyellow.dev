@@ -1,10 +1,8 @@
 (function () {
   const THEMES = [
-    { id: "default", name: "Default", vars: { "--bg": "#0B0C10" }, unlocked: true },
+    { id: "default", name: "Default", className: "theme-default", unlocked: true },
+    { id: "retro", name: "Retro CRT", className: "theme-retro", unlockKey: "found_secret_seacrite" },
 
-    // locknuté dokud nenajdou secret
-    { id: "goldnight", name: "Gold Night", vars: { "--bg": "#07070a" }, unlockKey: "found_secret_seacrite" },
-    { id: "paper", name: "Paper", vars: { "--bg": "#0e1016" }, unlockKey: "found_secret_seacrite" },
   ];
 
   const root = document.documentElement;
@@ -32,16 +30,22 @@
     return !!u[theme.unlockKey];
   };
 
+  const THEME_CLASSES = ["theme-default", "theme-retro", "theme-violet", "theme-matrix", "theme-danger"];
+
   const applyTheme = (themeId) => {
     const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
     if (!isUnlocked(theme)) return;
 
-    // nastav CSS proměnné
-    Object.entries(theme.vars || {}).forEach(([k, v]) => root.style.setProperty(k, v));
+    // smaž starý theme classy
+    THEME_CLASSES.forEach(c => document.documentElement.classList.remove(c));
+
+    // přidej nový
+    document.documentElement.classList.add(theme.className);
 
     localStorage.setItem("theme", theme.id);
     render();
   };
+
 
   const render = () => {
     list.innerHTML = "";

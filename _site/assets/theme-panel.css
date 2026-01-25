@@ -59,3 +59,75 @@
   font-size:12px;
   opacity:.75;
 }
+
+/* =========================
+   RETRO CRT THEME
+   ========================= */
+html.theme-retro body{
+  background: #050b07;
+  color: rgba(210,255,210,0.92);
+  text-shadow: 0 0 10px rgba(120,255,170,0.12);
+}
+
+html.theme-retro .topbar{
+  border-bottom: 1px solid rgba(120,255,170,0.18);
+  background: rgba(0,0,0,0.45);
+}
+
+html.theme-retro .brand-dot{
+  box-shadow: 0 0 22px rgba(120,255,170,0.45);
+  background: #7dffb2;
+}
+
+/* cards = “terminálový rámy” */
+html.theme-retro .card,
+html.theme-retro .path,
+html.theme-retro .theme-box{
+  border: 1px solid rgba(120,255,170,0.20);
+  background: rgba(0,0,0,0.38);
+  box-shadow: 0 0 0 1px rgba(120,255,170,0.06), 0 0 30px rgba(0,255,160,0.06);
+}
+
+/* tlačítka víc retro */
+html.theme-retro .btn.primary{
+  background: rgba(120,255,170,0.14);
+  border: 1px solid rgba(120,255,170,0.35);
+  color: rgba(230,255,230,0.95);
+}
+
+html.theme-retro .btn.ghost{
+  border: 1px solid rgba(120,255,170,0.22);
+}
+
+/* scanlines + CRT vignetting */
+html.theme-retro body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      rgba(0,0,0,0) 3px,
+      rgba(0,0,0,0) 6px
+    );
+  mix-blend-mode: overlay;
+  opacity: .35;
+  z-index: 9998;
+}
+
+html.theme-retro body::after{
+  content:"";
+  position: fixed;
+  inset: -40px;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%);
+  opacity: .85;
+  z-index: 9997;
+}
+
+html.theme-retro body{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
