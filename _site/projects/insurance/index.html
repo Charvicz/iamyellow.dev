@@ -7,45 +7,39 @@
   <title>Insurance Agency Website — Video</title>
   <meta name="description" content="Demo video + a quick breakdown of how the project works." />
 
-  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/projects/insurance/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <meta name="theme-color" content="#0B0C10">
 </head>
 
-<aside class="theme-panel" id="themePanel" aria-label="Theme panel">
-  <button class="theme-toggle" id="themeToggle" type="button" aria-expanded="false">
-    🎨
-  </button>
-
-  <div class="theme-box" id="themeBox" hidden>
-    <div class="theme-title">Theme</div>
-
-    <div class="theme-list" id="themeList"></div>
-
-    <div class="theme-hint" id="themeHint">
-      Najdi “seacrite” stránky pro další pozadí 👀
-    </div>
-  </div>
-</aside>
-
-<script src="/assets/theme-panel.js"></script>
-<link rel="stylesheet" href="/assets/theme-panel.css">
-
 <body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
   <header class="topbar">
-  <a class="brand" href="/" aria-label="Go to top">
-    <span class="brand-dot" aria-hidden="true"></span>
-    <span>Yellow</span>
-  </a>
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
 
-  <nav class="nav">
-    <a href="/#focus">Focus</a>
-    <a href="/#paths">Explore</a>
-    <a href="/#links">Links</a>
-  </nav>
-</header>
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
 
-
-  <main id="top">
+  <main id="top" style="padding-top: 70px;">
     
 <section class="section">
   <div class="section-head">
@@ -103,8 +97,27 @@
 
   </main>
 
-  <script src="/assets/app.js?v=9" defer></script>
+  
+  <aside class="theme-panel" id="themePanel" aria-label="Theme panel">
+  <button class="theme-toggle" id="themeToggle" type="button" aria-expanded="false">
+    🎨
+  </button>
 
+  <div class="theme-box" id="themeBox" hidden>
+    <div class="theme-title">Theme</div>
+
+    <div class="theme-list" id="themeList"></div>
+
+    <div class="theme-hint" id="themeHint">
+      Najdi “seacrite” stránky pro další pozadí 👀
+    </div>
+  </div>
+</aside>
+
+  <link rel="stylesheet" href="/assets/theme-panel.css">
+  <script src="/assets/theme-panel.js" defer></script>
+
+  <script src="/assets/app.js" defer></script>
   
 </body>
 </html>

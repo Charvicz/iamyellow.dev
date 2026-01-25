@@ -3,232 +3,175 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
   <title>Projects — Yellow</title>
   <meta name="description" content="Selected projects by Yellow — clean demos, tools, and experiments." />
 
-  <!-- Paths adjusted for your structure: site/projects/index.html -->
-  <link rel="icon" href="../favicon.ico">
-  <link rel="manifest" href="../site.webmanifest">
-  <meta name="theme-color" content="#0B0C10">
+  <link rel="stylesheet" href="/assets/style.css">
+  
+  <link rel="stylesheet" href="/assets/projects.css">
+  
 
-  <link rel="stylesheet" href="../assets/style.css" />
-  <!-- Canonical is optional while you’re still hosting under /site/ -->
-  <!-- <link rel="canonical" href="https://iamyellow.dev/projects/" /> -->
+  <link rel="canonical" href="https://iamyellow.dev/projects/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
 </head>
 
 <body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
   <header class="topbar">
-    <a class="brand" href="../index.html" aria-label="Go home">
+    <a class="brand" href="/" aria-label="Go home">
       <span class="brand-dot" aria-hidden="true"></span>
       <span>Yellow</span>
     </a>
 
     <nav class="nav">
-      <a href="../index.html">Home</a>
-      <a href="./" aria-current="page">Projects</a>
-      <a href="../index.html#links">Links</a>
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
     </nav>
   </header>
 
   <main id="top" style="padding-top: 70px;">
-    <!-- HERO -->
-    <section class="hero" style="min-height: auto; padding-bottom: 28px;">
-      <div class="hero-inner">
-        <p class="kicker">Selected work</p>
-        <h1>
-          Projects — <span class="accent">clean</span>, practical, and shipped.
-        </h1>
-        <p class="subtitle">
-          A curated list. No blog posts, no essays — just what it does and where to try it.
-        </p>
+    
+<section class="hero" style="min-height: auto; padding-bottom: 28px;">
+  <div class="hero-inner">
+    <p class="kicker">Selected work</p>
+    <h1>
+      Projects — <span class="accent">clean</span>, practical, and shipped.
+    </h1>
+    <p class="subtitle">
+      A curated list. No blog posts, no essays — just what it does and where to try it.
+    </p>
 
-        <div class="cta-row">
-          <a class="btn primary" href="#project-list">Browse projects</a>
-          <a class="btn ghost" href="../index.html#links">My socials</a>
-        </div>
+    <div class="cta-row">
+      <a class="btn primary" href="#project-list">Browse projects</a>
+      <a class="btn ghost" href="/#links">My socials</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 24px;">
+  <div class="section-head reveal">
+    <h2>Overview</h2>
+    <p>Filter by category. Keep it fast.</p>
+
+    <div class="filters" role="tablist" aria-label="Project filters">
+      <button class="filter is-active" data-filter="all" type="button">All</button>
+      <button class="filter" data-filter="web" type="button">Web</button>
+      <button class="filter" data-filter="tool" type="button">Tool</button>
+      <button class="filter" data-filter="video" type="button">Video</button>
+      <button class="filter" data-filter="school" type="button">School</button>
+    </div>
+  </div>
+
+  <div id="project-list" class="grid" style="margin-top: 14px;">
+
+    <article class="card reveal project" data-tags="web tool">
+      <div class="card-top">
+        <span class="tag">Web • Tool</span>
       </div>
-    </section>
+      <h3>Firms Without a Website (Map tool)</h3>
+      <p>
+        Drop a pin, scan nearby businesses, and quickly see who’s missing a website presence.
+      </p>
 
-    <!-- FILTERS -->
-    <section class="section" style="padding-top: 24px;">
-      <div class="section-head reveal">
-        <h2>Overview</h2>
-        <p>Filter by category. Keep it fast.</p>
-
-        <div class="filters" role="tablist" aria-label="Project filters">
-          <button class="filter is-active" data-filter="all" type="button">All</button>
-          <button class="filter" data-filter="web" type="button">Web</button>
-          <button class="filter" data-filter="tool" type="button">Tool</button>
-          <button class="filter" data-filter="video" type="button">Video</button>
-          <button class="filter" data-filter="school" type="button">School</button>
-        </div>
+      <div class="meta">
+        <span class="pill">Maps</span>
+        <span class="pill">Places</span>
+        <span class="pill">JS</span>
       </div>
 
-      <!-- PROJECT LIST -->
-      <div id="project-list" class="grid" style="margin-top: 14px;">
-
-        <!-- 1) Google Maps tool -->
-        <article class="card reveal project" data-tags="web tool">
-          <div class="card-top">
-            <span class="tag">Web • Tool</span>
-          </div>
-          <h3>Firms Without a Website (Map tool)</h3>
-          <p>
-            Drop a pin, scan nearby businesses, and quickly see who’s missing a website presence.
-          </p>
-
-          <div class="meta">
-            <span class="pill">Maps</span>
-            <span class="pill">Places</span>
-            <span class="pill">JS</span>
-          </div>
-
-          <div class="actions">
-            <!-- Put your demo here: site/projects/map-tool/index.html -->
-            <a class="btn small primary" href="/map-tool/" target="_blank" rel="noopener">Live demo</a>
-          </div>
-        </article>
-
-        <!-- 2) Graduation project -->
-        <article class="card reveal project" data-tags="web school">
-          <div class="card-top">
-            <span class="tag">Web • School</span>
-          </div>
-          <h3>Insurance Agency Website (Graduation Project)</h3>
-          <p>
-            Student project: a full website concept for an insurance agency (not an official company site).
-          </p>
-
-          <div class="meta">
-            <span class="pill">Python</span>
-            <span class="pill">SQLite</span>
-            <span class="pill">Web</span>
-          </div>
-
-          <div class="actions">
-            <a class="btn small primary" href="/projects/insurance/">Case study</a>
-          </div>
-        </article>
-
-        <!-- 3) Placeholder -->
-        <article class="card reveal project" data-tags="tool">
-          <div class="card-top">
-            <span class="tag">Tool</span>
-          </div>
-          <h3>Next Project</h3>
-          <p>
-            Add your next tool here. Keep the description short and outcome-focused.
-          </p>
-
-          <div class="meta">
-            <span class="pill">Soon</span>
-          </div>
-
-          <div class="actions">
-            <a class="btn small ghost" href="#" onclick="return false;">Details</a>
-          </div>
-        </article>
-
+      <div class="actions">
+        <a class="btn small primary" href="/map-tool/" target="_blank" rel="noopener">Live demo</a>
       </div>
-    </section>
+    </article>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-inner reveal">
-        <div class="fineprint">
-          <a class="social" href="../index.html" style="display:inline-flex;">← Back to Home</a>
-          <span class="dot" aria-hidden="true">•</span>
-          <span class="muted">Projects update over time.</span>
-        </div>
+    <article class="card reveal project" data-tags="web school">
+      <div class="card-top">
+        <span class="tag">Web • School</span>
       </div>
-    </footer>
+      <h3>Insurance Agency Website (Graduation Project)</h3>
+      <p>
+        Student project: a full website concept for an insurance agency (not an official company site).
+      </p>
+
+      <div class="meta">
+        <span class="pill">Python</span>
+        <span class="pill">SQLite</span>
+        <span class="pill">Web</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small primary" href="/projects/insurance/">Case study</a>
+      </div>
+    </article>
+
+    <article class="card reveal project" data-tags="tool">
+      <div class="card-top">
+        <span class="tag">Tool</span>
+      </div>
+      <h3>Next Project</h3>
+      <p>
+        Add your next tool here. Keep the description short and outcome-focused.
+      </p>
+
+      <div class="meta">
+        <span class="pill">Soon</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small ghost" href="#" onclick="return false;">Details</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner reveal">
+    <div class="fineprint">
+      <a class="social" href="/" style="display:inline-flex;">← Back to Home</a>
+      <span class="dot" aria-hidden="true">•</span>
+      <span class="muted">Projects update over time.</span>
+    </div>
+  </div>
+</footer>
+
   </main>
 
-  <script src="../assets/app.js"></script>
+  
+  <aside class="theme-panel" id="themePanel" aria-label="Theme panel">
+  <button class="theme-toggle" id="themeToggle" type="button" aria-expanded="false">
+    🎨
+  </button>
 
-  <!-- Page-only tiny JS (filters) -->
-  <script>
-    document.documentElement.classList.add("js");
+  <div class="theme-box" id="themeBox" hidden>
+    <div class="theme-title">Theme</div>
 
-    const filterButtons = document.querySelectorAll(".filter");
-    const projects = document.querySelectorAll(".project");
+    <div class="theme-list" id="themeList"></div>
 
-    function setActive(btn){
-      filterButtons.forEach(b => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-    }
+    <div class="theme-hint" id="themeHint">
+      Najdi “seacrite” stránky pro další pozadí 👀
+    </div>
+  </div>
+</aside>
 
-    function applyFilter(tag){
-      projects.forEach(card => {
-        const tags = (card.getAttribute("data-tags") || "").split(/\s+/).filter(Boolean);
-        const show = tag === "all" || tags.includes(tag);
-        card.style.display = show ? "" : "none";
-      });
-    }
+  <link rel="stylesheet" href="/assets/theme-panel.css">
+  <script src="/assets/theme-panel.js" defer></script>
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const tag = btn.getAttribute("data-filter");
-        setActive(btn);
-        applyFilter(tag);
-      });
-    });
-
-    applyFilter("all");
-  </script>
-
-  <!-- Page-only styles for filters/meta/buttons -->
-  <style>
-    .filters{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .filter{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.80);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-weight: 650;
-      font-size: 13px;
-      cursor:pointer;
-      transition: background .2s ease, border-color .2s ease, transform .15s ease;
-    }
-    .filter:hover{ transform: translateY(-1px); }
-    .filter.is-active{
-      border-color: rgba(255,216,77,0.35);
-      background: rgba(255,216,77,0.12);
-      color: rgba(255,255,255,0.92);
-    }
-
-    .meta{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 10px 0 12px;
-    }
-    .pill{
-      font-size: 12px;
-      color: rgba(255,255,255,0.74);
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.03);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 6px;
-    }
-    .btn.small{
-      padding: 10px 12px;
-      font-size: 13px;
-    }
-  </style>
+  <script src="/assets/app.js" defer></script>
+  
+  <script src="/assets/projects.js" defer></script>
+  
 </body>
 </html>
