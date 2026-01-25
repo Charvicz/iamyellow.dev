@@ -2,17 +2,26 @@ document.documentElement.classList.add("js");
 
 // ✅ unlock theme(s) when user finds this page
 (function unlock() {
+  // 1) always save unlock to localStorage
+  let u = {};
   try {
-    const u = JSON.parse(localStorage.getItem("unlocks") || "{}");
-    u["found_secret_seacrite"] = true;
-    localStorage.setItem("unlocks", JSON.stringify(u));
-  } catch {}
+    u = JSON.parse(localStorage.getItem("unlocks") || "{}") || {};
+  } catch {
+    u = {};
+  }
 
-  // pokud máš v theme panelu helper, zkusíme ho taky
+  u.found_secret_seacrite = true;
+  localStorage.setItem("unlocks", JSON.stringify(u));
+
+  // 2) if panel helper exists, refresh it immediately
   if (window.__unlockThemeKey) {
     window.__unlockThemeKey("found_secret_seacrite");
   }
+
+  // 3) optional: set Retro as active right away
+  // localStorage.setItem("theme", "retro");
 })();
+
 
 const facts = [
   "Clean UI beats loud UI. Every time.",
