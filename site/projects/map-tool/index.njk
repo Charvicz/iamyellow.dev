@@ -1,0 +1,79 @@
+---
+title: Firms Without a Website — Yellow
+description: Click the map → set radius → start scan. Grid scan covers multiple points.
+layout: layout.njk
+extra_css: map-tool.css
+extra_js: map-tool.js
+---
+
+<div class="container">
+  <h1>Firms Without a Website</h1>
+
+  <div id="subtitle">
+    Click the map → set radius → start scan. Grid scan covers multiple points.
+  </div>
+
+  <div class="controls">
+    <div class="control-row">
+      <label>📍 Click on the map</label>
+
+      <label>
+        Radius: <span id="radiusValue">10 km</span>
+      </label>
+      <input type="range" id="radiusSlider" min="2" max="50" value="10" />
+
+      <label>
+        Target:
+        <input type="number" id="targetInput" min="1" max="1000" value="20" />
+      </label>
+
+      <button id="btnSearch" class="max" disabled>🔥 START GRID SCAN</button>
+    </div>
+
+    <div class="control-row">
+      <span>
+        Progress:
+        <span id="progressCount">0 without website</span> |
+        <span id="scannedCount">0</span> scanned
+      </span>
+
+      <button id="btnExport" disabled>📥 CSV</button>
+      <button id="btnStop" disabled>⏹️ STOP</button>
+      <button id="btnClear">🗑️ Clear</button>
+    </div>
+  </div>
+
+  <div id="errorMsg" class="error" style="display:none;"></div>
+  <div id="successMsg" class="success" style="display:none;"></div>
+  <div id="warningMsg" class="warning" style="display:none;"></div>
+
+  <div id="map"></div>
+
+  <div id="stats" style="display:none;"></div>
+
+  <div id="loading" class="loading" style="display:none;">
+    <div class="spinner"></div>
+    <div id="spinnerText">Scanning businesses…</div>
+    <div id="progressText" style="font-size:14px; opacity:0.8;"></div>
+  </div>
+
+  <table id="resultsTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Business</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Reviews</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- Google Maps loader (key is injected from JS) -->
+<script>
+  window.GMAPS_API_KEY = "{{ gmapsKey | default('') }}";
+</script>
+<script src="/assets/gmaps-loader.js" defer></script>

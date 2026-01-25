@@ -4,28 +4,55 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>{{ title or "Yellow" }}</title>
-  <meta name="description" content="{{ description or '' }}" />
+  <title>{{ title or "Yellow — Digital Hub" }}</title>
+  <meta name="description" content="{{ description or "A clean hub for my work: drone, video, and projects." }}" />
 
-  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/style.css">
+  {% if extra_css %}
+  <link rel="stylesheet" href="/assets/{{ extra_css }}">
+  {% endif %}
+
+  <link rel="canonical" href="https://iamyellow.dev{{ page.url }}" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <meta name="theme-color" content="#0B0C10">
 </head>
 
-{% include "theme-panel.njk" %}
-<script src="{{ baseUrl }}/assets/theme-panel.js"></script>
-<link rel="stylesheet" href="{{ baseUrl }}/assets/theme-panel.css">
-
 <body>
-  {% include "topbar.njk" %}
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
 
-  <main id="top">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
     {{ content | safe }}
   </main>
 
-  <script src="/assets/app.js?v=9" defer></script>
+  {# ✅ THEME PANEL ON EVERY PAGE #}
+  {% include "theme-panel.njk" %}
+  <link rel="stylesheet" href="/assets/theme-panel.css">
+  <script src="/assets/theme-panel.js" defer></script>
 
+  <script src="/assets/app.js" defer></script>
   {% if extra_js %}
-  <script src="/assets/app.js?v=9" defer></script>
+  <script src="/assets/{{ extra_js }}" defer></script>
   {% endif %}
 </body>
 </html>

@@ -1,0 +1,111 @@
+---
+title: Projects — Yellow
+description: Selected projects by Yellow — clean demos, tools, and experiments.
+layout: layout.njk
+extra_css: projects.css
+extra_js: projects.js
+---
+
+<section class="hero" style="min-height: auto; padding-bottom: 28px;">
+  <div class="hero-inner">
+    <p class="kicker">Selected work</p>
+    <h1>
+      Projects — <span class="accent">clean</span>, practical, and shipped.
+    </h1>
+    <p class="subtitle">
+      A curated list. No blog posts, no essays — just what it does and where to try it.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#project-list">Browse projects</a>
+      <a class="btn ghost" href="/#links">My socials</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 24px;">
+  <div class="section-head reveal">
+    <h2>Overview</h2>
+    <p>Filter by category. Keep it fast.</p>
+
+    <div class="filters" role="tablist" aria-label="Project filters">
+      <button class="filter is-active" data-filter="all" type="button">All</button>
+      <button class="filter" data-filter="web" type="button">Web</button>
+      <button class="filter" data-filter="tool" type="button">Tool</button>
+      <button class="filter" data-filter="video" type="button">Video</button>
+      <button class="filter" data-filter="school" type="button">School</button>
+    </div>
+  </div>
+
+  <div id="project-list" class="grid" style="margin-top: 14px;">
+
+    <article class="card reveal project" data-tags="web tool">
+      <div class="card-top">
+        <span class="tag">Web • Tool</span>
+      </div>
+      <h3>Firms Without a Website (Map tool)</h3>
+      <p>
+        Drop a pin, scan nearby businesses, and quickly see who’s missing a website presence.
+      </p>
+
+      <div class="meta">
+        <span class="pill">Maps</span>
+        <span class="pill">Places</span>
+        <span class="pill">JS</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small primary" href="/map-tool/" target="_blank" rel="noopener">Live demo</a>
+      </div>
+    </article>
+
+    <article class="card reveal project" data-tags="web school">
+      <div class="card-top">
+        <span class="tag">Web • School</span>
+      </div>
+      <h3>Insurance Agency Website (Graduation Project)</h3>
+      <p>
+        Student project: a full website concept for an insurance agency (not an official company site).
+      </p>
+
+      <div class="meta">
+        <span class="pill">Python</span>
+        <span class="pill">SQLite</span>
+        <span class="pill">Web</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small primary" href="/projects/insurance/">Case study</a>
+      </div>
+    </article>
+
+    <article class="card reveal project" data-tags="tool">
+      <div class="card-top">
+        <span class="tag">Tool</span>
+      </div>
+      <h3>Next Project</h3>
+      <p>
+        Add your next tool here. Keep the description short and outcome-focused.
+      </p>
+
+      <div class="meta">
+        <span class="pill">Soon</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn small ghost" href="#" onclick="return false;">Details</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner reveal">
+    <div class="fineprint">
+      <a class="social" href="/" style="display:inline-flex;">← Back to Home</a>
+      <span class="dot" aria-hidden="true">•</span>
+      <span class="muted">Projects update over time.</span>
+    </div>
+  </div>
+</footer>
