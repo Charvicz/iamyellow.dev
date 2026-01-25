@@ -44,3 +44,15 @@
   <main id="top" style="padding-top: 70px;">
     {{ content | safe }}
   </main>
+
+  {# ✅ THEME PANEL ON EVERY PAGE #}
+  {% include "theme-panel.njk" %}
+  <link rel="stylesheet" href="/assets/theme-panel.css">
+  <script src="/assets/theme-panel.js" defer></script>
+
+  <script src="/assets/app.js" defer></script>
+  {% if extra_js %}
+  <script src="/assets/{{ extra_js }}" defer></script>
+  {% endif %}
+</body>
+</html>
