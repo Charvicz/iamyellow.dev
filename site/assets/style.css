@@ -730,71 +730,14 @@ html.theme-danger body{
   margin-top: 12px;
 }
 
-/* header */
-.now-head{
-  display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+.now-coming{
+  margin-top:14px;
+  padding:12px 12px;
+  border-radius:14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
-.now-updated{ font-size:12px; opacity:.65; white-space:nowrap; }
-
-/* panel: použij tvoji existing .card estetiku */
-.now-panel{ padding:16px; }
-
-/* split layout */
-.now-split{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:16px;
-}
-@media (min-width: 900px){
-  .now-split{ grid-template-columns: 1fr 1px 1fr; align-items:stretch; }
-}
-
-.now-divider{
-  display:none;
-  background: rgba(255,255,255,.08);
-  border-radius: 999px;
-}
-@media (min-width: 900px){
-  .now-divider{ display:block; width:1px; }
-}
-
-.now-col-head{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  margin-bottom:10px;
-}
-.now-col h3{
-  margin:0; font-size:14px; opacity:.9;
-}
-
-/* pills decent */
-.now-pill{
-  font-size:12px;
-  padding:4px 10px;
-  border-radius:999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.08);
-  opacity:.85;
-}
-.now-pill-next{
-  background: rgba(255,255,255,.09);
-}
-
-/* ITEMS: žádný box-in-box, jen “clean list” */
-.now-items{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:grid;
-  gap:8px;
-}
-.now-items li{
-  padding:8px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  line-height:1.35;
-}
-.now-items li:last-child{ border-bottom:none; }
-
-/* coming up jemně zvýrazni textem, ne rámečkama */
-.now-col-next .now-items li{
-  font-weight: 500;
-}
+.now-coming-text{ opacity:.95; }

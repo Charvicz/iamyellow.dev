@@ -79,43 +79,27 @@ layout: "layout.njk"
   </div>
 </section>
 
-<section class="section now-section">
-  <div class="section-head reveal now-head">
-    <h2>Now</h2>
-    <span class="now-updated">Updated: {{ now.updated }}</span>
+<div class="card reveal now-panel">
+  <div class="now-col-head">
+    <h3>Working on</h3>
+    <span class="now-pill">in progress</span>
   </div>
 
-  <div class="card reveal now-panel">
-    <div class="now-split">
-      <div class="now-col">
-        <div class="now-col-head">
-          <h3>Working on</h3>
-          <span class="now-pill">in progress</span>
-        </div>
-        <ul class="now-items">
-          {% for item in now.working %}
-            <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-          {% endfor %}
-        </ul>
-      </div>
+  <ul class="now-items">
+    {% for item in now.working %}
+      <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+    {% endfor %}
+  </ul>
 
-      <div class="now-divider" aria-hidden="true"></div>
-
-      <div class="now-col now-col-next">
-        <div class="now-col-head">
-          <h3>Coming up</h3>
-          <span class="now-pill now-pill-next">next</span>
-        </div>
-        <ul class="now-items">
-          {% for item in now.next %}
-            <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-          {% endfor %}
-        </ul>
-      </div>
+  <div class="now-coming">
+    <span class="now-pill now-pill-next">coming up</span>
+    <div class="now-coming-text">
+      {% for item in now.next %}
+        {{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}
+      {% endfor %}
     </div>
   </div>
-</section>
-
+</div>
 
 <!-- PATHS -->
 <section id="paths" class="section">
