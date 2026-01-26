@@ -1,0 +1,9 @@
+{
+  "updated": "2026-01-26",
+  "items": [
+    { "icon": "🎥", "label": "Editing", "text": "drone reels from Prague" },
+    { "icon": "🧠", "label": "Learning", "text": "web scraping + automation" },
+    { "icon": "🧩", "label": "Building", "text": "interactive quest system on iamyellow.dev" },
+    { "icon": "🚀", "label": "Next drop", "text": "new drone cinematic this weekend" }
+  ]
+}

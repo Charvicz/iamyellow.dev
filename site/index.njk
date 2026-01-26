@@ -79,6 +79,21 @@ layout: "layout.njk"
   </div>
 </section>
 
+<section class="now">
+  <div class="container">
+    <div class="now-head">
+      <h2>Now</h2>
+      <span class="now-updated">Updated: {{ now.updated }}</span>
+    </div>
+
+    <ul class="now-list">
+      {% for item in now.items %}
+        <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
 <!-- PATHS -->
 <section id="paths" class="section">
   <div class="section-head reveal">

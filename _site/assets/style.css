@@ -729,3 +729,16 @@ html.theme-danger body{
   flex-wrap: wrap;
   margin-top: 12px;
 }
+
+.now-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.now-updated {
+  font-size: 12px;
+  opacity: 0.65;
+}
