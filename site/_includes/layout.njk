@@ -24,9 +24,6 @@
 </head>
 
 <body>
-  <div class="ambient-bg" aria-hidden="true"></div>
-  <div class="scanlines" aria-hidden="true"></div>
-
   <header class="topbar">
     <a class="brand" href="/" aria-label="Go home">
       <span class="brand-dot" aria-hidden="true"></span>
@@ -44,11 +41,6 @@
   <main id="top" style="padding-top: 70px;">
     {{ content | safe }}
   </main>
-
-  {# ✅ THEME PANEL ON EVERY PAGE #}
-  {% include "theme-panel.njk" %}
-  <link rel="stylesheet" href="/assets/theme-panel.css">
-  <script src="/assets/theme-panel.js" defer></script>
 
   <script src="/assets/app.js" defer></script>
   {% if extra_js %}
