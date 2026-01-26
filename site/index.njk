@@ -79,18 +79,22 @@ layout: "layout.njk"
   </div>
 </section>
 
-<section class="now">
-  <div class="container">
-    <div class="now-head">
+<section class="section now-section">
+  <div class="section-head reveal now-head">
+    <div>
       <h2>Now</h2>
-      <span class="now-updated">Updated: {{ now.updated }}</span>
+      <p class="muted">What I’m focused on right now.</p>
     </div>
+    <span class="now-updated">Updated: {{ now.updated }}</span>
+  </div>
 
-    <ul class="now-list">
-      {% for item in now.items %}
-        <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-      {% endfor %}
-    </ul>
+  <div class="grid now-grid">
+    {% for item in now.items %}
+      <article class="card reveal now-card">
+        <h3>{{ item.icon }} {{ item.label }}</h3>
+        <p>{{ item.text }}</p>
+      </article>
+    {% endfor %}
   </div>
 </section>
 
