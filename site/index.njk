@@ -79,27 +79,44 @@ layout: "layout.njk"
   </div>
 </section>
 
-<div class="card reveal now-panel">
-  <div class="now-col-head">
-    <h3>Working on</h3>
-    <span class="now-pill">in progress</span>
+<!-- NOW -->
+<section id="now" class="section">
+  <div class="section-head reveal">
+    <h2>Now</h2>
+    <p class="muted">What I’m focused on — and what’s next.</p>
   </div>
 
-  <ul class="now-items">
-    {% for item in now.working %}
-      <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-    {% endfor %}
-  </ul>
+  <div class="grid">
+    <!-- Working on -->
+    <article class="card reveal now-card">
+      <div class="card-top">
+        <span class="tag">In progress</span>
+      </div>
+      <h3>Working on</h3>
 
-  <div class="now-coming">
-    <span class="now-pill now-pill-next">coming up</span>
-    <div class="now-coming-text">
-      {% for item in now.next %}
-        {{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}
-      {% endfor %}
-    </div>
+      <ul class="now-list">
+        {% for item in now.working %}
+          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+
+    <!-- Coming up -->
+    <article class="card reveal now-card now-next">
+      <div class="card-top">
+        <span class="tag">Next</span>
+      </div>
+      <h3>Coming up</h3>
+
+      <ul class="now-list">
+        {% for item in now.next %}
+          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+        {% endfor %}
+      </ul>
+    </article>
   </div>
-</div>
+</section>
+
 
 <!-- PATHS -->
 <section id="paths" class="section">

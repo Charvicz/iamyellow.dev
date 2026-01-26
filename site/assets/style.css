@@ -730,14 +730,27 @@ html.theme-danger body{
   margin-top: 12px;
 }
 
-.now-coming{
-  margin-top:14px;
-  padding:12px 12px;
-  border-radius:14px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.06);
-  display:flex;
-  align-items:center;
-  gap:10px;
+.now-list{
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 10px;
 }
-.now-coming-text{ opacity:.95; }
+
+.now-list li{
+  color: var(--text);
+  line-height: 1.35;
+}
+
+/* jemný divider mezi items, ale bez “tabulkovýho” feelu */
+.now-list li + li{
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Next karta je jemně “teaser”, pořád stejná kategorie */
+.now-next{
+  border-color: rgba(255,216,77,0.22);
+  background: linear-gradient(180deg, rgba(255,216,77,0.06), rgba(255,255,255,0.03));
+}
