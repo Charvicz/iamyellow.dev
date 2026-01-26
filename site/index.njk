@@ -85,31 +85,33 @@ layout: "layout.njk"
     <span class="now-updated">Updated: {{ now.updated }}</span>
   </div>
 
-  <div class="now-columns">
-    <div class="now-block reveal">
-      <div class="now-block-head">
-        <h3>Working on</h3>
-        <span class="now-pill">in progress</span>
+  <div class="card reveal now-panel">
+    <div class="now-split">
+      <div class="now-col">
+        <div class="now-col-head">
+          <h3>Working on</h3>
+          <span class="now-pill">in progress</span>
+        </div>
+        <ul class="now-items">
+          {% for item in now.working %}
+            <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+          {% endfor %}
+        </ul>
       </div>
 
-      <ul class="now-list">
-        {% for item in now.working %}
-          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="now-divider" aria-hidden="true"></div>
 
-    <div class="now-block reveal now-next">
-      <div class="now-block-head">
-        <h3>Coming up</h3>
-        <span class="now-pill now-pill-next">next</span>
+      <div class="now-col now-col-next">
+        <div class="now-col-head">
+          <h3>Coming up</h3>
+          <span class="now-pill now-pill-next">next</span>
+        </div>
+        <ul class="now-items">
+          {% for item in now.next %}
+            <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+          {% endfor %}
+        </ul>
       </div>
-
-      <ul class="now-list">
-        {% for item in now.next %}
-          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
-        {% endfor %}
-      </ul>
     </div>
   </div>
 </section>
