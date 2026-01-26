@@ -81,22 +81,39 @@ layout: "layout.njk"
 
 <section class="section now-section">
   <div class="section-head reveal now-head">
-    <div>
-      <h2>Now</h2>
-      <p class="muted">What I’m focused on right now.</p>
-    </div>
+    <h2>Now</h2>
     <span class="now-updated">Updated: {{ now.updated }}</span>
   </div>
 
-  <div class="grid now-grid">
-    {% for item in now.items %}
-      <article class="card reveal now-card">
-        <h3>{{ item.icon }} {{ item.label }}</h3>
-        <p>{{ item.text }}</p>
-      </article>
-    {% endfor %}
+  <div class="now-columns">
+    <div class="now-block reveal">
+      <div class="now-block-head">
+        <h3>Working on</h3>
+        <span class="now-pill">in progress</span>
+      </div>
+
+      <ul class="now-list">
+        {% for item in now.working %}
+          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="now-block reveal now-next">
+      <div class="now-block-head">
+        <h3>Coming up</h3>
+        <span class="now-pill now-pill-next">next</span>
+      </div>
+
+      <ul class="now-list">
+        {% for item in now.next %}
+          <li>{{ item.icon }} <b>{{ item.label }}:</b> {{ item.text }}</li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </section>
+
 
 <!-- PATHS -->
 <section id="paths" class="section">

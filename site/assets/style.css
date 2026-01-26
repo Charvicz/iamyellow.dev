@@ -730,29 +730,65 @@ html.theme-danger body{
   margin-top: 12px;
 }
 
-/* NOW: constrain width + match page rhythm */
-.now {
-  padding: 24px 0;
-}
-
-.now .container {
-  max-width: 1100px;   /* klidně uprav podle toho, co máš jinde */
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
 .now-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 12px;
 }
 
 .now-updated {
   font-size: 12px;
   opacity: 0.65;
   white-space: nowrap;
+}
+
+.now-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+@media (min-width: 860px) {
+  .now-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.now-block {
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.now-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.now-block h3 {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.now-pill {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0.85;
+}
+
+.now-pill-next {
+  /* decent “ooh” efekt bez barviček */
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .now-list {
@@ -766,7 +802,12 @@ html.theme-danger body{
 .now-list li {
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   line-height: 1.35;
+}
+
+.now-next .now-list li {
+  /* jen lehoulinko víc “highlight” */
+  background: rgba(255, 255, 255, 0.04);
 }
