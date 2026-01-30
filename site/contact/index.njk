@@ -1,28 +1,70 @@
-
 ---
-layout: layout.njk
-title: Contact
+title: "Contact — Yellow"
+description: "Work with me. Short, clean contact."
+layout: "layout.njk"
 ---
 
-
-<section class="contact">
-  <h1>Chceš spolupracovat? Napiš.</h1>
-  <p class="sub">Krátce, jasně. Odpovídám rychle.</p>
-
-  <div class="email-row">
-    <a href="mailto:hello@iamyellow.dev" id="email">
-      hello@iamyellow.dev
-    </a>
-    <button id="copyBtn" aria-label="Copy email">Copy</button>
+<section class="section">
+  <div class="section-head reveal">
+    <h2>Contact</h2>
+    <p class="muted">Short, clear. I reply fast.</p>
   </div>
 
-  <div class="status open">
-    🟢 Open for collabs
-  </div>
+  <div class="grid">
+    <!-- Main contact card -->
+    <article class="card reveal contact-card">
+      <div class="card-top">
+        <span class="tag">Open for collabs</span>
+      </div>
 
-  <div class="socials">
-    <a href="https://instagram.com/TVUJ_IG" target="_blank">IG</a>
-    <a href="https://youtube.com/@TVUJ_YT" target="_blank">YT</a>
+      <h3>Let’s talk</h3>
+      <p class="muted">Email is the fastest. If it’s urgent, ping me on IG.</p>
+
+      <div class="contact-row">
+        <a class="contact-email" href="mailto:hello@iamyellow.dev" id="contactEmail">
+          hello@iamyellow.dev
+        </a>
+        <button class="btn ghost contact-copy" type="button" id="copyEmailBtn">
+          Copy
+        </button>
+      </div>
+
+      <div class="contact-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Currently available</span>
+      </div>
+
+      <div class="contact-actions">
+        <a class="btn primary" href="https://www.instagram.com/fly_with_yellow?igsh=NnV1Njh1OWV3aTQ4" target="_blank" rel="noopener">
+          Instagram
+        </a>
+        <a class="btn ghost" href="https://youtube.com/@iamyellowdev?si=LYmWIPxfhBCjm26n" target="_blank" rel="noopener">
+          YouTube
+        </a>
+        <a class="btn ghost" href="https://github.com/Charvicz" target="_blank" rel="noopener">
+          GitHub
+        </a>
+      </div>
+
+      <div class="contact-toast" id="contactToast" role="status" aria-live="polite"></div>
+    </article>
+
+    <!-- Optional “what I can do” card -->
+    <article class="card reveal contact-card">
+      <div class="card-top">
+        <span class="tag">What I do</span>
+      </div>
+
+      <h3>Quick options</h3>
+      <p class="muted">If you’re messaging me, this helps.</p>
+
+      <ul class="contact-list">
+        <li>🏠 Real estate drone shots (photo/video)</li>
+        <li>🎬 Reels / short edits from your footage</li>
+        <li>📍 Location highlights / travel clips</li>
+        <li>🧩 Web / small interactive projects</li>
+      </ul>
+    </article>
   </div>
 </section>
 
