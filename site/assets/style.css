@@ -765,3 +765,42 @@ html.theme-danger body{
     grid-column: span 12;
   }
 }
+
+.contact {
+  max-width: 520px;
+}
+
+.email-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.email-row a {
+  font-weight: 500;
+}
+
+button {
+  background: transparent;
+  border: 1px solid #333;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.status {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.status.open { color: #3cff00; }
+.status.busy { color: #ffd000; }
+.status.closed { color: #ff3c3c; }
+
+.socials a {
+  margin-right: 16px;
+  opacity: 0.8;
+}
+.socials a:hover {
+  opacity: 1;
+}
