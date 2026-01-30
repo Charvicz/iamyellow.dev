@@ -852,3 +852,21 @@ html.theme-danger body{
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Smooth fade to black at the bottom of every page */
+body::after{
+  content:"";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40vh;
+  pointer-events: none;
+  z-index: 0; /* musí být POD main/header (ty máš z-index:1) */
+  background: linear-gradient(
+    to bottom,
+    rgba(11,12,16,0),
+    rgba(11,12,16,0.85),
+    rgba(11,12,16,1)
+  );
+}
