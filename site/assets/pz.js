@@ -247,8 +247,11 @@ function uniqueCategories() {
 
 function fillCategories() {
   const cats = uniqueCategories();
-  elCategory.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
+  elCategory.innerHTML = cats
+    .map(c => `<option value="${c}">${CATEGORY_LABELS[c] || c}</option>`)
+    .join('');
 }
+
 
 function getBracket(category, productPrice) {
   // vezmeme všechny řádky, které sedí do pásma (inclusive)
@@ -273,7 +276,7 @@ function renderSummary({ category, planeo, market, diff, bracket }) {
   elSummary.hidden = false;
   elSummary.innerHTML = `
     <div class="sum">
-      <div class="sum__row"><span>Kategorie</span><b>${category}</b></div>
+      <div class="sum__row"><span>Kategorie</span<b>${CATEGORY_LABELS[category] || category}</b></div>
       <div class="sum__row"><span>Planeo</span><b>${fmt.format(planeo)} Kč</b></div>
       <div class="sum__row"><span>Trh</span><b>${fmt.format(market)} Kč</b></div>
       <div class="sum__row"><span>Rozdíl (Planeo − trh)</span><b class="${diffClass}">${fmt.format(diff)} Kč</b></div>
@@ -388,3 +391,11 @@ elReset.addEventListener('click', resetAll);
     if (e.key === 'Enter') calculate();
   });
 });
+
+const CATEGORY_LABELS = {
+  MOBIL: "Telefon",
+  BILA: "Bílá",
+  NTB_PC: "Notebook",
+  ZAHRADA: "Zahrada",
+  TV: "Televize",
+};
