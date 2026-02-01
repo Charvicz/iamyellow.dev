@@ -81,7 +81,7 @@ function render(monthKey) {
     mmValue: entries.reduce((a, e) => a + (e.pillars?.mm ? (Number(e.price) || 0) : 0), 0),
       // hodnoty (Kč) podle toho, jestli je u prodeje checkbox
     priskoValue: entries.reduce((a, e) => a + (e.pillars?.prisko ? (Number(e.price) || 0) : 0), 0),
-    pzValue: entries.reduce((a, e) => a + (e.pillars?.pz ? (Number(e.price) || 0) : 0), 0),
+    pzValue: entries.reduce((a, e) => a + (e?.pz?.pzPrice || 0), 0),    
     splValue: entries.reduce((a, e) => a + (e.pillars?.splatky ? (Number(e.price) || 0) : 0), 0),
 
     // (volitelně) “PZ hodnota” jako součet ceny PZ záznamů (pokud to chceš nechat)
