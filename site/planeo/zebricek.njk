@@ -23,21 +23,20 @@ layout: "layout.njk"
 
     <div class="rank__btns">
       <button id="exportBtn" class="btn" type="button">Export JSON</button>
+
       <label class="btn btn--ghost fileBtn">
         Import JSON
         <input id="importFile" type="file" accept="application/json">
       </label>
-        <<button id="wipeBtn" class="btn btn--danger" type="button">Smazat data</button>
 
-            <div id="kpis" class="kpis"></div>
-            <div id="list" class="list"></div>
-            <div id="pillars" class="pillars"></div>
+      <button id="wipeBtn" class="btn btn--danger" type="button">Smazat data</button>
     </div>
   </div>
 
-  <!-- 🔥 KPIs bez bodů -->
+  <!-- KPIs -->
   <div id="kpis" class="kpis"></div>
 
+  <!-- 2-panely layout -->
   <div class="rank__two">
     <div class="panel">
       <h2>Uložené prodeje</h2>
