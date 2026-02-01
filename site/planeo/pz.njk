@@ -1,0 +1,49 @@
+---
+title: "Planeo PZ kalkulačka"
+description: "Spočítá rozdíl ceny vs. trh a ukáže, jaké PZ se vejdou."
+layout: "layout.njk"
+---
+
+<section class="pz">
+  <header class="pz__header">
+    <h1>Planeo PZ</h1>
+    <p class="sub">Zadej ceny → dostaneš rozdíl + PZ varianty podle kategorie a cenového pásma.</p>
+  </header>
+
+  <div class="pz__card">
+    <div class="pz__grid">
+      <label class="pz__field">
+        <span>Kategorie</span>
+        <select id="category"></select>
+      </label>
+
+      <label class="pz__field">
+        <span>Cena v Planeu (Kč)</span>
+        <input id="planeoPrice" type="number" inputmode="numeric" min="0" placeholder="např. 12990">
+      </label>
+
+      <label class="pz__field">
+        <span>Nejnižší cena na trhu (Kč)</span>
+        <input id="marketPrice" type="number" inputmode="numeric" min="0" placeholder="např. 11990">
+      </label>
+
+      <div class="pz__actions">
+        <button id="calcBtn" class="btn">Spočítat</button>
+        <button id="resetBtn" class="btn btn--ghost" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div class="pz__summary" id="summary" hidden></div>
+  </div>
+
+  <div class="pz__results" id="results"></div>
+
+  <footer class="pz__footer">
+    <p class="hint">
+      Tip: Rozdíl = <b>Planeo − trh</b>. Když je rozdíl ≤ 0, tak se “do rozdílu” nevejde nic (logicky).
+    </p>
+  </footer>
+</section>
+
+<link rel="stylesheet" href="/assets/pz.css">
+<script src="/assets/pz.js"></script>
