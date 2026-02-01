@@ -309,29 +309,34 @@ function renderResults(diff, bracket) {
   }
 
   const cards = bracket.items
-    .sort((a, b) => a.pzPrice - b.pzPrice)
-    .map(item => {
-      const fits = diff >= item.pzPrice;
-      const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
+  .sort((a, b) => a.pzPrice - b.pzPrice)
+  .map(item => {
+    const fits = diff >= item.pzPrice;
+    const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
 
-      return `
-        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
-          <div class="pz__itemTop">
-            <div class="pz__title">${labelFor(item.code)}</div>
-            <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
-          </div>
-          <div class="pz__meta">
-            ${
-              fits
-                ? `<span class="tag tag--good">jde to</span>
-                   <span class="muted">zbývá ${fmt.format(delta)} Kč</span>`
-                : `<span class="tag tag--bad">nejde to</span>
-                   <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
-            }
-          </div>
+    // ✅ cena produktu když je PZ "zadarmo" (jen pro zelené)
+    const planeo = Number(elPlaneo.value) || 0;
+    const priceIfFree = planeo - item.pzPrice;
+
+    return `
+      <div class="pz__item ${fits ? 'fit' : 'nofit'}">
+        <div class="pz__itemTop">
+          <div class="pz__title">${labelFor(item.code)}</div>
+          <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
         </div>
-      `;
-    }).join('');
+        <div class="pz__meta">
+          ${
+            fits
+              ? `<span class="tag tag--good">jde to</span>
+                 <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
+                 <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
+              : `<span class="tag tag--bad">nejde to</span>
+                 <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
+          }
+        </div>
+      </div>
+    `;
+  }).join('');
 
   elResults.innerHTML = `
     <h2>Varianty v pásmu</h2>
