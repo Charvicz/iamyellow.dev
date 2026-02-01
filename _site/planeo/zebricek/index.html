@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Planeo — Žebříček</title>
-  <meta name="description" content="Přehled za měsíc + statistiky z uložených prodejů." />
+  <title>Planeo — Přehled</title>
+  <meta name="description" content="Přehled uložených prodejů za vybraný měsíc." />
 
   <link rel="stylesheet" href="/assets/style.css">
   
@@ -40,8 +40,8 @@
     
 <section class="rank">
   <header class="rank__header">
-    <h1>Žebříček</h1>
-    <p class="sub">Teď lokálně (tvůj prohlížeč). Později online battle mode 😈</p>
+    <h1>Přehled prodejů</h1>
+    <p class="sub">Souhrn tvých uložených prodejů za vybraný měsíc.</p>
   </header>
 
   <div class="rank__controls">
@@ -51,7 +51,7 @@
     </label>
 
     <label class="field">
-      <span>Moje jméno (pro budoucí online)</span>
+      <span>Moje jméno (volitelné)</span>
       <input id="name" type="text" placeholder="např. Yellow">
     </label>
 
@@ -65,11 +65,12 @@
     </div>
   </div>
 
+  <!-- 🔥 KPIs bez bodů -->
   <div id="kpis" class="kpis"></div>
 
   <div class="rank__two">
     <div class="panel">
-      <h2>Prodeje v měsíci</h2>
+      <h2>Uložené prodeje</h2>
       <div id="list" class="list"></div>
     </div>
 

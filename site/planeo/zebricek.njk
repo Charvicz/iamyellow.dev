@@ -1,13 +1,13 @@
 ---
-title: "Planeo — Žebříček"
-description: "Přehled za měsíc + statistiky z uložených prodejů."
+title: "Planeo — Přehled"
+description: "Přehled uložených prodejů za vybraný měsíc."
 layout: "layout.njk"
 ---
 
 <section class="rank">
   <header class="rank__header">
-    <h1>Žebříček</h1>
-    <p class="sub">Teď lokálně (tvůj prohlížeč). Později online battle mode 😈</p>
+    <h1>Přehled prodejů</h1>
+    <p class="sub">Souhrn tvých uložených prodejů za vybraný měsíc.</p>
   </header>
 
   <div class="rank__controls">
@@ -17,7 +17,7 @@ layout: "layout.njk"
     </label>
 
     <label class="field">
-      <span>Moje jméno (pro budoucí online)</span>
+      <span>Moje jméno (volitelné)</span>
       <input id="name" type="text" placeholder="např. Yellow">
     </label>
 
@@ -31,11 +31,12 @@ layout: "layout.njk"
     </div>
   </div>
 
+  <!-- 🔥 KPIs bez bodů -->
   <div id="kpis" class="kpis"></div>
 
   <div class="rank__two">
     <div class="panel">
-      <h2>Prodeje v měsíci</h2>
+      <h2>Uložené prodeje</h2>
       <div id="list" class="list"></div>
     </div>
 
@@ -48,4 +49,3 @@ layout: "layout.njk"
 
 <link rel="stylesheet" href="/assets/planeo-zebricek.css">
 <script src="/assets/planeo-zebricek.js"></script>
-    
