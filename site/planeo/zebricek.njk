@@ -1,0 +1,51 @@
+---
+title: "Planeo — Žebříček"
+description: "Přehled za měsíc + statistiky z uložených prodejů."
+layout: "layout.njk"
+---
+
+<section class="rank">
+  <header class="rank__header">
+    <h1>Žebříček</h1>
+    <p class="sub">Teď lokálně (tvůj prohlížeč). Později online battle mode 😈</p>
+  </header>
+
+  <div class="rank__controls">
+    <label class="field">
+      <span>Měsíc</span>
+      <input id="monthPick" type="month">
+    </label>
+
+    <label class="field">
+      <span>Moje jméno (pro budoucí online)</span>
+      <input id="name" type="text" placeholder="např. Yellow">
+    </label>
+
+    <div class="rank__btns">
+      <button id="exportBtn" class="btn" type="button">Export JSON</button>
+      <label class="btn btn--ghost fileBtn">
+        Import JSON
+        <input id="importFile" type="file" accept="application/json">
+      </label>
+      <button id="wipeBtn" class="btn btn--danger" type="button">Smazat data</button>
+    </div>
+  </div>
+
+  <div id="kpis" class="kpis"></div>
+
+  <div class="rank__two">
+    <div class="panel">
+      <h2>Prodeje v měsíci</h2>
+      <div id="list" class="list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Souhrn pilířů</h2>
+      <div id="pillars" class="pillars"></div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/assets/planeo-zebricek.css">
+<script src="/assets/planeo-zebricek.js"></script>
+    
