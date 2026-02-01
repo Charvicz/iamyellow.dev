@@ -82,7 +82,6 @@ function render(monthKey) {
   };
 
   elKpis.innerHTML = `
-    <div class="kpi"><span>Body</span><b>${fmt.format(totals.points)}</b></div>
     <div class="kpi"><span>Prodeje</span><b>${fmt.format(totals.sales)}</b></div>
     <div class="kpi"><span>Obrat (součet cen)</span><b>${fmt.format(totals.revenue)} Kč</b></div>
     <div class="kpi"><span>PZ “hodnota”</span><b>${fmt.format(totals.pzValue)} Kč</b></div>
@@ -107,7 +106,7 @@ function render(monthKey) {
     .map(e => {
       const d = new Date(e.ts);
       const date = `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth()+1).padStart(2,"0")}. ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
-      const pts = scoreOf(e);
+      
 
       const tags = [
         e.pillars?.mm ? "MM" : null,
