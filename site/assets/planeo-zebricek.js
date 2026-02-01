@@ -78,22 +78,57 @@ function render(monthKey) {
     prisko: entries.filter(e => e.pillars?.prisko).length,
     pz: entries.filter(e => e.pillars?.pz).length,
     spl: entries.filter(e => e.pillars?.splatky).length,
-    pzValue: entries.reduce((a, e) => a + (e?.pz?.pzPrice || 0), 0),
+    mmValue: entries.reduce((a, e) => a + (e.pillars?.mm ? (Number(e.price) || 0) : 0), 0),
+      // hodnoty (Kč) podle toho, jestli je u prodeje checkbox
+    priskoValue: entries.reduce((a, e) => a + (e.pillars?.prisko ? (Number(e.price) || 0) : 0), 0),
+    pzValue: entries.reduce((a, e) => a + (e.pillars?.pz ? (Number(e.price) || 0) : 0), 0),
+    splValue: entries.reduce((a, e) => a + (e.pillars?.splatky ? (Number(e.price) || 0) : 0), 0),
+
+    // (volitelně) “PZ hodnota” jako součet ceny PZ záznamů (pokud to chceš nechat)
+    pzAttachValue: entries.reduce((a, e) => a + (e?.pz?.pzPrice || 0), 0),
   };
 
-  elKpis.innerHTML = `
+    elKpis.innerHTML = `
     <div class="kpi"><span>Prodeje</span><b>${fmt.format(totals.sales)}</b></div>
     <div class="kpi"><span>Obrat (součet cen)</span><b>${fmt.format(totals.revenue)} Kč</b></div>
+    <div class="kpi"><span>MM hodnota</span><b>${fmt.format(totals.mmValue)} Kč</b></div>
     <div class="kpi"><span>PZ “hodnota”</span><b>${fmt.format(totals.pzValue)} Kč</b></div>
-  `;
+    `;
 
-  elPillars.innerHTML = `
-    <div class="pillRow"><span>MM</span><b>${fmt.format(totals.mm)}</b></div>
-    <div class="pillRow"><span>Příško</span><b>${fmt.format(totals.prisko)}</b></div>
-    <div class="pillRow"><span>PZ</span><b>${fmt.format(totals.pz)}</b></div>
-    <div class="pillRow"><span>Splátky</span><b>${fmt.format(totals.spl)}</b></div>
-    <div class="pillHint">Bodování: prodej=1, MM=+2, Příško=+1, PZ=+3 (+1 VIP), Splátky=+1</div>
-  `;
+
+  const pct = (value) => {
+  if (!totals.revenue) return "0%";
+  return `${Math.round((value / totals.revenue) * 100)}%`;
+};
+
+elPillars.innerHTML = `
+  <div class="pillRow">
+    <span>MM</span>
+    <b>${fmt.format(totals.mmValue)} Kč</b>
+    <span class="muted">${pct(totals.mmValue)}</span>
+  </div>
+
+  <div class="pillRow">
+    <span>Příško</span>
+    <b>${fmt.format(totals.priskoValue)} Kč</b>
+    <span class="muted">${pct(totals.priskoValue)}</span>
+  </div>
+
+  <div class="pillRow">
+    <span>PZ</span>
+    <b>${fmt.format(totals.pzValue)} Kč</b>
+    <span class="muted">${pct(totals.pzValue)}</span>
+  </div>
+
+  <div class="pillRow">
+    <span>Splátky</span>
+    <b>${fmt.format(totals.splValue)} Kč</b>
+    <span class="muted">${pct(totals.splValue)}</span>
+  </div>
+
+  <div class="pillHint">Pozn.: pilíře se můžou překrývat (u jednoho prodeje může být víc pilířů).</div>
+`;
+
 
   if (!entries.length) {
     elList.innerHTML = `<div class="empty">Tenhle měsíc zatím nic. Jdi farmit body 😤</div>`;
