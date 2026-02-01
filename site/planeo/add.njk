@@ -1,0 +1,63 @@
+---
+title: "Planeo — Přidat produkt"
+description: "Přidej produkt do přehledu (MM / Příško / PZ / Splátky)."
+layout: "layout.njk"
+---
+
+<section class="add">
+  <div class="add__tabs">
+    <button class="tab is-active" type="button">SAP</button>
+    <button class="tab" type="button">Cena</button>
+  </div>
+
+  <div class="add__card">
+    <label class="field">
+      <input id="price" type="number" inputmode="numeric" min="0" placeholder="Zadej cenu produktu">
+    </label>
+
+    <div class="pillars">
+      <label class="pill">
+        <input id="mm" type="checkbox">
+        <span>MM</span>
+      </label>
+      <label class="pill">
+        <input id="prisko" type="checkbox">
+        <span>Příško</span>
+      </label>
+      <label class="pill">
+        <input id="pzToggle" type="checkbox">
+        <span>PZ</span>
+      </label>
+      <label class="pill">
+        <input id="spl" type="checkbox">
+        <span>Splátky</span>
+      </label>
+    </div>
+
+    <!-- PZ panel (skryté dokud není zaškrtnuté PZ) -->
+    <div id="pzPanel" class="pzPanel" hidden>
+      <div class="pzPanel__row">
+        <label class="field">
+          <span>Sortiment (pro PZ)</span>
+          <select id="pzCategory"></select>
+        </label>
+
+        <div class="pzDiff">
+          <span class="pzDiff__label">Cena produktu</span>
+          <b id="pzPriceInfo">—</b>
+        </div>
+      </div>
+
+      <div id="pzOptions" class="pzOptions"></div>
+      <div id="pzError" class="pzError" hidden></div>
+    </div>
+
+    <button id="saveBtn" class="btn btn--big" type="button">Uložit</button>
+    <button id="backBtn" class="btn btn--big btn--ghost" type="button">Zpět do menu</button>
+
+    <div id="toast" class="toast" hidden></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/assets/planeo-add.css">
+<script src="/assets/planeo-add.js"></script>

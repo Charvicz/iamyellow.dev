@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Planeo — Přidat produkt</title>
+  <meta name="description" content="Přidej produkt do přehledu (MM / Příško / PZ / Splátky)." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/planeo/add/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<section class="add">
+  <div class="add__tabs">
+    <button class="tab is-active" type="button">SAP</button>
+    <button class="tab" type="button">Cena</button>
+  </div>
+
+  <div class="add__card">
+    <label class="field">
+      <input id="price" type="number" inputmode="numeric" min="0" placeholder="Zadej cenu produktu">
+    </label>
+
+    <div class="pillars">
+      <label class="pill">
+        <input id="mm" type="checkbox">
+        <span>MM</span>
+      </label>
+      <label class="pill">
+        <input id="prisko" type="checkbox">
+        <span>Příško</span>
+      </label>
+      <label class="pill">
+        <input id="pzToggle" type="checkbox">
+        <span>PZ</span>
+      </label>
+      <label class="pill">
+        <input id="spl" type="checkbox">
+        <span>Splátky</span>
+      </label>
+    </div>
+
+    <!-- PZ panel (skryté dokud není zaškrtnuté PZ) -->
+    <div id="pzPanel" class="pzPanel" hidden>
+      <div class="pzPanel__row">
+        <label class="field">
+          <span>Sortiment (pro PZ)</span>
+          <select id="pzCategory"></select>
+        </label>
+
+        <div class="pzDiff">
+          <span class="pzDiff__label">Cena produktu</span>
+          <b id="pzPriceInfo">—</b>
+        </div>
+      </div>
+
+      <div id="pzOptions" class="pzOptions"></div>
+      <div id="pzError" class="pzError" hidden></div>
+    </div>
+
+    <button id="saveBtn" class="btn btn--big" type="button">Uložit</button>
+    <button id="backBtn" class="btn btn--big btn--ghost" type="button">Zpět do menu</button>
+
+    <div id="toast" class="toast" hidden></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/assets/planeo-add.css">
+<script src="/assets/planeo-add.js"></script>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>
