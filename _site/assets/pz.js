@@ -1,4 +1,11 @@
 // assets/pz.js
+const CATEGORY_LABELS = {
+  MOBIL: "Telefon",
+  BILA: "Bílá",
+  NTB_PC: "Notebook",
+  ZAHRADA: "Zahrada",
+  TV: "Televize",
+};
 
 const warranty_data = [
   // category, minPrice, maxPrice, code, warrantyPrice
@@ -391,11 +398,3 @@ elReset.addEventListener('click', resetAll);
     if (e.key === 'Enter') calculate();
   });
 });
-
-const CATEGORY_LABELS = {
-  MOBIL: "Telefon",
-  BILA: "Bílá",
-  NTB_PC: "Notebook",
-  ZAHRADA: "Zahrada",
-  TV: "Televize",
-};
