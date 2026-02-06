@@ -74,6 +74,15 @@
   </div>
 </section>
 
+<script type="module">
+  import { PlaneoAPI } from "/assets/planeo-api.js";
+  try {
+    await PlaneoAPI.me();
+  } catch {
+    window.location.href = "/planeo/login/";
+  }
+</script>
+
 <link rel="stylesheet" href="/assets/planeo-index.css">
 
   </main>
