@@ -1,0 +1,25 @@
+---
+title: "Planeo — Přihlášení"
+layout: "layout.njk"
+---
+
+<section style="max-width:420px;margin:80px auto;padding:24px">
+  <h1>Přihlášení</h1>
+  <p>Zadej své číslo a PIN</p>
+
+  <label class="field">
+    <span>Telefon / ID</span>
+    <input id="phone" type="tel" placeholder="např. 777123456">
+  </label>
+
+  <label class="field">
+    <span>PIN (4 čísla)</span>
+    <input id="pin" type="password" inputmode="numeric" maxlength="4">
+  </label>
+
+  <button id="loginBtn" class="btn btn--big">Přihlásit</button>
+
+  <div id="err" style="margin-top:12px;color:#ff6b6b"></div>
+</section>
+
+<script type="module" src="/assets/planeo-login.js"></script>
