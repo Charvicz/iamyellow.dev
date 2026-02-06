@@ -1,4 +1,17 @@
-// assets/planeo-add.js
+// assets/planeo-add.js (SERVER verze)
+
+// 1) import API (musí být type="module" v .njk)
+import { PlaneoAPI } from "/assets/planeo-api.js";
+
+// 2) login guard (když nejsi přihlášenej, jdeš na /planeo/login/)
+async function requireLogin() {
+  try {
+    await PlaneoAPI.me();
+  } catch {
+    window.location.href = "/planeo/login/";
+  }
+}
+await requireLogin();
 
 // --- UI refs
 const elPrice = document.getElementById("price");
@@ -27,8 +40,9 @@ const CATEGORY_LABELS = {
   TV: "Televize",
 };
 
-// ✅ tvoje databáze (zkrátil jsem ukázku; ty tam necháš komplet)
+// ✅ tvoje databáze (ty tam necháš komplet)
 const warranty_data = [
+  // ... nechávám beze změny (máš ji už správně)
   // category, minPrice, maxPrice, code, warrantyPrice
   ['TV', 0, 4999, '1R', 399],
   ['TV', 0, 4999, '2R', 599],
@@ -271,7 +285,6 @@ function labelFor(code) {
 // --- category select fill (jen ty, co existují v datech)
 function uniqueCategories() {
   return [...new Set(rows.map(r => r.cat))].sort((a, b) => {
-    // hezký pořadí
     const order = ["MOBIL", "BILA", "NTB_PC", "ZAHRADA", "TV"];
     return order.indexOf(a) - order.indexOf(b);
   });
@@ -332,8 +345,7 @@ function renderPzOptions() {
   const options = bracket.items
     .slice()
     .sort((a, b) => a.pzPrice - b.pzPrice)
-    .map((item, idx) => {
-      const id = `pzopt_${idx}`;
+    .map((item) => {
       return `
         <label class="pzOpt">
           <input type="radio" name="pzPick" value="${item.code}" data-price="${item.pzPrice}">
@@ -390,81 +402,72 @@ function toast(msg) {
   toast._t = setTimeout(() => (elToast.hidden = true), 1800);
 }
 
-// --- save to localStorage
-const STORAGE_KEY = "planeo_entries_v1";
-
-function loadEntries() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  } catch {
-    return [];
-  }
-}
-
-function saveEntries(entries) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
-}
-
-function buildEntry() {
-  const price = readPrice();
-  if (!Number.isFinite(price) || price <= 0) {
-    toast("Chybí cena produktu.");
-    return null;
-  }
-
-  const entry = {
-    id: crypto.randomUUID(),
-    ts: Date.now(),
-    price,
-    pillars: {
-      mm: elMM.checked,
-      prisko: elPrisko.checked,
-      pz: elPzToggle.checked,
-      splatky: elSpl.checked,
-    },
-    pz: null,
-  };
-
-  if (entry.pillars.pz) {
-    if (!selectedPz) {
-      toast("Vyber PZ variantu.");
-      return null;
-    }
-    entry.pz = {
-      category: selectedPz.category,
-      categoryLabel: CATEGORY_LABELS[selectedPz.category] || selectedPz.category,
-      code: selectedPz.code,
-      label: labelFor(selectedPz.code),
-      pzPrice: selectedPz.pzPrice,
-      bracket: { min: selectedPz.min, max: selectedPz.max },
-      productPriceWithPz: price - selectedPz.pzPrice,
-    };
-  }
-
-  return entry;
-}
-
-elSaveBtn.addEventListener("click", () => {
-  const entry = buildEntry();
-  if (!entry) return;
-
-  const entries = loadEntries();
-  entries.unshift(entry); // newest first
-  saveEntries(entries);
-
-  // reset UI
+function resetUI() {
   elPrice.value = "";
   elMM.checked = false;
   elPrisko.checked = false;
   elSpl.checked = false;
   elPzToggle.checked = false;
   setPzPanelVisible(false);
-
-  toast("Uloženo ✅");
+  selectedPz = null;
   elPrice.focus();
+}
+
+function buildPayload() {
+  const price = readPrice();
+  if (!Number.isFinite(price) || price <= 0) {
+    toast("Chybí cena produktu.");
+    return null;
+  }
+
+  const pillars = {
+    mm: elMM.checked,
+    prisko: elPrisko.checked,
+    splatky: elSpl.checked,
+  };
+
+  const pzEnabled = elPzToggle.checked;
+
+  if (pzEnabled && !selectedPz) {
+    toast("Vyber PZ variantu.");
+    return null;
+  }
+
+  const id = (crypto?.randomUUID?.() || String(Date.now()) + "_" + Math.random().toString(16).slice(2));
+
+  return {
+    id,
+    ts: Math.floor(Date.now() / 1000), // ✅ seconds pro PHP API
+    price: Math.round(price),
+    pillars,
+    pz: pzEnabled
+      ? {
+          category: selectedPz.category,
+          code: selectedPz.code,
+          pzPrice: selectedPz.pzPrice,
+        }
+      : null,
+  };
+}
+
+elSaveBtn.addEventListener("click", async () => {
+  const payload = buildPayload();
+  if (!payload) return;
+
+  elSaveBtn.disabled = true;
+
+  try {
+    await PlaneoAPI.addSale(payload);
+    toast("Uloženo ✅");
+    resetUI();
+  } catch (e) {
+    console.error(e);
+    toast("Uložení fail 😵");
+  } finally {
+    elSaveBtn.disabled = false;
+  }
 });
 
 elBackBtn.addEventListener("click", () => {
-  // uprav si kam chceš
   window.location.href = "/planeo/";
 });
