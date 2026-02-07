@@ -1,26 +1,24 @@
 <?php
-require_once __DIR__ . "/../_util.php";
 require_once __DIR__ . "/../db.php";
 
-$in = json_in();
-$userId = $in["userId"] ?? "";
-$pin = $in["pin"] ?? "";
+$data = json_in();
+$phone = norm_phone((string)($data["phone"] ?? ""));
+$pin   = norm_pin((string)($data["pin"] ?? ""));
 
-if (!valid_user_id($userId)) err(400, ["error" => "bad_userId"]);
-if (!valid_pin($pin)) err(400, ["error" => "bad_pin"]);
+if ($phone === "" || strlen($phone) < 6) fail(400, "Neplatné číslo/ID.");
+if (strlen($pin) !== 4) fail(400, "PIN musí mít 4 čísla.");
 
-$pdo = db();
-
-// už existuje?
-$st = $pdo->prepare("SELECT user_id FROM users WHERE user_id = ?");
-$st->execute([$userId]);
-if ($st->fetch()) err(409, ["error" => "exists"]);
-
-// hash PINu
 $hash = password_hash($pin, PASSWORD_DEFAULT);
 
-$st = $pdo->prepare("INSERT INTO users(user_id, pin_hash, created_at) VALUES(?,?,?)");
-$st->execute([$userId, $hash, date("c")]);
+try {
+  $stmt = db()->prepare("INSERT INTO planeo_users (phone, pin_hash) VALUES (?, ?)");
+  $stmt->execute([$phone, $hash]);
+} catch (Throwable $e) {
+  // duplicitní phone
+  fail(409, "Tenhle účet už existuje. Zkus přihlášení.");
+}
 
-$_SESSION["user_id"] = $userId;
-ok(["userId" => $userId]);
+// auto-login po registraci
+$_SESSION["user_phone"] = $phone;
+
+ok(["phone" => $phone]);

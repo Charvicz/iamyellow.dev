@@ -1,33 +1,57 @@
 <?php
-function db() {
+// site/api/db.php
+declare(strict_types=1);
+
+header('Content-Type: application/json; charset=utf-8');
+
+$DB_HOST = "localhost";
+$DB_NAME = "TVE_DB_JMENO";
+$DB_USER = "TVUJ_DB_USER";
+$DB_PASS = "TVE_DB_HESLO";
+
+function db(): PDO {
+  global $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS;
   static $pdo = null;
   if ($pdo) return $pdo;
 
-  $path = __DIR__ . "/data.sqlite";
-  $pdo = new PDO("sqlite:" . $path);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  // users
-  $pdo->exec("CREATE TABLE IF NOT EXISTS users (
-    user_id TEXT PRIMARY KEY,
-    pin_hash TEXT NOT NULL,
-    created_at TEXT NOT NULL
-  )");
-
-  // sales
-  $pdo->exec("CREATE TABLE IF NOT EXISTS sales (
-    id TEXT PRIMARY KEY,
-    user_id TEXT NOT NULL,
-    ts INTEGER NOT NULL,
-    price INTEGER NOT NULL,
-    mm INTEGER NOT NULL DEFAULT 0,
-    prisko INTEGER NOT NULL DEFAULT 0,
-    splatky INTEGER NOT NULL DEFAULT 0,
-    pz_code TEXT NULL,
-    pz_price INTEGER NULL,
-    pz_category TEXT NULL
-  )");
-
-  $pdo->exec("CREATE INDEX IF NOT EXISTS sales_user_ts_idx ON sales(user_id, ts)");
+  $pdo = new PDO(
+    "mysql:host={$DB_HOST};dbname={$DB_NAME};charset=utf8mb4",
+    $DB_USER,
+    $DB_PASS,
+    [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]
+  );
   return $pdo;
 }
+
+function json_in(): array {
+  $raw = file_get_contents("php://input");
+  $data = json_decode($raw ?: "{}", true);
+  return is_array($data) ? $data : [];
+}
+
+function fail(int $code, string $msg): void {
+  http_response_code($code);
+  echo json_encode(["ok"=>false, "error"=>$msg], JSON_UNESCAPED_UNICODE);
+  exit;
+}
+
+function ok(array $data = []): void {
+  echo json_encode(["ok"=>true] + $data, JSON_UNESCAPED_UNICODE);
+  exit;
+}
+
+function norm_phone(string $s): string {
+  // necháme jen čísla, max basic
+  $digits = preg_replace('/\D+/', '', $s);
+  return $digits ?? "";
+}
+
+function norm_pin(string $s): string {
+  $digits = preg_replace('/\D+/', '', $s);
+  return $digits ?? "";
+}
+
+session_start();

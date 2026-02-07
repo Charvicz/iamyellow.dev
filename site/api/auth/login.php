@@ -1,20 +1,20 @@
 <?php
-require_once __DIR__ . "/../_util.php";
 require_once __DIR__ . "/../db.php";
 
-$in = json_in();
-$userId = $in["userId"] ?? "";
-$pin = $in["pin"] ?? "";
+$data = json_in();
+$phone = norm_phone((string)($data["phone"] ?? ""));
+$pin   = norm_pin((string)($data["pin"] ?? ""));
 
-if (!valid_user_id($userId) || !valid_pin($pin)) err(400, ["error" => "bad_input"]);
+if ($phone === "" || strlen($phone) < 6) fail(400, "Neplatné číslo/ID.");
+if (strlen($pin) !== 4) fail(400, "PIN musí mít 4 čísla.");
 
-$pdo = db();
-$st = $pdo->prepare("SELECT pin_hash FROM users WHERE user_id = ?");
-$st->execute([$userId]);
-$row = $st->fetch(PDO::FETCH_ASSOC);
-if (!$row) err(401, ["error" => "invalid"]);
+$stmt = db()->prepare("SELECT * FROM planeo_users WHERE phone = ? LIMIT 1");
+$stmt->execute([$phone]);
+$user = $stmt->fetch();
 
-if (!password_verify($pin, $row["pin_hash"])) err(401, ["error" => "invalid"]);
+if (!$user) fail(401, "Špatné číslo nebo PIN.");
+if (!password_verify($pin, $user["pin_hash"])) fail(401, "Špatné číslo nebo PIN.");
 
-$_SESSION["user_id"] = $userId;
-ok(["userId" => $userId]);
+$_SESSION["user_phone"] = $phone;
+
+ok(["phone" => $phone]);

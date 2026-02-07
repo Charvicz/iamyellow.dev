@@ -1,4 +1,5 @@
 <?php
-require_once __DIR__ . "/../_util.php";
+require_once __DIR__ . "/../db.php";
+
 session_destroy();
 ok();
