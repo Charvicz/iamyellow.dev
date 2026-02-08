@@ -26,10 +26,10 @@ function db(): PDO {
   static $pdo = null;
   if ($pdo) return $pdo;
 
-  $host = "TVUJ_DB_HOST";
-  $name = "TVUJ_DB_NAME";
-  $user = "TVUJ_DB_USER";
-  $pass = "TVUJ_DB_PASS";
+  $host = "mariadb.best-hosting.cz";
+  $name = "iamyellowdev_db001";
+  $user = "iamyellow001";
+  $pass = "Ondra4963";
 
   $pdo = new PDO(
     "mysql:host=$host;dbname=$name;charset=utf8mb4",
