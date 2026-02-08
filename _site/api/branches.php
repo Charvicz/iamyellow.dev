@@ -1,67 +1,43 @@
 <?php
 require_once __DIR__ . "/db.php";
 
-// jednoduchý cache (ať nevoláš planeo.cz pořád)
-$cacheFile = __DIR__ . "/_cache_branches.json";
-$cacheTtlSeconds = 24 * 60 * 60; // 24h
-
-function fetchBranchesFromXml(): array {
-  $xmlUrl = "https://www.planeo.cz/prodejny.xml";
-
-  $xmlRaw = @file_get_contents($xmlUrl);
-  if ($xmlRaw === false) fail(502, "Nepodařilo se stáhnout seznam poboček.");
-
-  libxml_use_internal_errors(true);
-  $xml = simplexml_load_string($xmlRaw);
-  if ($xml === false) fail(502, "XML seznam poboček je rozbitej / nečitelný.");
-
-  // ⚠️ Struktura XML se může lišit; níž je robustnější přístup:
-  // projedeme všechny uzly a bereme ty, co vypadají jako "prodejna"
-  $out = [];
-
-  // pokus: často bývá <SHOP> nebo <STORE> apod.
-  // vezmeme všechny elementy na 2. úrovni:
-  foreach ($xml->children() as $node) {
-    $name = trim((string)($node->NAME ?? $node->Name ?? $node->TITLE ?? $node->Title ?? ""));
-    $city = trim((string)($node->CITY ?? $node->City ?? ""));
-    $code = trim((string)($node->CODE ?? $node->Id ?? $node->ID ?? $node->id ?? ""));
-
-    // fallback: když není code, uděláme slug z názvu
-    if ($code === "" && $name !== "") {
-      $code = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
-      $code = trim($code, "-");
-    }
-
-    if ($name === "") continue;
-
-    $label = $city ? ($name . " — " . $city) : $name;
-
-    $out[] = [
-      "code" => $code,
-      "label" => $label,
-      "name" => $name,
-      "city" => $city
-    ];
-  }
-
-  // když by XML mělo jinou strukturu a nic jsme nenašli:
-  if (count($out) === 0) {
-    fail(502, "Nepodařilo se z XML vytáhnout pobočky (změnila se struktura).");
-  }
-
-  // seřadit
-  usort($out, fn($a,$b) => strcmp($a["label"], $b["label"]));
-
-  return $out;
+$xmlPath = __DIR__ . "/data/prodejny.xml";
+if (!file_exists($xmlPath)) {
+  fail(500, "Chybí soubor prodejny.xml. Nahraj ho do api/data/prodejny.xml");
 }
 
-if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $cacheTtlSeconds)) {
-  $cached = json_decode(file_get_contents($cacheFile), true);
-  ok(["branches" => $cached]);
+$xmlRaw = file_get_contents($xmlPath);
+if ($xmlRaw === false || trim($xmlRaw) === "") {
+  fail(500, "Soubor prodejny.xml nejde přečíst nebo je prázdný.");
 }
 
-$branches = fetchBranchesFromXml();
-@mkdir(__DIR__ . "/_cache", 0777, true);
-file_put_contents($cacheFile, json_encode($branches, JSON_UNESCAPED_UNICODE));
+libxml_use_internal_errors(true);
+$xml = simplexml_load_string($xmlRaw);
+if ($xml === false) {
+  fail(500, "Soubor prodejny.xml není validní XML.");
+}
 
-ok(["branches" => $branches]);
+$stores = $xml->xpath("//STORE");
+if (!$stores || count($stores) === 0) {
+  fail(500, "V XML jsem nenašel žádné <STORE> záznamy.");
+}
+
+$out = [];
+foreach ($stores as $s) {
+  $id = trim((string)($s->ID ?? ""));
+  $name = trim((string)($s->NAME ?? ""));
+
+  if ($id === "" || $name === "") continue;
+
+  $out[] = [
+    "id" => $id,
+    "name" => $name,
+    // label pro select (užitečný do UI)
+    "label" => $name . " (" . $id . ")",
+  ];
+}
+
+// seřadíme podle názvu
+usort($out, fn($a, $b) => strcmp($a["name"], $b["name"]));
+
+ok(["branches" => $out]);
