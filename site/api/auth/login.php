@@ -10,7 +10,7 @@ $data = json_in();
 $userId = preg_replace('/\D/', '', (string)($data["phone"] ?? ""));
 $pin    = preg_replace('/\D/', '', (string)($data["pin"] ?? ""));
 
-if (!preg_match('/^\d{3,5}$/', $userId)) fail(400, "ID musí mít 3 až 5 číslic.");
+if (!preg_match('/^\d{3,10}$/', $userId)) fail(400, "Neplatné ID/telefon. Musí mít 3 až 10 číslic.");
 if (!preg_match('/^\d{4}$/', $pin)) fail(400, "PIN musí mít přesně 4 číslice.");
 
 $stmt = db()->prepare("SELECT pin_hash FROM planeo_users WHERE phone = ? LIMIT 1");
