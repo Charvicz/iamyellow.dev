@@ -52,7 +52,7 @@ async function go() {
     if (mode === "login") await PlaneoAPI.login(id, pin);
     else await PlaneoAPI.register(id, pin);
 
-    window.location.href = "/planeo/";
+    window.location.href = "/planeo/onboarding/";
   } catch (e) {
     fail(e?.message || "Něco se posralo.");
   } finally {
