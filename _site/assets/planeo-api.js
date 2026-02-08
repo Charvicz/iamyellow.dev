@@ -6,6 +6,7 @@ export const PlaneoAPI = {
       credentials: "include",
       body: JSON.stringify(body || {}),
     });
+
     const data = await r.json().catch(() => ({}));
     if (!r.ok || data.ok === false) throw new Error(data.error || "API error");
     return data;
@@ -16,15 +17,17 @@ export const PlaneoAPI = {
       method: "GET",
       credentials: "include",
     });
+
     const data = await r.json().catch(() => ({}));
     if (!r.ok || data.ok === false) throw new Error(data.error || "API error");
     return data;
   },
 
   me() { return this._get("me.php"); },
-  login(phone, pin) { return this._post("auth/login.php", { phone, pin }); },
-  register(phone, pin) { return this._post("auth/register.php", { phone, pin }); },
-  logout() { return this._post("auth/logout.php", {}); },
 
-  // později: addSale/listSales...
+  // 🔥 posíláme { id, pin } (ne phone)
+  login(id, pin) { return this._post("auth/login.php", { id, pin }); },
+  register(id, pin) { return this._post("auth/register.php", { id, pin }); },
+
+  logout() { return this._post("auth/logout.php", {}); },
 };
