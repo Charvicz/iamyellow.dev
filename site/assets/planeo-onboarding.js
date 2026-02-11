@@ -3,61 +3,83 @@ const roleSel   = document.getElementById("role");
 const btn       = document.getElementById("saveBtn");
 const err       = document.getElementById("err");
 
-function fail(msg) {
+function showErr(msg){
   err.hidden = false;
   err.textContent = msg;
-  btn.disabled = false;
+}
+function clearErr(){
+  err.hidden = true;
+  err.textContent = "";
 }
 
-async function loadBranches() {
-  const r = await fetch("/api/branches.php", { credentials: "include" });
-  const data = await r.json().catch(() => ({}));
+// vytáhne branch_id i kdyby select/value byly rozbitý
+function getBranchIdSafe(){
+  // 1) normálně value
+  let v = (branchSel?.value || "").trim();
 
-  if (!r.ok || data.ok === false) {
-    throw new Error(data.error || "Nepodařilo se načíst pobočky.");
+  // 2) selected option value
+  if (!v && branchSel?.selectedOptions?.length) {
+    v = (branchSel.selectedOptions[0].value || "").trim();
   }
 
-  // ✅ value = b.id (číslo prodejny), text = b.label
-  branchSel.innerHTML =
-    `<option value="">Vyber pobočku…</option>` +
-    data.branches
-      .map((b) => `<option value="${b.id}">${b.label}</option>`)
-      .join("");
+  // 3) když ani to není, zkus vytáhnout číslo z textu: "PLANEO Kroměříž (1152)"
+  if (!v && branchSel?.selectedOptions?.length) {
+    const txt = (branchSel.selectedOptions[0].textContent || "").trim();
+    const m = txt.match(/\((\d+)\)\s*$/);
+    if (m) v = m[1];
+  }
+
+  return v;
 }
 
-async function save() {
-  err.hidden = true;
+async function loadBranches(){
+  const r = await fetch("/api/branches.php", { credentials: "include" });
+  const data = await r.json().catch(()=>({}));
+
+  if (!r.ok || data.ok === false) throw new Error(data.error || "Nepodařilo se načíst pobočky.");
+
+  // ✅ tady je nejdůležitější: option value="${b.id}"
+  branchSel.innerHTML =
+    `<option value="">Vyber pobočku…</option>` +
+    (data.branches || []).map(b => `<option value="${b.id}">${b.label}</option>`).join("");
+}
+
+async function save(){
+  clearErr();
   btn.disabled = true;
 
-  const branch_id = branchSel.value; // string, ale bude jen číslo
-  const job_role = roleSel.value;
+  const branch_id = getBranchIdSafe();
+  const job_role = (roleSel?.value || "").trim();
 
-  if (!branch_id) return fail("Vyber pobočku.");
-  if (!/^\d+$/.test(branch_id)) return fail("Neplatné číslo pobočky.");
+  if (!branch_id) {
+    btn.disabled = false;
+    showErr("Vyber pobočku.");
+    return;
+  }
+  if (!/^\d+$/.test(branch_id)) {
+    btn.disabled = false;
+    showErr("Neplatné číslo pobočky.");
+    return;
+  }
 
-  try {
+  try{
     const r = await fetch("/api/onboarding.php", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type":"application/json" },
       credentials: "include",
-      body: JSON.stringify({ branch_id, job_role }),
+      body: JSON.stringify({ branch_id, job_role })
     });
+    const data = await r.json().catch(()=>({}));
 
-    const data = await r.json().catch(() => ({}));
+    if (!r.ok || data.ok === false) throw new Error(data.error || "Nepovedlo se uložit.");
 
-    if (!r.ok || data.ok === false) {
-      throw new Error(data.error || "Nepovedlo se uložit dotazník.");
-    }
-
-    // hotovo → app
     window.location.href = "/planeo/";
-  } catch (e) {
-    fail(e?.message || "Něco se posralo.");
-  } finally {
+  } catch(e){
+    showErr(e?.message || "Něco se posralo.");
+  } finally{
     btn.disabled = false;
   }
 }
 
 btn.addEventListener("click", save);
-
-loadBranches().catch((e) => fail(e?.message || "Nepodařilo se načíst pobočky."));
+loadBranches().catch(e => showErr(e?.message || "Nepodařilo se načíst pobočky."));
