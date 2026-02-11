@@ -38,38 +38,34 @@
 
   <main id="top" style="padding-top: 70px;">
     
-<section class="add">
-  <h1>Ještě 2 rychlý otázky 👇</h1>
-  <p class="sub">Ať víme, odkud jsi a co děláš.</p>
+<section class="onb">
+  <div class="onb__wrap">
+    <h1 class="onb__title">Ještě 2 rychlý otázky 👇</h1>
+    <p class="onb__sub">Ať víme, odkud jsi a co děláš.</p>
 
-  <div class="add__card">
-    <div class="field">
-      <span>Pobočka</span>
-      <select id="branch"></select>
+    <div class="onb__card">
+      <div class="field">
+        <span>Pobočka</span>
+        <select id="branch"></select>
+      </div>
+
+      <div class="field">
+        <span>Pozice</span>
+        <select id="role">
+          <option value="vedouci">Vedoucí prodejny</option>
+          <option value="zastupce">Zástupce vedoucího</option>
+          <option value="admin">Administrativní pracovník</option>
+          <option value="prodavac">Prodavač</option>
+          <option value="logistik">Logistik</option>
+          <option value="jine">Jiné</option>
+        </select>
+      </div>
+
+      <button class="onb__btn" id="saveBtn">Uložit</button>
+      <div class="onb__err" id="err" hidden></div>
     </div>
-
-    <div class="field" style="margin-top:12px;">
-      <span>Pozice</span>
-      <select id="role">
-        <option value="vedouci">Vedoucí prodejny</option>
-        <option value="zastupce">Zástupce vedoucího</option>
-        <option value="admin">Administrativní pracovník</option>
-        <option value="prodavac">Prodavač</option>
-        <option value="logistik">Logistik</option>
-        <option value="jine">Jiné</option>
-      </select>
-    </div>
-
-    <select id="branch"></select>
-    <select id="role"></select>
-    <button id="saveBtn">Uložit</button>
-    <div id="err" hidden></div>
-
-    <div class="pzError" id="err" hidden></div>
   </div>
 </section>
-
-<script type="module" src="/assets/planeo-onboarding.js"></script>
 
   </main>
 
