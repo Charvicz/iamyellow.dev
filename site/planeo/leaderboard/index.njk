@@ -1,0 +1,34 @@
+---
+title: "Planeo — Leaderboard"
+description: "Žebříčky prodejů."
+layout: "layout.njk"
+---
+
+<section class="lb">
+  <header class="lb__header">
+    <h1>Leaderboard</h1>
+    <p class="sub">Přepínej žebříčky nahoře, data jsou za vybraný měsíc.</p>
+  </header>
+
+  <div class="lb__controls">
+    <label class="field">
+      <span>Měsíc</span>
+      <input id="lbMonth" type="month">
+    </label>
+
+    <div class="lb__tabs" id="lbTabs"></div>
+
+    <label class="field field--inline">
+      <input id="lbScope" type="checkbox">
+      <span>Jen moje pobočka</span>
+    </label>
+  </div>
+
+  <div class="panel">
+    <div id="lbTitle" class="lb__title"></div>
+    <div id="lbTable" class="lb__table"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/assets/planeo-leaderboard.css">
+<script src="/assets/planeo-leaderboard.js"></script>
