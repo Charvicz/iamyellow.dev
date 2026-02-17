@@ -1,80 +1,57 @@
-/* 2 SLUPCE VŽDY NA DESKTOPU */
+/* CENTROVÁNÍ CELÉHO BLOKU */
 .certificates-container {
-  max-width: 1050px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
 }
 
+/* GRID - 2 SLUPCE NA DESKTOPU */
 #cert-list.cert-grid {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 2rem !important;
+  gap: 2.5rem !important;
   margin-top: 2rem !important;
 }
 
-/* MOBIL */
-@media (max-width: 768px) {
-  #cert-list.cert-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* HOVER EFEKT */
+/* KARTA CERTIFIKÁTU */
 .cert {
+  max-width: 480px !important;
+  margin: 0 auto !important;
   cursor: pointer !important;
-  transition: transform 0.3s ease !important;
+  transition: transform 0.2s ease !important;
+  background: transparent !important; /* Pokud máš tmavý layout */
 }
 
 .cert:hover {
-  transform: translateY(-5px) !important;
+  transform: scale(1.02) !important;
 }
 
-/* MODAL */
-#cert-modal {
-  display: none !important;
-  position: fixed !important;
-  inset: 0 !important;
-  background: rgba(0,0,0,0.95) !important;
-  z-index: 9999 !important;
+/* RÁMEČEK OBRÁZKU - PŘESNĚ JAKO NA FOTCE */
+.cert-frame {
+  width: 100% !important;
+  height: 220px !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  background: #111 !important; /* Černé pozadí rámečku */
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 2rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-#cert-modal.active {
-  display: flex !important;
-}
-
-.modal-content {
-  max-width: 90vw !important;
-  max-height: 90vh !important;
-  background: white !important;
-  border-radius: 20px !important;
-  overflow: hidden !important;
-  position: relative !important;
-}
-
-.modal-close {
-  position: absolute !important;
-  top: 1rem !important;
-  right: 1rem !important;
-  background: rgba(255,255,255,0.9) !important;
-  border: none !important;
-  border-radius: 50% !important;
-  width: 44px !important;
-  height: 44px !important;
-  font-size: 20px !important;
-  cursor: pointer !important;
-  z-index: 10 !important;
-}
-
-#modal-image {
+/* OBRÁZEK UVNITŘ RÁMEČKU */
+.cert-frame img {
   max-width: 100% !important;
-  max-height: 70vh !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
   display: block !important;
 }
 
-.modal-desc {
-  padding: 1.5rem !important;
-  text-align: center !important;
+/* MOBILNÍ VERZE - 1 SLOUPEC */
+@media (max-width: 850px) {
+  #cert-list.cert-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
