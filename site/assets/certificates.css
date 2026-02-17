@@ -1,143 +1,163 @@
-/* CENTROVANÝ GRID - VŽDY 2 SLUPCE NA DESKTOPU, 1 NA MOBILU */
+/* !IMPORTANT - přepíše tvůj global CSS */
 .certificates-container {
-  max-width: 1000px;  /* MAX 2 sloupce po 450px + gap */
-  margin: 0 auto;
-  padding: 0 1rem;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
 }
 
-#cert-list.cert-grid {
+#cert-list {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));  /* MIN 450px = max 2 sloupce */
-  gap: 1.5rem !important;
-  margin-top: 1rem;
+  grid-template-columns: 1fr 1fr !important;  /* VŽDY 2 SLUPCE */
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+  max-width: 1100px !important;
 }
 
-/* FIXNÍ ROZMIARY - NEENORMNÍ */
+/* KARTY - FIXNÍ VELIKOST */
 .cert {
-  max-width: 480px;      /* MAX šířka karty */
-  height: 380px;         /* FIXNÍ výška */
-  cursor: pointer;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  width: 100% !important;
+  max-width: 520px !important;
+  height: 400px !important;
+  cursor: pointer !important;
+  background: white !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
 }
 
 .cert:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  transform: translateY(-12px) !important;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25) !important;
 }
 
 .cert-frame {
-  height: 220px !important;  /* MENŠÍ obrázky */
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
+  height: 240px !important;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
 }
 
 .cert-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* Zachová poměr */
-  transition: transform 0.4s ease;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.4s ease !important;
 }
 
 .cert:hover .cert-frame img {
-  transform: scale(1.05);
+  transform: scale(1.08) !important;
 }
 
-/* TEXT - lepší layout */
+/* TYPOGRAFIE */
 .cert h3 {
-  font-size: 1.15rem;
-  margin: 1rem 1.25rem 0.5rem;
-  color: #1f2937;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  margin: 1.25rem 1.5rem 0.75rem !important;
+  color: #111827 !important;
+  line-height: 1.3 !important;
 }
 
 .cert p {
-  flex: 1;  /* Zabere prostor */
-  margin: 0 1.25rem 1rem;
-  color: #6b7280;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  flex: 1 !important;
+  margin: 0 1.5rem 1rem !important;
+  color: #6b7280 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
 }
 
 .meta {
-  padding: 0 1.25rem 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  padding: 0 1.5rem 1.5rem !important;
+  display: flex !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
 }
 
 .pill {
-  background: #e5e7eb;
-  color: #374151;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb) !important;
+  color: #374151 !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 50px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
 }
 
 /* MOBIL - 1 SLUPEC */
-@media (max-width: 950px) {
-  .certificates-container { padding: 0 1rem; }
-  #cert-list.cert-grid {
-    grid-template-columns: 1fr !important;  /* 1 sloupec */
-    gap: 1.25rem !important;
+@media (max-width: 1100px) {
+  #cert-list {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
-  .cert { max-width: 100%; height: 360px; }
-  .cert-frame { height: 200px !important; }
 }
 
 /* TABLET */
 @media (max-width: 768px) {
-  .cert { height: 340px; }
-  .cert-frame { height: 180px !important; }
-  .cert h3 { font-size: 1.1rem; margin-top: 0.8rem; }
+  .certificates-container { padding: 0 1.5rem !important; }
+  .cert { height: 380px !important; border-radius: 20px !important; }
+  .cert-frame { height: 220px !important; }
 }
 
-/* MALÝ MOBIL */
+/* MOBIL */
 @media (max-width: 480px) {
-  .certificates-container { padding: 0 0.5rem; }
-  .cert { height: 320px; border-radius: 16px; }
-  .cert-frame { height: 160px !important; }
-  .cert h3 { font-size: 1rem; margin-top: 0.75rem; }
-  .cert p { font-size: 0.88rem; }
+  .certificates-container { padding: 0 1rem !important; }
+  .cert { height: 360px !important; border-radius: 18px !important; }
+  .cert-frame { height: 200px !important; }
+  .cert h3 { font-size: 1.15rem !important; margin-top: 1rem !important; }
 }
 
-/* MODAL - responzivní */
+/* MODAL */
+.modal {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,0.96) !important;
+  z-index: 9999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2rem !important;
+}
+
 .modal.active { display: flex !important; }
-.modal-content {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-}
 
-#modal-image {
-  max-width: 100%;
-  max-height: 70vh;
-  width: auto;
-  height: auto;
-  display: block;
+.modal-content {
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  background: white !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.5) !important;
 }
 
 .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-  background: rgba(255,255,255,0.95);
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 20px;
-  cursor: pointer;
+  position: absolute !important;
+  top: 1.5rem !important;
+  right: 1.5rem !important;
+  z-index: 10000 !important;
+  background: rgba(255,255,255,0.95) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 22px !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+#modal-image {
+  max-width: 100% !important;
+  max-height: 75vh !important;
+  width: auto !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.modal-desc {
+  padding: 2rem !important;
+  text-align: center !important;
+  background: #fafafa !important;
 }
