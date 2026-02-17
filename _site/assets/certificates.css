@@ -140,3 +140,86 @@
   color: white;
   cursor: pointer;
 }
+
+/* 2 VEDLE SEBE - VŽDY */
+.certificates-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+#cert-list {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;  /* VŽDY 2 SLUPCE */
+  gap: 2rem !important;
+}
+
+/* MOBIL */
+@media (max-width: 768px) {
+  #cert-list {
+    grid-template-columns: 1fr !important;  /* 1 SLUPEC */
+  }
+}
+
+/* FULLSCREEN MODAL */
+#cert-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+#cert-modal.active {
+  display: flex !important;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  max-width: 800px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+#modal-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.modal-desc {
+  margin-top: 1rem;
+  text-align: center;
+  color: #333;
+}

@@ -46,3 +46,44 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+// ROZKLİKAT = FULLSCREEN
+document.querySelectorAll('.cert').forEach(cert => {
+  cert.addEventListener('click', function() {
+    const imgSrc = this.querySelector('img').src;
+    const title = this.querySelector('h3').textContent;
+    const desc = this.querySelector('p').textContent;
+    
+    // Naplň modal
+    document.getElementById('modal-image').src = imgSrc;
+    document.getElementById('modal-desc').innerHTML = `
+      <h3 style="margin: 0 0 0.5rem 0; color: #333;">${title}</h3>
+      <p style="margin: 0; color: #666; font-size: 1rem;">${desc}</p>
+    `;
+    
+    // Ukaž modal
+    document.getElementById('cert-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// ZAVŘÍT MODAL
+document.querySelector('.modal-close').addEventListener('click', function() {
+  document.getElementById('cert-modal').classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+document.getElementById('cert-modal').addEventListener('click', function(e) {
+  if (e.target.id === 'cert-modal') {
+    this.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('cert-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
