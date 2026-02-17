@@ -82,14 +82,14 @@
   padding: 2rem !important;
   position: relative !important;
   text-align: center !important;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.5) !important;
+  box-shadow: 0 25px 50px rgba(80, 79, 79, 0.5) !important;
 }
 
 .modal-close {
   position: absolute !important;
   top: 1rem !important;
   right: 1.5rem !important;
-  background: rgba(0,0,0,0.95) !important;
+  background: rgba(255,255,255,0.95) !important;
   border: none !important;
   border-radius: 50% !important;
   width: 44px !important;
@@ -128,23 +128,29 @@
   font-size: 1rem !important;
 }
 
-/* VŽDY PŘESNĚ 2 CERTIFIKÁTY VEDLE SEBE */
+/* VŽDY 2 CERTIFIKÁTY VEDLE SEBE - FLEXBOX */
 .certificates-container {
-  max-width: 1050px !important;  /* 2x480px + gap */
+  max-width: 1050px !important;
   margin: 0 auto !important;
   padding: 0 1rem !important;
 }
 
 #cert-list.cert-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;  /* PŘESNĚ 2 SLUPCE */
+  display: flex !important;
+  flex-wrap: wrap !important;
   gap: 2rem !important;
+  justify-content: center !important;
   margin-top: 2rem !important;
 }
 
-/* MOBIL - 1 SLUPEC */
+.cert {
+  flex: 0 0 calc(50% - 1rem) !important;  /* PŘESNĚ 50% - gap/2 */
+  max-width: 480px !important;
+}
+
+/* MOBIL */
 @media (max-width: 1050px) {
-  #cert-list.cert-grid {
-    grid-template-columns: 1fr !important;
+  .cert {
+    flex: 0 0 100% !important;  /* PLNÁ ŠÍŘKA */
   }
 }
