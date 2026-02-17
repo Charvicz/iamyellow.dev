@@ -253,27 +253,6 @@ extra_js: /assets/certificates.js
   </div>
 </div>
 
-<style>
-/* 2 sloupce */
-#cert-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.cert { cursor: pointer; }
-@media (max-width: 850px) { #cert-list { grid-template-columns: 1fr; } }
-</style>
-
-<script>
-document.querySelectorAll('.cert').forEach(c => c.onclick = () => {
-  document.getElementById('modal-image').src = c.querySelector('img').src;
-  document.getElementById('cert-modal').classList.add('active');
-});
-document.querySelector('.modal-close').onclick = () => document.getElementById('cert-modal').classList.remove('active');
-</script>
-
 <footer class="footer">
   <div class="footer-inner reveal">
     <div class="fineprint">
