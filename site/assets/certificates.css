@@ -29,7 +29,6 @@
 /* RÁMEČEK OBRÁZKU - PŘESNĚ JAKO NA FOTCE */
 .cert-frame {
   width: 100% !important;
-  height: 220px !important;
   overflow: hidden !important;
   border-radius: 16px !important;
   background: #111 !important; /* Černé pozadí rámečku */
