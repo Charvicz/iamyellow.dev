@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Planeo — Leaderboard</title>
+  <meta name="description" content="Žebříčky prodejů." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/planeo/leaderboard/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<section class="lb">
+  <header class="lb__header">
+    <h1>Leaderboard</h1>
+    <p class="sub">Přepínej žebříčky nahoře, data jsou za vybraný měsíc.</p>
+  </header>
+
+  <div class="lb__controls">
+    <label class="field">
+      <span>Měsíc</span>
+      <input id="lbMonth" type="month">
+    </label>
+
+    <div class="lb__tabs" id="lbTabs"></div>
+
+    <label class="field field--inline">
+      <input id="lbScope" type="checkbox">
+      <span>Jen moje pobočka</span>
+    </label>
+  </div>
+
+  <div class="panel">
+    <div id="lbTitle" class="lb__title"></div>
+    <div id="lbTable" class="lb__table"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="/assets/planeo-leaderboard.css">
+<script src="/assets/planeo-leaderboard.js"></script>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>

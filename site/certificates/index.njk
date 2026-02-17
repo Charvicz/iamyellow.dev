@@ -1,0 +1,109 @@
+---
+title: Certificates — Yellow
+description: Selected certifications and qualifications by Yellow — verified skills and achievements.
+layout: layout.njk
+extra_css: certificates.css
+extra_js: certificates.js
+---
+
+<section class="hero" style="min-height: auto; padding-bottom: 28px;">
+  <div class="hero-inner">
+    <p class="kicker">Certifikáty</p>
+    <h1>
+      Certifikáty — <span class="accent">ověřené</span> dovednosti.
+    </h1>
+    <p class="subtitle">
+      Vybrané certifikace. Žádné detaily, jen co a kde ověřit.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#cert-list">Prohlédnout certifikáty</a>
+      <a class="btn ghost" href="/#links">Sociální sítě</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 24px;">
+  <div class="section-head reveal">
+    <h2>Přehled</h2>
+    <p>Filtrovat podle kategorie. Rychlé prohlížení.</p>
+
+    <div class="filters" role="tablist" aria-label="Certifikát filtry">
+      <button class="filter is-active" data-filter="all" type="button">Vše</button>
+      <button class="filter" data-filter="tech" type="button">Tech</button>
+      <button class="filter" data-filter="drone" type="button">Drony</button>
+      <button class="filter" data-filter="other" type="button">Ostatní</button>
+    </div>
+  </div>
+
+  <div id="cert-list" class="cert-grid" style="margin-top: 14px;">
+
+    <article class="card reveal cert" data-tags="drone">
+      <div class="cert-frame">
+        <img src="cert-drone-a1a3.jpg" alt="Pilotní průkaz dron A1/A3" loading="lazy">
+      </div>
+      <h3>Pilot dronu A1/A3</h3>
+      <p>Dálkový pilot dronu – otevřená kategorie OPEN A1/A3.</p>
+      <div class="meta">
+        <span class="pill">ÚCL ČR</span>
+        <span class="pill">Platnost 5 let</span>
+      </div>
+    </article>
+
+    <article class="card reveal cert" data-tags="tech">
+      <div class="cert-frame">
+        <img src="cert-python.jpg" alt="Python certifikát" loading="lazy">
+      </div>
+      <h3>Python Developer</h3>
+      <p>Základy a pokročilé programování v Pythonu pro web scraping a appky.</p>
+      <div class="meta">
+        <span class="pill">Online Academy</span>
+        <span class="pill">2025</span>
+      </div>
+    </article>
+
+    <article class="card reveal cert" data-tags="tech">
+      <div class="cert-frame">
+        <img src="cert-firebase.jpg" alt="Firebase certifikát" loading="lazy">
+      </div>
+      <h3>Firebase Specialist</h3>
+      <p>Databáze a realtime sync pro mobilní aplikace.</p>
+      <div class="meta">
+        <span class="pill">Google Cloud</span>
+        <span class="pill">2026</span>
+      </div>
+    </article>
+
+    <article class="card reveal cert" data-tags="other">
+      <div class="cert-frame">
+        <img src="cert-sales.jpg" alt="Sales training certifikát" loading="lazy">
+      </div>
+      <h3>Prodejní školení</h3>
+      <p>Techniky prodeje a zákaznický servis v retailu.</p>
+      <div class="meta">
+        <span class="pill">Planeo</span>
+        <span class="pill">Interní</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Modal pro full-screen certifikát -->
+<div id="cert-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Zavřít">×</button>
+    <img id="modal-image" src="" alt="" loading="lazy">
+    <div id="modal-desc" class="modal-desc"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner reveal">
+    <div class="fineprint">
+      <a class="social" href="/" style="display:inline-flex;">← Zpět na Home</a>
+      <span class="dot" aria-hidden="true">•</span>
+      <span class="muted">Certifikáty se aktualizují.</span>
+    </div>
+  </div>
+</footer>
