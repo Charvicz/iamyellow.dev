@@ -1,77 +1,143 @@
-.cert-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+/* CENTROVANÝ GRID - VŽDY 2 SLUPCE NA DESKTOPU, 1 NA MOBILU */
+.certificates-container {
+  max-width: 1000px;  /* MAX 2 sloupce po 450px + gap */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
+#cert-list.cert-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));  /* MIN 450px = max 2 sloupce */
+  gap: 1.5rem !important;
+  margin-top: 1rem;
+}
+
+/* FIXNÍ ROZMIARY - NEENORMNÍ */
 .cert {
-  cursor: pointer; 
-  transition: all 0.3s ease;
-  background: var(--card-bg, white);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.cert:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
-
-.cert-frame {
-  height: 220px; 
-  background: #f8f9fa;
-  overflow: hidden;
-  position: relative;
-}
-
-.cert-frame img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.cert:hover img { transform: scale(1.1); }
-
-.cert h3 { font-size: 1.25rem; margin: 1rem 1.5rem 0.5rem; }
-.cert p { margin: 0 1.5rem 1rem; color: #666; font-size: 0.95rem; }
-.meta { padding: 0 1.5rem 1.5rem; display: flex; gap: 0.5rem; }
-
-.modal {
-  display: none; 
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.modal.active { display: flex; }
-
-.modal-content {
-  max-width: 90vw; 
-  max-height: 90vh;
-  position: relative;
+  max-width: 480px;      /* MAX šířka karty */
+  height: 380px;         /* FIXNÍ výška */
+  cursor: pointer;
   background: white;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.cert-frame {
+  height: 220px !important;  /* MENŠÍ obrázky */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cert-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Zachová poměr */
+  transition: transform 0.4s ease;
+}
+
+.cert:hover .cert-frame img {
+  transform: scale(1.05);
+}
+
+/* TEXT - lepší layout */
+.cert h3 {
+  font-size: 1.15rem;
+  margin: 1rem 1.25rem 0.5rem;
+  color: #1f2937;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.cert p {
+  flex: 1;  /* Zabere prostor */
+  margin: 0 1.25rem 1rem;
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.meta {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  background: #e5e7eb;
+  color: #374151;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* MOBIL - 1 SLUPEC */
+@media (max-width: 950px) {
+  .certificates-container { padding: 0 1rem; }
+  #cert-list.cert-grid {
+    grid-template-columns: 1fr !important;  /* 1 sloupec */
+    gap: 1.25rem !important;
+  }
+  .cert { max-width: 100%; height: 360px; }
+  .cert-frame { height: 200px !important; }
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+  .cert { height: 340px; }
+  .cert-frame { height: 180px !important; }
+  .cert h3 { font-size: 1.1rem; margin-top: 0.8rem; }
+}
+
+/* MALÝ MOBIL */
+@media (max-width: 480px) {
+  .certificates-container { padding: 0 0.5rem; }
+  .cert { height: 320px; border-radius: 16px; }
+  .cert-frame { height: 160px !important; }
+  .cert h3 { font-size: 1rem; margin-top: 0.75rem; }
+  .cert p { font-size: 0.88rem; }
+}
+
+/* MODAL - responzivní */
+.modal.active { display: flex !important; }
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+#modal-image {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  display: block;
 }
 
 .modal-close {
   position: absolute;
-  top: 20px; right: 20px;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  width: 50px; height: 50px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
+  top: 1rem;
+  right: 1rem;
   z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#modal-image { max-width: 100%; max-height: 80vh; display: block; }
-.modal-desc { padding: 2rem; text-align: center; }
-
-@media (max-width: 768px) {
-  .cert-grid { grid-template-columns: 1fr; }
-  .cert-frame { height: 200px; }
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
 }
