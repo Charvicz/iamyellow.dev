@@ -1,5 +1,4 @@
-// Klik na certifikát → modal
-document.querySelectorAll('.cert').forEach(cert => {
+document.querySelectorAll('.cert').forEach((cert, index) => {
   cert.addEventListener('click', () => {
     const img = cert.querySelector('img');
     const h3 = cert.querySelector('h3').textContent;
@@ -14,26 +13,24 @@ document.querySelectorAll('.cert').forEach(cert => {
   });
 });
 
-// Zavřít modal
-document.querySelector('.modal-close').addEventListener('click', () => {
+document.querySelector('.modal-close').onclick = () => {
   document.getElementById('cert-modal').classList.remove('active');
   document.body.style.overflow = '';
-});
+};
 
-document.getElementById('cert-modal').addEventListener('click', e => {
+document.getElementById('cert-modal').onclick = (e) => {
   if (e.target.id === 'cert-modal') {
     document.getElementById('cert-modal').classList.remove('active');
     document.body.style.overflow = '';
   }
-});
+};
 
-// ESC klávesa
-document.addEventListener('keydown', e => {
+document.onkeydown = (e) => {
   if (e.key === 'Escape') {
     document.getElementById('cert-modal').classList.remove('active');
     document.body.style.overflow = '';
   }
-});
+};
 
 // Filtrování
 document.querySelectorAll('.filter').forEach(btn => {
@@ -43,12 +40,7 @@ document.querySelectorAll('.filter').forEach(btn => {
     
     const filter = btn.dataset.filter;
     document.querySelectorAll('.cert').forEach(cert => {
-      if (filter === 'all' || cert.dataset.tags.includes(filter)) {
-        cert.style.display = 'block';
-        cert.classList.remove('hidden');
-      } else {
-        cert.style.display = 'none';
-      }
+      cert.style.display = (filter === 'all' || cert.dataset.tags.includes(filter)) ? 'block' : 'none';
     });
   });
 });
