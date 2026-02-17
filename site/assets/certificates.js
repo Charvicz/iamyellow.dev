@@ -1,57 +1,54 @@
-/* certificates.js - Přidej k tvému existujícímu JS nebo do extra_js */
-
-// Modal funkcionalita
-const certCards = document.querySelectorAll('.cert');
-const modal = document.getElementById('cert-modal');
-const modalImg = document.getElementById('modal-image');
-const modalDesc = document.getElementById('modal-desc');
-const modalClose = document.querySelector('.modal-close');
-
-certCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const imgSrc = card.querySelector('img').src;
-    const title = card.querySelector('h3').textContent;
-    const desc = card.querySelector('p').textContent;
+// Klik na certifikát → modal
+document.querySelectorAll('.cert').forEach(cert => {
+  cert.addEventListener('click', () => {
+    const img = cert.querySelector('img');
+    const h3 = cert.querySelector('h3').textContent;
+    const p = cert.querySelector('p').textContent;
     
-    modalImg.src = imgSrc;
-    modalImg.alt = title;
-    modalDesc.innerHTML = `<strong>${title}</strong><br>${desc}`;
+    document.getElementById('modal-image').src = img.src;
+    document.getElementById('modal-image').alt = img.alt;
+    document.getElementById('modal-desc').innerHTML = `<h3>${h3}</h3><p>${p}</p>`;
     
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Blokuj scroll
-    modal.setAttribute('aria-hidden', 'false');
+    document.getElementById('cert-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
   });
 });
 
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
+// Zavřít modal
+document.querySelector('.modal-close').addEventListener('click', () => {
+  document.getElementById('cert-modal').classList.remove('active');
+  document.body.style.overflow = '';
 });
 
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-  modal.setAttribute('aria-hidden', 'true');
-}
-
-// ESC klávesa
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) {
-    closeModal();
+document.getElementById('cert-modal').addEventListener('click', e => {
+  if (e.target.id === 'cert-modal') {
+    document.getElementById('cert-modal').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 
-// Filtrování certifikátů (integrované do tvého existujícího filter systému)
-document.querySelectorAll('.filter').forEach(button => {
-  button.addEventListener('click', () => {
-    const filter = button.dataset.filter;
+// ESC klávesa
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('cert-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Filtrování
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
     
-    document.querySelectorAll('.filter').forEach(btn => btn.classList.remove('is-active'));
-    button.classList.add('is-active');
-    
+    const filter = btn.dataset.filter;
     document.querySelectorAll('.cert').forEach(cert => {
-      const tags = cert.dataset.tags;
-      cert.classList.toggle('hidden', filter !== 'all' && !tags.includes(filter));
+      if (filter === 'all' || cert.dataset.tags.includes(filter)) {
+        cert.style.display = 'block';
+        cert.classList.remove('hidden');
+      } else {
+        cert.style.display = 'none';
+      }
     });
   });
 });
