@@ -77,7 +77,7 @@
 .modal-content {
   max-width: 90vw !important;
   max-height: 90vh !important;
-  background: white !important;
+  background: rgba(0,0,0,0.95) !important;
   border-radius: 20px !important;
   padding: 2rem !important;
   position: relative !important;
@@ -89,7 +89,7 @@
   position: absolute !important;
   top: 1rem !important;
   right: 1.5rem !important;
-  background: rgba(255,255,255,0.9) !important;
+  background: rgba(0,0,0,0.95) !important;
   border: none !important;
   border-radius: 50% !important;
   width: 44px !important;
@@ -126,4 +126,25 @@
   margin: 0 !important;
   color: #666 !important;
   font-size: 1rem !important;
+}
+
+/* VŽDY PŘESNĚ 2 CERTIFIKÁTY VEDLE SEBE */
+.certificates-container {
+  max-width: 1050px !important;  /* 2x480px + gap */
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+#cert-list.cert-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;  /* PŘESNĚ 2 SLUPCE */
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+}
+
+/* MOBIL - 1 SLUPEC */
+@media (max-width: 1050px) {
+  #cert-list.cert-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
