@@ -148,3 +148,36 @@
   }
 
 }
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .3s;
+  z-index:300;
+}
+
+.lightbox.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.lightbox-img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:12px;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:30px;
+  right:40px;
+  font-size:28px;
+  cursor:pointer;
+  color:white;
+}
