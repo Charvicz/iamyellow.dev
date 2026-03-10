@@ -7,7 +7,6 @@ module.exports = function (eleventyConfig) {
   
   // DRONE FOTKY - přímo v rootu
   eleventyConfig.addPassthroughCopy("site/drone-promo");
-  
   eleventyConfig.addWatchTarget("site/api/");
   
   return {
