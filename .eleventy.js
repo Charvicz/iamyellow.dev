@@ -8,6 +8,8 @@ module.exports = function (eleventyConfig) {
   // 🔹 volitelné: ať Eleventy sleduje změny v API
   eleventyConfig.addWatchTarget("site/api/");
 
+  eleventyConfig.addPassthroughCopy("site/images");
+
   return {
     dir: {
       input: "site",
