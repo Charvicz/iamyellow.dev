@@ -1,9 +1,15 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("site/assets");  // kopíruje VŠE včetně images + drone.css/js
+  // Assets (včetně drone.css/js)
+  eleventyConfig.addPassthroughCopy("site/assets");
+  
+  // API
   eleventyConfig.addPassthroughCopy({ "site/api": "api" });
+  
+  // DRONE FOTKY - přímo v rootu
+  eleventyConfig.addPassthroughCopy("site/drone-promo");
+  
   eleventyConfig.addWatchTarget("site/api/");
-  eleventyConfig.addPassthroughCopy("site/drone-promo");  // kopíruje drone-promo do _site/drone-promo
-
+  
   return {
     dir: {
       input: "site",
