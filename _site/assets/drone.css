@@ -57,14 +57,9 @@
    GALLERY
    ========================= */
 
-.drone-gallery{
-  max-width: var(--max);
-  margin: 30px auto 50px;
-  padding: 0 18px;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 14px;
+.drone-gallery {
+  margin: 1rem 0;  /* menší margin */
+  gap: 1rem;       /* menší mezery */
 }
 
 .drone-gallery img{
@@ -194,8 +189,9 @@
 }
 
 .drone-video-stack {
-  margin-top: 2rem;
+  margin-top: 0;  /* ne 2rem */
 }
+
 
 .video-card-wrapper {
   position: relative;
