@@ -159,7 +159,6 @@
     <!-- LETECKÉ FOTOGRAFIE -->
     <article class="price-card">
       <div class="price-header">
-        <div class="price-icon">📸</div>
         <h3>Letecké fotografie</h3>
         <p class="price-subtitle">Profesionální fotografie z dronu vhodné pro prezentaci nemovitostí, firem nebo turistických míst.</p>
       </div>
@@ -247,28 +246,32 @@
 </section>
 
 
-<!-- KONTAKT -->
+<!-- KONTAKT (vlož na konec drone/index.njk) -->
 <section id="drone-contact" class="section drone-contact">
   <div class="section-head">
     <h2>Kontaktujte mě</h2>
-    <p>Napište mi a domluvíme termín.</p>
+    <p>Vyberte službu výše a domluvme termín natáčení.</p>
   </div>
   
   <div class="contact-grid">
     <div class="contact-info">
-      <p><strong>📱 Telefon:</strong> +420 777 123 456</p>
-      <p><strong>✉️ Email:</strong> drone@tvujemail.cz</p>
-      <p><strong>📍 Praha</strong> a okolí</p>
+      <h3> Kontakty</h3>
+      <p><strong> Telefon:</strong> +420 777 123 456</p>
+      <p><strong> Email:</strong> <a href="mailto:info@dron.cz">info@dron.cz</a></p>
+      <p><strong> Oblast:</strong> Praha + 100km</p>
+      <p><strong> Doba dodání:</strong> 48 hodin</p>
     </div>
     
-    <form class="contact-form">
-      <input type="text" placeholder="Jméno" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Služba (fotografie/video/balíček) + datum" required></textarea>
-      <button type="submit" class="btn primary">Odeslat</button>
+    <form class="contact-form" name="drone-contact" method="POST" netlify>
+      <input type="hidden" name="form-name" value="drone-contact">
+      <input type="text" name="name" placeholder="Vaše jméno" required>
+      <input type="email" name="email" placeholder="Váš email" required>
+      <textarea name="message" placeholder="Kterou službu chcete? (fotografie/video/balíček) + datum + adresa" required></textarea>
+      <button type="submit">Odeslat objednávku</button>
     </form>
   </div>
 </section>
+
 
 
 <!-- EXTRA LINKS -->
