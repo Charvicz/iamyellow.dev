@@ -2,210 +2,54 @@
    DRONE PAGE LAYOUT
    ========================= */
 
-.drone-page{
+.drone-page {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 18px;
 }
 
 /* HERO */
-
-.drone-hero{
+.drone-hero {
   max-width: var(--max);
   margin: 0 auto 42px;
   padding: 0 18px;
 }
 
-.drone-hero h1{
+.drone-hero h1 {
   margin-bottom: 10px;
 }
 
-.drone-hero p{
+.drone-hero p {
   max-width: 65ch;
   color: var(--muted);
 }
 
 /* =========================
-   VIDEO
+   VIDEO STACK (stoh karet)
    ========================= */
-
-.drone-video{
-  max-width: var(--max);
-  margin: 24px auto 40px;
-  padding: 0 18px;
-}
-
-.video-wrapper{
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.04);
-  box-shadow: var(--shadow);
-}
-
-.video-wrapper iframe{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* =========================
-   GALLERY
-   ========================= */
-
-.drone-gallery {
-  margin: 1rem 0;  /* menší margin */
-  gap: 1rem;       /* menší mezery */
-}
-
-.drone-gallery img{
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.03);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.drone-gallery img:hover{
-  transform: scale(1.03);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.55);
-}
-
-/* =========================
-   PRICING
-   ========================= */
-
-.pricing{
-  max-width: var(--max);
-  margin: 40px auto;
-  padding: 0 18px;
-}
-
-.pricing-list{
-  list-style: none;
-  padding: 0;
-  margin: 16px 0 0;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-  gap: 14px;
-}
-
-.pricing-list li{
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.04);
-  padding: 18px;
-  transition: transform .18s ease, border-color .2s ease, background .2s ease;
-}
-
-.pricing-list li:hover{
-  transform: translateY(-2px);
-  border-color: rgba(255,216,77,0.30);
-  background: rgba(255,216,77,0.08);
-}
-
-/* =========================
-   CTA / ACTIONS
-   ========================= */
-
-.drone-actions{
-  max-width: var(--max);
-  margin: 40px auto 60px;
-  padding: 0 18px;
-
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-/* =========================
-   MOBILE
-   ========================= */
-
-@media (max-width: 700px){
-
-  .drone-gallery{
-    grid-template-columns: 1fr 1fr;
-  }
-
-}
-
-@media (max-width: 500px){
-
-  .drone-gallery{
-    grid-template-columns: 1fr;
-  }
-
-}
-
-.lightbox{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  pointer-events:none;
-  transition: opacity .3s;
-  z-index:300;
-}
-
-.lightbox.show{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.lightbox-img{
-  max-width:90%;
-  max-height:85%;
-  border-radius:12px;
-}
-
-.lightbox-close{
-  position:absolute;
-  top:30px;
-  right:40px;
-  font-size:28px;
-  cursor:pointer;
-  color:white;
-}
-
-.drone-contact .card{
-  grid-column: span 12;
-  padding: 24px;
-  background: linear-gradient(
-    180deg,
-    rgba(255,216,77,0.06),
-    rgba(255,255,255,0.03)
-  );
-  border-color: rgba(255,216,77,0.22);
-}
-
 .drone-video-stack {
-  margin-top: 0;  /* ne 2rem */
+  margin-top: 1.5rem;
+  max-width: var(--max);
+  padding: 0 18px;
+  margin-bottom: 3rem;
 }
-
 
 .video-card-wrapper {
   position: relative;
   max-width: 960px;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
 .video-card {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transform: translateY(12px) scale(0.98);
+  transform: translateY(20px) scale(0.97);
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .video-card.active {
@@ -215,16 +59,17 @@
 }
 
 .video-card h3 {
-  margin-bottom: 0.75rem;
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .video-frame {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  border-radius: 12px;
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
 }
 
 .video-frame iframe {
@@ -237,21 +82,158 @@
 .video-card-controls {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
-
-.video-card-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
+.video-indicator {
+  min-width: 45px;
+  text-align: center;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.95rem;
 }
 
-.video-indicator {
-  color: var(--muted);
-  font-weight: 500;
+/* =========================
+   SINGLE VIDEO (původní)
+   ========================= */
+.drone-video {
+  max-width: var(--max);
+  margin: 24px auto 40px;
+  padding: 0 18px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  box-shadow: var(--shadow);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   GALLERY
+   ========================= */
+.drone-photos {
+  max-width: var(--max);
+  margin: 2rem auto;
+  padding: 0 18px;
+}
+
+.drone-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.drone-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.drone-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   PRICING
+   ========================= */
+.drone-pricing {
+  max-width: var(--max);
+  margin: 3rem auto;
+  padding: 0 18px;
+}
+
+.pricing-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.pricing-list li {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  padding: 1.5rem;
+  transition: all 0.25s ease;
+}
+
+.pricing-list li:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,216,77,0.4);
+  background: rgba(255,216,77,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+@media (max-width: 768px) {
+  .drone-page {
+    padding: 0 16px;
+  }
+  
+  .drone-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .pricing-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .video-card-controls {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .drone-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .drone-page {
+    padding: 0 12px;
+  }
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn.ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,216,77,0.3);
 }
