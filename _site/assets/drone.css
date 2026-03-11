@@ -235,3 +235,23 @@
   border-color: rgba(255,216,77,0.4);
   transform: translateY(-1px);
 }
+
+.drone-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.drone-gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.drone-gallery img:hover {
+  transform: scale(1.05);
+}
