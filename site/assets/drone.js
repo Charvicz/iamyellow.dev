@@ -147,3 +147,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // start
   show(0);
 });
+
+
+// VIDEO STACK
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = Array.from(document.querySelectorAll(".video-card"));
+  const buttons = document.querySelectorAll("[data-dir]");
+  const indicator = document.querySelector(".video-indicator");
+  
+  if (!cards.length) return;
+
+  let index = 0;
+
+  function show(idx) {
+    cards.forEach((card, i) => {
+      card.classList.toggle("active", i === idx);
+    });
+    if (indicator) indicator.textContent = `${idx + 1} / ${cards.length}`;
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const dir = btn.dataset.dir === "next" ? 1 : -1;
+      index = (index + dir + cards.length) % cards.length;
+      show(index);
+    });
+  });
+
+  show(0);
+});
+
