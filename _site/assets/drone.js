@@ -122,3 +122,28 @@ function showToast(message){
   },2500);
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = Array.from(document.querySelectorAll(".video-card"));
+  const buttons = document.querySelectorAll(".video-card-controls [data-dir]");
+  if (!cards.length) return;
+
+  let index = 0;
+
+  function show(idx) {
+    cards.forEach((card, i) => {
+      card.classList.toggle("active", i === idx);
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const dir = btn.dataset.dir === "next" ? 1 : -1;
+      index = (index + dir + cards.length) % cards.length;
+      show(index);
+    });
+  });
+
+  // start
+  show(0);
+});

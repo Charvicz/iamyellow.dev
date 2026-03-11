@@ -50,38 +50,60 @@
 
 
 <!-- VIDEO -->
-<section class="section drone-video">
+<section class="section drone-video-stack">
   <div class="section-head">
-    <h2>Ukázkové video</h2>
-    <p class="muted">Krátká ukázka záběrů z dronu.</p>
+    <h2>Video ukázky</h2>
+    <p class="muted">Přepínej mezi různými projekty.</p>
   </div>
 
-  <div class="video-wrapper">
-    <iframe 
-      src="https://www.youtube.com/embed/iRF3vLDz_3c" 
-      title="Ukázka záběrů z dronu"
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
+  <div class="video-card-wrapper">
+    <div class="video-card active" data-video="0">
+      <h3>Město při západu</h3>
+      <div class="video-frame">
+        <iframe
+          src="https://youtu.be/iRF3vLDz_3c"
+          title="Město při západu"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
 
+    <div class="video-card" data-video="1">
+      <h3>Les a mlha</h3>
+      <div class="video-frame">
+        <iframe
+          src="https://youtu.be/wBB6RwyoIRM"
+          title="Les a mlha"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-card-controls">
+    <button class="btn ghost" data-dir="prev">← Předchozí</button>
+    <button class="btn ghost" data-dir="next">Další →</button>
   </div>
 </section>
+
 
 
 <!-- PHOTOS -->
 <section class="section drone-photos">
   <div class="section-head">
     <h2>Ukázkové fotky</h2>
-    <p class="muted">Několik leteckých záběrů z různých projektů.</p>
+    <p class="muted">Několik leteckých záběrů z různých míst.</p>
   </div>
 
 <div class="drone-gallery">
-  <img src="/drone-promo/drone_promo_1.JPG" alt="Letecký záběr 1">
-  <img src="/drone-promo/drone_promo_2.JPG" alt="Letecký záběr 2">
-  <img src="/drone-promo/drone_promo_3.JPG" alt="Letecký záběr 3">
+  <img src="/drone-promo/drone_promo_1.JPG" alt="Západ slunce nad městem">
+  <img src="/drone-promo/drone_promo_2.JPG" alt="Západ slunce skrze stromy nad ledovým rybníkem">
+  <img src="/drone-promo/drone_promo_3.JPG" alt="Zelená louka">
 </div>
-
-
 </section>
 
 
