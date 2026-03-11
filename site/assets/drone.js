@@ -177,3 +177,70 @@ document.addEventListener("DOMContentLoaded", () => {
   show(0);
 });
 
+// LIGHTBOX GALERIE
+document.addEventListener('DOMContentLoaded', () => {
+  const gallery = document.querySelector('.drone-gallery');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  
+  if (!gallery || !lightbox) return;
+
+  const images = Array.from(gallery.querySelectorAll('img'));
+  let currentIndex = 0;
+
+  // Otevřít lightbox
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentIndex = index;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      updateCounter();
+      lightbox.classList.add('show');
+    });
+  });
+
+  // Zavřít
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Klávesnice
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('show')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  });
+
+  // Navigace
+  lightboxNext.addEventListener('click', nextImage);
+  lightboxPrev.addEventListener('click', prevImage);
+
+  function closeLightbox() {
+    lightbox.classList.remove('show');
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt;
+    updateCounter();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt;
+    updateCounter();
+  }
+
+  function updateCounter() {
+    lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+  }
+});
+
