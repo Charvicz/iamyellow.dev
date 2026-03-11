@@ -26,7 +26,7 @@
 
 /* VIDEO (jednoduché, kompaktní) */
 .drone-video {
-  max-width: 800px;  /* pevná šířka */
+  max-width: 800px;
   margin: 2rem auto 4rem;
 }
 
@@ -55,7 +55,7 @@
   border-radius: var(--radius);
 }
 
-/* GALLERY (vedle videa) */
+/* GALLERY */
 .drone-photos {
   max-width: calc(var(--max) - 2rem);
   margin: 0 auto 3rem;
@@ -132,7 +132,7 @@
   }
 }
 
-/* VIDEO STACK (stoh karet) */
+/* VIDEO STACK */
 .drone-video-stack {
   max-width: var(--max);
   margin: 2rem auto 4rem;
@@ -144,8 +144,10 @@
   max-width: 100%;
   margin: 0 auto;
   border-radius: var(--radius);
-  overflow: visible;  /* změna: stín venku */
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);  /* pevný stín */
+  overflow: visible;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+  aspect-ratio: 16/9;
 }
 
 .video-card {
@@ -162,7 +164,7 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.35);  /* větší stín aktivní */
+  box-shadow: 0 25px 70px rgba(0,0,0,0.35);
 }
 
 .video-card h3 {
@@ -179,19 +181,19 @@
 }
 
 .video-frame {
-  position: absolute;
-  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: var(--radius);
   overflow: hidden;
 }
 
 .video-frame iframe {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   border-radius: var(--radius);
 }
+
+/* Controls */
 
 .video-card-controls {
   display: flex;
@@ -210,6 +212,7 @@
 }
 
 /* Buttons */
+
 .btn.ghost {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.2);
