@@ -876,3 +876,100 @@ html {
 .drone-contact {
   animation: fadeInUp 0.8s ease-out;
 }
+
+/* CTA KOLONA */
+.contact-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cta-card {
+  background: linear-gradient(145deg, rgba(255,216,77,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,216,77,0.3);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.cta-card h3 {
+  color: #FFD848;
+  margin-bottom: 1rem;
+}
+
+.cta-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 1.5rem 0;
+}
+
+.cta-card li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.cta-card li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #FFD848;
+}
+
+.highlight {
+  background: rgba(255,216,77,0.2);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border-left: 4px solid #FFD848;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* SOCIÁLNÍ TLAČÍTKÁ */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.social-btn {
+  display: block;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.social-btn:hover {
+  background: rgba(255,216,77,0.15);
+  border-color: rgba(255,216,77,0.4);
+  transform: translateX(8px);
+}
+
+/* LINKY */
+.contact-info a,
+.social-btn {
+  color: #FFD848;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact-info p {
+    margin: 1.25rem 0;
+  }
+}
