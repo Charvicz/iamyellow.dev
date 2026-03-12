@@ -668,7 +668,7 @@
   margin-top: 3rem;
   padding: 2rem;
   background: rgba(255,216,77,0.08);
-  border-left: 4px solid #179011;
+  border-left: 4px solid #FFD848;
   border-radius: var(--radius);
 }
 
@@ -776,7 +776,7 @@
 }
 
 .contact-info strong {
-  color: #FFD848;
+  color: #ffffff;
   min-width: 4rem;
 }
 
