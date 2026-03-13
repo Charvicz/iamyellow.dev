@@ -1,4 +1,9 @@
-module.exports = function (eleventyConfig) {
+// V tvém eleventy.js
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("*.jpg");  // pro obrazek.jpg
+  // ... zbytek
+  
   // Assets (včetně drone.css/js)
   eleventyConfig.addPassthroughCopy("site/assets");
   
