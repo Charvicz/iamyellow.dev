@@ -99,36 +99,45 @@ class DroneShowcase {
     }
 
     loadModel() {
-        // Optimization: Use Draco compression if available
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('/assets/js/draco/'); // Provide path to draco decoder
+    // Vytvoříme skupinu pro "Digitální jádro" dronu
+    this.droneGroup = new THREE.Group();
+    
+    // 1. Vnitřní krystal (Jádro výpočetního výkonu)
+    const coreGeom = new THREE.IcosahedronGeometry(1, 1); // Geometrický tvar
+    const coreMat = new THREE.MeshPhongMaterial({
+        color: 0x00ffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.5,
+        emissive: 0x00ffff,
+        emissiveIntensity: 0.5
+    });
+    this.coreMesh = new THREE.Mesh(coreGeom, coreMat);
+    this.droneGroup.add(this.coreMesh);
 
-        const loader = new GLTFLoader();
-        loader.setDRACOLoader(dracoLoader);
+    // 2. Vnější prstence (Stabilizace / Gimbal simulace)
+    const ringGeom = new THREE.TorusGeometry(1.5, 0.02, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
+    
+    this.ring1 = new THREE.Mesh(ringGeom, ringMat);
+    this.ring2 = new THREE.Mesh(ringGeom, ringMat);
+    this.ring2.rotation.x = Math.PI / 2;
+    
+    this.droneGroup.add(this.ring1);
+    this.droneGroup.add(this.ring2);
 
-        loader.load(
-            this.config.modelUrl,
-            (gltf) => {
-                this.droneGroup = new THREE.Group();
-                this.droneModel = gltf.scene;
-                
-                // Center model mathematically
-                const box = new THREE.Box3().setFromObject(this.droneModel);
-                const center = box.getCenter(new THREE.Vector3());
-                this.droneModel.position.sub(center);
-                
-                this.droneGroup.add(this.droneModel);
-                this.scene.add(this.droneGroup);
+    // 3. Světelný bod (Kamera / Senzor)
+    const lensGeom = new THREE.SphereGeometry(0.1, 16, 16);
+    const lensMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    this.lens = new THREE.Mesh(lensGeom, lensMat);
+    this.lens.position.z = 1.2; // Pozice "vepředu"
+    this.droneGroup.add(this.lens);
 
-                // Initial position (hidden / angled)
-                this.droneGroup.position.set(0, -2, -2);
-                this.droneGroup.rotation.set(0.5, -Math.PI / 4, 0);
-            },
-            undefined, // Progress callback can go here
-            (error) => console.error('Error loading model', error)
-        );
-    }
+    this.scene.add(this.droneGroup);
 
+    // Výchozí pozice
+    this.droneGroup.position.set(0, -2, -2);
+}
     setupObservers() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
