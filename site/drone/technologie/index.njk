@@ -1,52 +1,59 @@
 ---
 layout: layout.njk
-title: Potensic Atom | Technologie v detailu
+title: Potensic Atom | Aero-Intelligence
 ---
 
-<link rel="stylesheet" href="/assets/potensic-experience.css">
+<link rel="stylesheet" href="/assets/drone-tech.css">
 
-<main class="experience-container">
-    <!-- WebGL Canvas -->
-    <canvas id="drone-canvas"></canvas>
+<div class="drone-experience">
+    <!-- UI Layer -->
+    <div class="hud-top-left">SYSTEM: ATOM_CORE_V1.0</div>
+    <div class="hud-bottom-right">249G // PIXSYNC 3.0</div>
+    
+    <canvas id="webgl-canvas"></canvas>
 
-    <!-- Overlay UI / HUD -->
-    <div class="hud-overlay">
-        <div class="hud-line"></div>
-        <span class="hud-status">SYSTEM: ONLINE</span>
-    </div>
+    <main class="scroll-container">
+        <!-- Sekce 1: HERO -->
+        <section class="step" id="hero">
+            <div class="content">
+                <span class="label">Potensic Technology</span>
+                <h1>Aero Intelligence</h1>
+                <p>Nová definice stability v dlaních.</p>
+            </div>
+        </section>
 
-    <!-- Scroll Content -->
-    <section class="v-section" data-scene="hero">
-        <div class="content">
-            <h1 class="reveal-text">Potensic Atom</h1>
-            <p class="subtitle">Definice preciznosti v 249 gramech.</p>
-        </div>
-    </section>
+        <!-- Sekce 2: STABILIZACE -->
+        <section class="step side" id="stabilization">
+            <div class="content">
+                <h2>3-osá preciznost</h2>
+                <p>Mechanický gimbal pracující v milisekundách. Každý pohyb je vyhlazen k dokonalosti.</p>
+            </div>
+        </section>
 
-    <section class="v-section" data-scene="stabilization">
-        <div class="content side-aligned">
-            <h2>3-osá stabilizace</h2>
-            <p>Mechanický gimbal eliminující každý záchvěv větru. Plynulost, která bere dech.</p>
-        </div>
-    </section>
+        <!-- Sekce 3: VISION -->
+        <section class="step" id="vision">
+            <div class="content">
+                <h2>Vizuální dosah</h2>
+                <p>4K HDR sensor zachytí svět s dynamickým rozsahem, který překonává očekávání.</p>
+            </div>
+        </section>
 
-    <section class="v-section" data-scene="vision">
-        <div class="content">
-            <h2>4K PixSync 3.0</h2>
-            <p>Křišťálově čistý přenos obrazu na vzdálenost až 6 km. Vaše oči v oblacích.</p>
-        </div>
-    </section>
+        <!-- Sekce 4: CTA -->
+        <section class="step centered" id="cta">
+            <div class="content">
+                <div class="tech-grid">
+                    <div class="item"><span>VÁHA</span><strong>< 249g</strong></div>
+                    <div class="item"><span>VÝDRŽ</span><strong>31 min</strong></div>
+                    <div class="item"><span>DOSAH</span><strong>6 km</strong></div>
+                </div>
+                <a href="/contact" class="btn-premium">Rezervovat projekt</a>
+            </div>
+        </section>
+    </main>
+</div>
 
-    <section class="v-section" data-scene="specs">
-        <div class="grid-specs">
-            <div class="spec-item"><span>Váha</span><strong>< 249g</strong></div>
-            <div class="spec-item"><span>Odolnost</span><strong>Level 5</strong></div>
-            <div class="spec-item"><span>Let</span><strong>31 min</strong></div>
-        </div>
-    </section>
-</main>
-
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="/assets/js/potensic-webgl.js"></script>
+<script src="/assets/drone-tech.js"></script>
