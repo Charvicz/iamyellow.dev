@@ -43,82 +43,107 @@
 <link rel="stylesheet" href="/assets/drone-tech.css">
 
 <div class="drone-experience">
-    <!-- UI Layer -->
     <div class="hud-top-left">SYSTEM: ATOM_CORE_V1.0</div>
     <div class="hud-bottom-right">249G // PIXSYNC 3.0</div>
     
     <canvas id="webgl-canvas"></canvas>
 
     <main class="scroll-container">
-        <!-- Sekce 1: HERO -->
+
+        <!-- HERO -->
         <section class="step" id="hero">
             <div class="content">
                 <span class="label">Potensic Technology</span>
                 <h1>Aero Intelligence</h1>
-                <p>Nová definice stability v dlaních.</p>
+                <p>Nová definice leteckého záběru. Stabilní. Přesný. Připravený pro reálné projekty.</p>
             </div>
         </section>
 
-        <!-- Sekce 2: STABILIZACE -->
+        <!-- STABILIZACE -->
         <section class="step side" id="stabilization">
             <div class="content">
                 <h2>3-osá preciznost</h2>
-                <p>Mechanický gimbal pracující v milisekundách. Každý pohyb je vyhlazen k dokonalosti.</p>
+                <ul class="case-list">
+                    <li>Plynulé záběry i při pohybu</li>
+                    <li>Stabilní obraz i ve větru</li>
+                    <li>Vhodné pro profesionální výstup bez dodatečných úprav</li>
+                </ul>
             </div>
         </section>
 
-        <!-- Sekce 3: VISION -->
+        <!-- VISION -->
         <section class="step" id="vision">
             <div class="content">
                 <h2>Vizuální dosah</h2>
-                <p>4K HDR sensor zachytí svět s dynamickým rozsahem, který překonává očekávání.</p>
+                <ul class="case-list">
+                    <li>4K HDR video připravené pro prezentaci</li>
+                    <li>Vysoký dynamický rozsah pro světla i stíny</li>
+                    <li>Ostré detaily bez ztráty kvality</li>
+                </ul>
             </div>
         </section>
 
-        <!-- NOVÁ SEKCE: USE CASES -->
-<section class="step side" id="use-cases">
-    <div class="content">
-        <span class="label">Kde Atom exceluje</span>
-        <h2>Možnosti nasazení</h2>
-        <ul class="case-list">
-            <li><strong>Reality & Architektura:</strong> Dynamické průlety interiéry i exteriéry.</li>
-            <li><strong>Eventy & Marketing:</strong> Emoce z ptačí perspektivy pro váš brand.</li>
-            <li><strong>Inspekce:</strong> Detailní 4K záběry těžko dostupných míst.</li>
-        </ul>
-    </div>
-</section>
+        <!-- USE CASES -->
+        <section class="step side" id="use-cases">
+            <div class="content">
+                <span class="label">Kde Atom exceluje</span>
+                <h2>Možnosti nasazení</h2>
+                <ul class="case-list">
+                    <li><strong>Reality & Architektura:</strong> Dynamické průlety interiéry i exteriéry.</li>
+                    <li><strong>Eventy & Marketing:</strong> Emoce z ptačí perspektivy pro váš brand.</li>
+                    <li><strong>Inspekce:</strong> Detailní 4K záběry těžko dostupných míst.</li>
+                </ul>
+            </div>
+        </section>
 
-        <!-- UPRAVENÁ SEKCE: TECHNICKÝ PŘEHLED -->
+        <!-- SPECS -->
         <section class="step centered" id="specs">
             <div class="content full-width">
                 <div class="tech-grid-premium">
+
                     <div class="item-p">
                         <div class="icon">4K</div>
-                        <p>30 FPS HDR Video</p>
+                        <ul>
+                            <li>Ostrý obraz pro web i sociální sítě</li>
+                        </ul>
                     </div>
+
                     <div class="item-p">
                         <div class="icon">31m</div>
-                        <p>Doba letu</p>
+                        <ul>
+                            <li>Více záběrů na jeden vzlet</li>
+                            <li>Efektivnější natáčení bez pauz</li>
+                        </ul>
                     </div>
+
                     <div class="item-p">
                         <div class="icon">GPS</div>
-                        <p>Level 5 Wind Resistance</p>
+                        <ul>
+                            <li>Přesné držení pozice</li>
+                            <li>Bezpečný návrat</li>
+                        </ul>
                     </div>
+
                     <div class="item-p">
                         <div class="icon">RAW</div>
-                        <p>12MP Foto / DNG support</p>
+                        <ul>
+                            <li>Maximální kontrola při úpravách</li>
+                            <li>Vhodné pro profesionální postprodukci</li>
+                        </ul>
                     </div>
+
                 </div>
+
                 <div class="cta-wrapper">
-                    <p class="final-note">Připraven vzlétnout pro váš projekt?</p>
+                    <p class="final-note">Chceš záběry, které prodávají?</p>
                     <a href="/contact" class="btn-glow">Poptat letecké záběry</a>
                 </div>
             </div>
         </section>
+
     </main>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
