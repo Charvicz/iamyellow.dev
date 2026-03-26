@@ -18,6 +18,7 @@ module.exports = function(eleventyConfig) {
     dir: {
       input: "site",
       output: "_site"
+      data: "../_data"
     }
   };
 };

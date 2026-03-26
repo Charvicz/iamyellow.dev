@@ -1,0 +1,91 @@
+---
+layout: "base.njk"
+title: "Katalog Akcií"
+---
+
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <header class="mb-12">
+    <h1 class="text-4xl font-black text-slate-900 uppercase tracking-tighter">
+      Market <span class="text-yellow-500 italic">Explorer</span>
+    </h1>
+    <p class="text-slate-500 mt-2">Automatizovaný přehled trhu z Webull dat.</p>
+  </header>
+
+  <div class="flex flex-wrap gap-3 mb-10">
+    <button class="filter-btn active px-6 py-2 rounded-full bg-slate-900 text-white font-bold transition-all hover:bg-yellow-500" data-category="all">
+      Vše
+    </button>
+    {% set categories = stocks | map(attribute='category') | unique %}
+    {% for cat in categories %}
+      <button class="filter-btn px-6 py-2 rounded-full bg-slate-100 text-slate-700 font-bold transition-all hover:bg-yellow-500 hover:text-white" data-category="{{ cat }}">
+        {{ cat }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="stock-grid">
+    {% for item in stocks %}
+      <div class="stock-card group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300" data-category="{{ item.category }}">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center border border-slate-100">
+               <img src="/assets/images/stocks/{{ item.image }}" alt="" class="w-8 h-8 object-contain">
+            </div>
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">{{ item.category }}</span>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">
+            <a href="/stocks/{{ item.slug }}/" class="stretched-link">{{ item.name }}</a>
+          </h3>
+          
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-2xl font-mono font-bold text-slate-900">${{ item.price }}</span>
+            <span class="text-sm {% if '-' in item.change %}text-red-500{% else %}text-green-500{% endif %} font-semibold">
+              {{ item.change }}
+            </span>
+          </div>
+        </div>
+        <div class="h-1 bg-slate-100 group-hover:bg-yellow-400 transition-colors"></div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  // Implementace tvého filtru
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.stock-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 1. Stylování aktivního tlačítka
+      buttons.forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+      buttons.forEach(b => b.classList.add('bg-slate-100', 'text-slate-700'));
+      btn.classList.remove('bg-slate-100', 'text-slate-700');
+      btn.classList.add('bg-slate-900', 'text-white');
+
+      // 2. Samotné filtrování
+      const category = btn.dataset.category;
+      
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+          // Volitelně: přidat animaci
+          card.classList.add('animate-fade-in');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease forwards;
+  }
+</style>
