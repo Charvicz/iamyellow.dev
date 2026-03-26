@@ -17,18 +17,14 @@ module.exports = function(eleventyConfig) {
   const slugify = require("slugify");
 
 module.exports = function(eleventyConfig) {
-  // Filtr pro hezké URL adresy (Jan Novák -> jan-novak)
-  eleventyConfig.addFilter("slugify", function(value) {
-    return slugify(value, { lower: true, strict: true });
-  });
-
   // Filtr pro formátování peněz
   eleventyConfig.addFilter("localeString", function(value) {
+    if (!value) return "0";
     return Number(value).toLocaleString('cs-CZ');
   });
 
-  // Kopírování fotek do výstupní složky
-  eleventyConfig.addPassthroughCopy("site/assets/images/export_makleri");
+  // Kopírování fotek a assetů do výstupní složky
+  eleventyConfig.addPassthroughCopy("site/assets");
 
   return {
     dir: {
@@ -37,5 +33,6 @@ module.exports = function(eleventyConfig) {
     }
   };
 };
+
 
 };
