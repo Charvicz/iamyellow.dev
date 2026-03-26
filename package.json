@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Charvicz/iamyellow.dev/issues"
   },
-  "homepage": "https://github.com/Charvicz/iamyellow.dev#readme"
+  "homepage": "https://github.com/Charvicz/iamyellow.dev#readme",
+  "dependencies": {
+    "slugify": "^1.6.8"
+  }
 }
