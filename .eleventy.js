@@ -18,7 +18,8 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "site",
-      output: "_site"
+      output: "_site",
+      includes: "_includes" // Zde Eleventy hledá layouty (site/_includes)
     }
   };
 };
