@@ -8,7 +8,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget("site/api/");
 
   // --- NOVÉ FILTRY PRO MAKLÉŘE ---
-  // Filtr pro formátování peněz
   eleventyConfig.addFilter("localeString", function(value) {
     if (!value) return "0";
     return Number(value).toLocaleString('cs-CZ');
@@ -19,7 +18,7 @@ module.exports = function(eleventyConfig) {
     dir: {
       input: "site",
       output: "_site",
-      includes: "_includes" // Zde Eleventy hledá layouty (site/_includes)
+      includes: "_includes" // Složka: site/_includes
     }
   };
 };
