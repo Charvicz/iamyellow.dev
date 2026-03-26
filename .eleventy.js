@@ -14,11 +14,28 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("site/drone-promo");
   eleventyConfig.addWatchTarget("site/api/");
   
+  const slugify = require("slugify");
+
+module.exports = function(eleventyConfig) {
+  // Filtr pro hezké URL adresy (Jan Novák -> jan-novak)
+  eleventyConfig.addFilter("slugify", function(value) {
+    return slugify(value, { lower: true, strict: true });
+  });
+
+  // Filtr pro formátování peněz
+  eleventyConfig.addFilter("localeString", function(value) {
+    return Number(value).toLocaleString('cs-CZ');
+  });
+
+  // Kopírování fotek do výstupní složky
+  eleventyConfig.addPassthroughCopy("site/assets/images/export_makleri");
+
   return {
     dir: {
       input: "site",
       output: "_site"
-      data: "../_data"
     }
   };
+};
+
 };
