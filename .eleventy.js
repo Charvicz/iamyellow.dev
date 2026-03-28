@@ -10,9 +10,9 @@ module.exports = function(eleventyConfig) {
 
   // --- NOVÉ FILTRY PRO MAKLÉŘE ---
   eleventyConfig.addFilter("localeString", function(value) {
-    if (!value) return "0";
-    return Number(value).toLocaleString('cs-CZ');
-  });
+  if (!value) return "0";
+  return (Number(value) * 1000).toLocaleString('cs-CZ');
+});
 
   // --- KONFIGURACE ADRESÁŘŮ ---
     return {
