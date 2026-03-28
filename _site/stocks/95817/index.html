@@ -39,62 +39,602 @@
   </header>
 
   <main id="top" style="padding-top: 70px;">
-    <div class="max-w-6xl mx-auto px-4 py-8">
-  <div class="flex flex-wrap md:flex-nowrap gap-8">
     
-    <div class="w-full md:w-1/3 bg-slate-900 text-white rounded-2xl p-6 shadow-xl border-b-4 border-yellow-400">
-      <img src="https://img-cache.ceskereality.cz/makleri/208x208_jpg/5056502/116557.jpg" alt="Jan Burgstaller" class="w-24 h-24 rounded-full mb-4 border-2 border-slate-700">
-      <h1 class="text-3xl font-bold mb-2">Jan Burgstaller</h1>
-      <span class="inline-block bg-slate-800 text-yellow-400 px-3 py-1 rounded-full text-sm font-semibold mb-6">
-        Realitní makléř
-      </span>
+<style>
+  /* ── Reset & Base ──────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .makler-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8f7f4;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  /* ── Demo Ribbon ───────────────────────────────────── */
+  .demo-ribbon {
+    background: #f59e0b;
+    color: #1c1c1c;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    padding: 9px 16px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Hero ──────────────────────────────────────────── */
+  .makler-hero {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #111827 100%);
+    padding: 60px 24px 48px;
+  }
+  .makler-hero__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .makler-hero__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+  }
+  .makler-hero__identity {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    min-width: 260px;
+  }
+  .makler-hero__avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .makler-hero__avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid #f59e0b;
+    object-fit: cover;
+    display: block;
+  }
+  .makler-hero__status-dot {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 18px;
+    height: 18px;
+    background: #22c55e;
+    border-radius: 50%;
+    border: 2.5px solid #1a1a1a;
+  }
+  .makler-hero__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f59e0b;
+    margin-bottom: 6px;
+  }
+  .makler-hero__name {
+    font-size: 34px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+  .makler-hero__subtitle {
+    color: #9ca3af;
+    font-size: 14px;
+    margin: 0 0 14px;
+  }
+  .makler-hero__badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge-yellow {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green {
+    background: rgba(34,197,94,0.15);
+    color: #86efac;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ── Stats ─────────────────────────────────────────── */
+  .makler-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    min-width: 260px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-card__number {
+    font-size: 30px;
+    font-weight: 800;
+    color: #f59e0b;
+    line-height: 1;
+  }
+  .stat-card__label {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ── Hero CTAs ──────────────────────────────────────── */
+  .makler-hero__ctas {
+    display: flex;
+    gap: 12px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: #f59e0b;
+    color: #1c1c1c;
+    font-weight: 700;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .btn-outline:hover { border-color: #f59e0b; color: #f59e0b; }
+
+  /* ── Main Layout ───────────────────────────────────── */
+  .makler-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Section label ─────────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f59e0b;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 24px;
+    color: #111;
+  }
+
+  /* ── Property Grid ─────────────────────────────────── */
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .property-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e8e6e0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+  }
+  .property-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .property-card__img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+  }
+  .property-card__tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #0f0f0f;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+  }
+  .property-card__price {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #0f0f0f;
+    color: #f59e0b;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  .property-card__body {
+    padding: 16px;
+  }
+  .property-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #111;
+  }
+  .property-card__desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.55;
+    margin: 0 0 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .property-card__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .property-card__cta {
+    width: 100%;
+    background: #f8f7f4;
+    border: 1px solid #e8e6e0;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #111;
+    transition: background 0.15s, border-color 0.15s;
+    text-align: center;
+    display: block;
+  }
+  .property-card__cta:hover {
+    background: #f59e0b;
+    border-color: #f59e0b;
+  }
+
+  /* ── Trust Badges ──────────────────────────────────── */
+  .trust-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+  }
+
+  /* ── Sidebar ───────────────────────────────────────── */
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .sidebar-card--dark {
+    background: #0f0f0f;
+    border-color: #222;
+    color: #fff;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0ede6;
+  }
+  .contact-row:last-of-type { border-bottom: none; }
+  .icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row__label {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-bottom: 2px;
+  }
+  .contact-row__value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .makler-main {
+      grid-template-columns: 1fr;
+    }
+    .makler-hero__name { font-size: 26px; }
+    .makler-hero__stats { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .makler-hero__identity { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .makler-hero__stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<div class="makler-page">
+
+  
+  <div class="demo-ribbon">
+    DEMO UKÁZKA — Takto bude vypadat profil vašeho makléře
+  </div>
+
+  
+  <section class="makler-hero">
+    <div class="makler-hero__inner">
+
+      <div class="makler-hero__top">
+        
+        <div class="makler-hero__identity">
+          <div class="makler-hero__avatar-wrap">
+            <img class="makler-hero__avatar"
+                 src="https://img-cache.ceskereality.cz/makleri/208x208_jpg/5056502/116557.jpg"
+                 alt="Jan Burgstaller"
+                 onerror="this.src='/assets/images/avatar-placeholder.jpg'">
+            <div class="makler-hero__status-dot"></div>
+          </div>
+          <div>
+            <div class="makler-hero__label">Realitní makléř</div>
+            <h1 class="makler-hero__name">Jan Burgstaller</h1>
+            <p class="makler-hero__subtitle">Specialista na prodej nemovitostí</p>
+            <div class="makler-hero__badges">
+              <span class="badge-yellow">⭐ 4.9 hodnocení</span>
+              <span class="badge-green">● Aktivní</span>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="makler-hero__stats">
+          <div class="stat-card">
+            <div class="stat-card__number">3</div>
+            <div class="stat-card__label">Aktivní<br>nabídky</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">47</div>
+            <div class="stat-card__label">Prodaných<br>nemovitostí</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">12</div>
+            <div class="stat-card__label">Let<br>zkušeností</div>
+          </div>
+        </div>
+      </div>
+
       
-      <div class="space-y-4">
-        <div class="flex justify-between border-b border-slate-700 pb-2">
-          <span class="text-slate-400">E-mail</span>
-          <span class="text-sm font-mono">jburgstaller@visionreality.cz</span>
+      <div class="makler-hero__ctas">
+        <a href="mailto:jburgstaller@visionreality.cz" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.77 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Kontaktovat makléře
+        </a>
+        <a href="https://www.realitniservery.cz/realitni-makleri/jan-burgstaller-95817/" target="_blank" rel="noopener" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+          </svg>
+          Plný profil
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <div class="makler-main">
+
+    
+    <div>
+      <div class="section-label">Aktuální nabídky</div>
+      <h2 class="section-title">Nemovitosti k prodeji</h2>
+
+      <div class="property-grid">
+        
+        <div class="property-card">
+          <div class="property-card__img-wrap">
+            <img class="property-card__img"
+                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/ef/ef83d5e55346c23faa78532155ef8e44.jpg"
+                 alt="Prodej stavební parcely, 2064m²"
+                 loading="lazy">
+            <span class="property-card__tag">PRODEJ</span>
+            <span class="property-card__price">2 064 Kč</span>
+          </div>
+          <div class="property-card__body">
+            <h3 class="property-card__title">Prodej stavební parcely, 2064m²</h3>
+            <p class="property-card__desc">Nabízíme k prodeji soubor pozemků v obci Neplachov o celkové výměře 2 064 m², tvořený parcelami č. 239/6 (1 402 m²), 239/19 (612 m²) a 1879 (50 m²). Součástí prodeje je spoluvlastnický podíl o velikosti 1…</p>
+            <div class="property-card__meta">
+              <span>🏠 Nemovitost</span>
+              <span>📍 Česká republika</span>
+            </div>
+            <span class="property-card__cta">Zobrazit detail →</span>
+          </div>
         </div>
-        <div class="flex justify-between">
-          <span class="text-slate-400">Nabídky</span>
-          <span class="text-green-400">3 nemovitostí</span>
+        
+        <div class="property-card">
+          <div class="property-card__img-wrap">
+            <img class="property-card__img"
+                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/ea/ea7caca02969096e544ff69f4d4a1379.jpg"
+                 alt="Prodej rodinného domu, 130m²"
+                 loading="lazy">
+            <span class="property-card__tag">PRODEJ</span>
+            <span class="property-card__price">130 Kč</span>
+          </div>
+          <div class="property-card__body">
+            <h3 class="property-card__title">Prodej rodinného domu, 130m²</h3>
+            <p class="property-card__desc">Hledáte nemovitost, která není jen domem, ale příležitostí? V samotném srdci města Velešín, přímo na náměstí J. V. Kamarýta, nabízíme řadový rodinný dům 4+1 se zahradou, stodolou, garáží a výrazným podnikatelským …</p>
+            <div class="property-card__meta">
+              <span>🏠 Nemovitost</span>
+              <span>📍 Česká republika</span>
+            </div>
+            <span class="property-card__cta">Zobrazit detail →</span>
+          </div>
         </div>
+        
+        <div class="property-card">
+          <div class="property-card__img-wrap">
+            <img class="property-card__img"
+                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/39/39432c33dcd90c33d258fbef391d32d8.jpg"
+                 alt="Prodej bytu 3+1, 95m²"
+                 loading="lazy">
+            <span class="property-card__tag">PRODEJ</span>
+            <span class="property-card__price">3 195 Kč</span>
+          </div>
+          <div class="property-card__body">
+            <h3 class="property-card__title">Prodej bytu 3+1, 95m²</h3>
+            <p class="property-card__desc">Nabízíme k prodeji byt 3+1 s prostornou terasou a vlastním parkovacím místem, situovaný na adrese Bezručova. Byt o podlahové ploše 95 m² se nachází ve zděném domě pouze se třemi bytovými jednotkami, což zajišťuje klidné…</p>
+            <div class="property-card__meta">
+              <span>🏠 Nemovitost</span>
+              <span>📍 Česká republika</span>
+            </div>
+            <span class="property-card__cta">Zobrazit detail →</span>
+          </div>
+        </div>
+        
+      </div>
+
+      
+      <div class="trust-badges">
+        <div class="trust-badge">✅ Ověřený makléř</div>
+        <div class="trust-badge">🏆 Top prodejce 2024</div>
+        <div class="trust-badge">🔒 Bezpečná transakce</div>
+        <div class="trust-badge">📋 Smlouva zajištěna</div>
       </div>
     </div>
 
-    <div class="w-full md:w-2/3 bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-      <h2 class="text-xl font-semibold text-slate-800 mb-6">Nabídky nemovitostí</h2>
+    
+    <div>
+
       
-      <div class="flex gap-4 mb-4 border-b pb-4">
-        <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/ef/ef83d5e55346c23faa78532155ef8e44.jpg" alt="Prodej stavební parcely, 2064m²" class="w-20 h-20 object-cover rounded-lg">
-        <div>
-          <h3 class="font-semibold text-slate-800">Prodej stavební parcely, 2064m²</h3>
-          <p class="text-yellow-600 font-bold">2 064 Kč</p>
-          <p class="text-slate-500 text-sm line-clamp-2">Nabízíme k prodeji soubor pozemků v obci Neplachov o celkové výměře 2 064 m², tvořený parcelami č. 239/6 (1 402 m²), 239/19 (612 m²) a 1879 (50 m²). Součástí prodeje je spoluvlastnický podíl o velikosti 1…</p>
+      <div class="sidebar-card">
+        <div class="section-label">Kontakt</div>
+        <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;">Spojte se s makléřem</h3>
+
+        <div class="contact-row">
+          <div class="icon-circle" style="background:#fef3c7;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-row__label">Email</div>
+            <div class="contact-row__value">jburgstaller@visionreality.cz</div>
+          </div>
         </div>
-      </div>
-      
-      <div class="flex gap-4 mb-4 border-b pb-4">
-        <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/ea/ea7caca02969096e544ff69f4d4a1379.jpg" alt="Prodej rodinného domu, 130m²" class="w-20 h-20 object-cover rounded-lg">
-        <div>
-          <h3 class="font-semibold text-slate-800">Prodej rodinného domu, 130m²</h3>
-          <p class="text-yellow-600 font-bold">130 Kč</p>
-          <p class="text-slate-500 text-sm line-clamp-2">Hledáte nemovitost, která není jen domem, ale příležitostí? V samotném srdci města Velešín, přímo na náměstí J. V. Kamarýta, nabízíme řadový rodinný dům 4+1 se zahradou, stodolou, garáží a výrazným podnikatelským …</p>
+
+        <div class="contact-row">
+          <div class="icon-circle" style="background:#dcfce7;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.77 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-row__label">Telefon</div>
+            <div class="contact-row__value">Na vyžádání</div>
+          </div>
         </div>
-      </div>
-      
-      <div class="flex gap-4 mb-4 border-b pb-4">
-        <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5056502/39/39432c33dcd90c33d258fbef391d32d8.jpg" alt="Prodej bytu 3+1, 95m²" class="w-20 h-20 object-cover rounded-lg">
-        <div>
-          <h3 class="font-semibold text-slate-800">Prodej bytu 3+1, 95m²</h3>
-          <p class="text-yellow-600 font-bold">3 195 Kč</p>
-          <p class="text-slate-500 text-sm line-clamp-2">Nabízíme k prodeji byt 3+1 s prostornou terasou a vlastním parkovacím místem, situovaný na adrese Bezručova. Byt o podlahové ploše 95 m² se nachází ve zděném domě pouze se třemi bytovými jednotkami, což zajišťuje klidné…</p>
+
+        <div class="contact-row">
+          <div class="icon-circle" style="background:#ede9fe;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-row__label">Dostupnost</div>
+            <div class="contact-row__value">Po–Pá, 9:00–18:00</div>
+          </div>
         </div>
+
+        <a href="mailto:jburgstaller@visionreality.cz" class="btn-primary" style="width:100%;justify-content:center;margin-top:20px;">
+          Napsat zprávu →
+        </a>
       </div>
+
       
+      <div class="sidebar-card sidebar-card--dark">
+        <div class="section-label">Plný profil</div>
+        <p style="font-size:14px;color:#d1d5db;line-height:1.6;margin:0 0 16px;">
+          Zobrazit kompletní historii prodejů, reference klientů a veškeré nabídky makléře.
+        </p>
+        <a href="https://www.realitniservery.cz/realitni-makleri/jan-burgstaller-95817/" target="_blank" rel="noopener"
+           style="color:#f59e0b;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;">
+          Realitní servery.cz ↗
+        </a>
+      </div>
+
     </div>
 
   </div>
+
 </div>
+
   </main>
 
   <script src="/assets/app.js" defer></script>
