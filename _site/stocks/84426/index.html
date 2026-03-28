@@ -242,6 +242,30 @@
     color: #111;
   }
 
+  /* ── NEW: Content Block (O mně) ────────────────────── */
+  .content-block {
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+  .content-block p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 16px;
+  }
+  .content-block ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #4b5563;
+  }
+  .content-block li {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
   /* ── Property Grid ─────────────────────────────────── */
   .property-grid {
     display: grid;
@@ -428,17 +452,17 @@
           <div class="makler-hero__avatar-wrap">
             <img class="makler-hero__avatar"
                  src="https://img-cache.ceskereality.cz/makleri/208x208_jpg/5046998/105181.jpg"
-                 alt="Lukáš Czéhmester"
+                 alt="Lukáš Czéhmester - realitní makléř"
                  onerror="this.src='/assets/images/avatar-placeholder.jpg'">
             <div class="makler-hero__status-dot"></div>
           </div>
           <div>
-            <div class="makler-hero__label">Realitní makléř</div>
+            <div class="makler-hero__label">Osobní realitní makléř</div>
             <h1 class="makler-hero__name">Lukáš Czéhmester</h1>
-            <p class="makler-hero__subtitle">Specialista na prodej nemovitostí</p>
+            <p class="makler-hero__subtitle">Specialista na bezpečný prodej nemovitostí</p>
             <div class="makler-hero__badges">
-              <span class="badge-yellow">⭐ 4.9 hodnocení</span>
-              <span class="badge-green">● Aktivní</span>
+              <span class="badge-yellow">⭐ 4.9 (120+ recenzí)</span>
+              <span class="badge-green">● Přijímá nové nemovitosti</span>
             </div>
           </div>
         </div>
@@ -447,15 +471,15 @@
         <div class="makler-hero__stats">
           <div class="stat-card">
             <div class="stat-card__number">3</div>
-            <div class="stat-card__label">Aktivní<br>nabídky</div>
+            <div class="stat-card__label">Aktuálních<br>nabídek</div>
           </div>
           <div class="stat-card">
-            <div class="stat-card__number">47</div>
-            <div class="stat-card__label">Prodaných<br>nemovitostí</div>
+            <div class="stat-card__number">47+</div>
+            <div class="stat-card__label">Úspěšně<br>prodaných</div>
           </div>
           <div class="stat-card">
             <div class="stat-card__number">12</div>
-            <div class="stat-card__label">Let<br>zkušeností</div>
+            <div class="stat-card__label">Let praxe<br>na trhu</div>
           </div>
         </div>
       </div>
@@ -466,7 +490,10 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.77 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
-          Kontaktovat makléře
+          Nezávazná konzultace
+        </a>
+        <a href="#nabidky" class="btn-outline">
+          Zobrazit portfolio nemovitostí
         </a>
       </div>
 
@@ -478,95 +505,122 @@
 
     
     <div>
-      <div class="section-label">Aktuální nabídky</div>
-      <h2 class="section-title">Nemovitosti k prodeji</h2>
-
-      <div class="property-grid">
+      
+      
+      <div class="content-block">
+        <div class="section-label">Profil makléře</div>
+        <h2 class="section-title">Profesionální přístup k prodeji Vaší nemovitosti</h2>
         
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/85/855cf306a458de840eb66eb7d997c472.jpg"
-                 alt="Prodej zemědělské půdy, 10129m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">10 129 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej zemědělské půdy, 10129m²</h3>
-            <p class="property-card__desc">V katastrálním území Květnice nabízím k prodeji zemědělský pozemek ve výlučném vlastnictví.
+        <p>
+          Jmenuji se <strong>Lukáš Czéhmester</strong> a pomáhám klientům úspěšně a bezpečně prodávat byty, domy i pozemky. Zakládám si na stoprocentní transparentnosti a moderním marketingu. Každá nemovitost si zaslouží vlastní strategii prodeje, aby se prodala za nejvyšší možnou tržní cenu.
+        </p>
+
+        <p><strong>Co pro Vás zajistím v rámci spolupráce:</strong></p>
+        <ul>
+          <li>✅ <strong>Odhad tržní ceny zdarma</strong> (analýza cenových map).</li>
+          <li>✅ Profesionální prezentaci (home staging, profi fotografie, videoprohlídky).</li>
+          <li>✅ Cílenou inzerci na největších realitních serverech a sociálních sítích.</li>
+          <li>✅ Kompletní právní servis (advokátní úschova peněz, rezervační smlouvy).</li>
+        </ul>
+
+        <p>
+          Hledáte spolehlivého partnera pro prodej nemovitosti? Rád s Vámi proberu možnosti u dobré kávy. Stačí mi zanechat zprávu.
+        </p>
+      </div>
+
+
+      
+      <div id="nabidky">
+        <div class="section-label">Aktuální portfolio</div>
+        <h2 class="section-title">Nemovitosti k prodeji a pronájmu</h2>
+
+        <div class="property-grid">
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/85/855cf306a458de840eb66eb7d997c472.jpg"
+                   alt="Prodej zemědělské půdy, 10129m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">10 129 000 Kč</span>
+            </div>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej zemědělské půdy, 10129m²</h3>
+              <p class="property-card__desc">V katastrálním území Květnice nabízím k prodeji zemědělský pozemek ve výlučném vlastnictví.
 
 Květnice, celková výměra 10 129 m2
 - parc. č. 850 (LV 20)
 - vysoká kvalita půdy - BPEJ 15.82 Kč/m2
 
 Pokud máte zájem nebo dotazy,…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
           </div>
-        </div>
-        
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/89/89f2255a1f5d12e0cc3fb86d4a3c39c5.jpg"
-                 alt="Prodej zemědělské půdy, 46405m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">46 405 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej zemědělské půdy, 46405m²</h3>
-            <p class="property-card__desc">V katastrálním území Litětiny nabízím k prodeji soubor pozemků ve výlučném vlastnictví.
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/89/89f2255a1f5d12e0cc3fb86d4a3c39c5.jpg"
+                   alt="Prodej zemědělské půdy, 46405m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">46 405 000 Kč</span>
+            </div>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej zemědělské půdy, 46405m²</h3>
+              <p class="property-card__desc">V katastrálním území Litětiny nabízím k prodeji soubor pozemků ve výlučném vlastnictví.
 
 Litětiny, celková výměra 46 405 m2
 - parc. č. 401/2, 402/3, 402/5, 403/1, 403/2, 403/3, 404/2, 425/2 (LV 422)
 
 Pokud máte zájem nebo…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
           </div>
-        </div>
-        
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/f7/f76a85a6e0e212f6ed6b7c6d41ac390d.jpg"
-                 alt="Prodej louky, 5984m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">5 984 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej louky, 5984m²</h3>
-            <p class="property-card__desc">V katastrálním území Podolí nad Olšavou nabízím k prodeji soubor zemědělských pozemků ve výlučném vlastnictví.
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5046998/f7/f76a85a6e0e212f6ed6b7c6d41ac390d.jpg"
+                   alt="Prodej louky, 5984m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">5 984 000 Kč</span>
+            </div>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej louky, 5984m²</h3>
+              <p class="property-card__desc">V katastrálním území Podolí nad Olšavou nabízím k prodeji soubor zemědělských pozemků ve výlučném vlastnictví.
 
 Katastrální území Podolí nad Olšavou, celková výměra 5 984 m2
 - parc. č. 308, 4402, 4567, 4819 (LV 1235)
 
 Pokud…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
           </div>
+          
         </div>
-        
       </div>
 
       
       <div class="trust-badges">
-        <div class="trust-badge">✅ Ověřený makléř</div>
-        <div class="trust-badge">🏆 Top prodejce 2024</div>
-        <div class="trust-badge">🔒 Bezpečná transakce</div>
-        <div class="trust-badge">📋 Smlouva zajištěna</div>
+        <div class="trust-badge">✅ Certifikovaný makléř</div>
+        <div class="trust-badge">🏆 Realitní osobnost roku</div>
+        <div class="trust-badge">🔒 Bezpečná transakce (ověřeno)</div>
+        <div class="trust-badge">📋 Právní servis v ceně</div>
       </div>
     </div>
 
@@ -576,7 +630,7 @@ Pokud…</p>
       
       <div class="sidebar-card">
         <div class="section-label">Kontakt</div>
-        <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;">Spojte se s makléřem</h3>
+        <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;">Spojte se se mnou</h3>
 
         <div class="contact-row">
           <div class="icon-circle" style="background:#fef3c7;">
@@ -586,7 +640,7 @@ Pokud…</p>
             </svg>
           </div>
           <div>
-            <div class="contact-row__label">Email</div>
+            <div class="contact-row__label">E-mail</div>
             <div class="contact-row__value">czehmester@mojepole.cz</div>
           </div>
         </div>
@@ -599,7 +653,7 @@ Pokud…</p>
           </div>
           <div>
             <div class="contact-row__label">Telefon</div>
-            <div class="contact-row__value">Na vyžádání</div>
+            <div class="contact-row__value">+420 777 XXX XXX</div>
           </div>
         </div>
 
@@ -612,24 +666,24 @@ Pokud…</p>
           </div>
           <div>
             <div class="contact-row__label">Dostupnost</div>
-            <div class="contact-row__value">Po–Pá, 9:00–18:00</div>
+            <div class="contact-row__value">Po–Pá, 8:00–18:00</div>
           </div>
         </div>
 
         <a href="mailto:czehmester@mojepole.cz" class="btn-primary" style="width:100%;justify-content:center;margin-top:20px;">
-          Napsat zprávu →
+          Nezávazně poptat služby →
         </a>
       </div>
 
       
       <div class="sidebar-card sidebar-card--dark">
-        <div class="section-label">Plný profil</div>
+        <div class="section-label">Reference a historie</div>
         <p style="font-size:14px;color:#d1d5db;line-height:1.6;margin:0 0 16px;">
-          Zobrazit kompletní historii prodejů, reference klientů a veškeré nabídky makléře.
+          Zobrazit kompletní historii prodejů, reference spokojených klientů a certifikáty makléře.
         </p>
         <a href="https://www.realitniservery.cz/realitni-makleri/lukas-czehmester-84426/" target="_blank" rel="noopener"
            style="color:#f59e0b;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;">
-          Realitní servery.cz ↗
+          Prohlédnout reference ↗
         </a>
       </div>
 
@@ -638,7 +692,6 @@ Pokud…</p>
   </div>
 
 </div>
-
   </main>
 
   <script src="/assets/app.js" defer></script>

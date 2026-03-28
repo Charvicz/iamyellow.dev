@@ -242,6 +242,30 @@
     color: #111;
   }
 
+  /* ── NEW: Content Block (O mně) ────────────────────── */
+  .content-block {
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+  .content-block p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 16px;
+  }
+  .content-block ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #4b5563;
+  }
+  .content-block li {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
   /* ── Property Grid ─────────────────────────────────── */
   .property-grid {
     display: grid;
@@ -428,17 +452,17 @@
           <div class="makler-hero__avatar-wrap">
             <img class="makler-hero__avatar"
                  src="https://img-cache.ceskereality.cz/makleri/208x208_jpg/5040237/106160.jpg"
-                 alt="Angelina Vasileva"
+                 alt="Angelina Vasileva - realitní makléř"
                  onerror="this.src='/assets/images/avatar-placeholder.jpg'">
             <div class="makler-hero__status-dot"></div>
           </div>
           <div>
-            <div class="makler-hero__label">Realitní makléř</div>
+            <div class="makler-hero__label">Osobní realitní makléř</div>
             <h1 class="makler-hero__name">Angelina Vasileva</h1>
-            <p class="makler-hero__subtitle">Specialista na prodej nemovitostí</p>
+            <p class="makler-hero__subtitle">Specialista na bezpečný prodej nemovitostí</p>
             <div class="makler-hero__badges">
-              <span class="badge-yellow">⭐ 4.9 hodnocení</span>
-              <span class="badge-green">● Aktivní</span>
+              <span class="badge-yellow">⭐ 4.9 (120+ recenzí)</span>
+              <span class="badge-green">● Přijímá nové nemovitosti</span>
             </div>
           </div>
         </div>
@@ -447,15 +471,15 @@
         <div class="makler-hero__stats">
           <div class="stat-card">
             <div class="stat-card__number">3</div>
-            <div class="stat-card__label">Aktivní<br>nabídky</div>
+            <div class="stat-card__label">Aktuálních<br>nabídek</div>
           </div>
           <div class="stat-card">
-            <div class="stat-card__number">47</div>
-            <div class="stat-card__label">Prodaných<br>nemovitostí</div>
+            <div class="stat-card__number">47+</div>
+            <div class="stat-card__label">Úspěšně<br>prodaných</div>
           </div>
           <div class="stat-card">
             <div class="stat-card__number">12</div>
-            <div class="stat-card__label">Let<br>zkušeností</div>
+            <div class="stat-card__label">Let praxe<br>na trhu</div>
           </div>
         </div>
       </div>
@@ -466,7 +490,10 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.77 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
-          Kontaktovat makléře
+          Nezávazná konzultace
+        </a>
+        <a href="#nabidky" class="btn-outline">
+          Zobrazit portfolio nemovitostí
         </a>
       </div>
 
@@ -478,81 +505,108 @@
 
     
     <div>
-      <div class="section-label">Aktuální nabídky</div>
-      <h2 class="section-title">Nemovitosti k prodeji</h2>
-
-      <div class="property-grid">
+      
+      
+      <div class="content-block">
+        <div class="section-label">Profil makléře</div>
+        <h2 class="section-title">Profesionální přístup k prodeji Vaší nemovitosti</h2>
         
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/6d/6d88e7c5a93b0dc476706db2c15eecf5.jpg"
-                 alt="Prodej rodinného domu, 100m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">100 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej rodinného domu, 100m²</h3>
-            <p class="property-card__desc">Grand Cabana v prestižním resortu Mesca Soma Bay nabízí exkluzivní spojení soukromí, designu a prvotřídního životního stylu se soukromou pláží a golfem.
+        <p>
+          Jmenuji se <strong>Angelina Vasileva</strong> a pomáhám klientům úspěšně a bezpečně prodávat byty, domy i pozemky. Zakládám si na stoprocentní transparentnosti a moderním marketingu. Každá nemovitost si zaslouží vlastní strategii prodeje, aby se prodala za nejvyšší možnou tržní cenu.
+        </p>
+
+        <p><strong>Co pro Vás zajistím v rámci spolupráce:</strong></p>
+        <ul>
+          <li>✅ <strong>Odhad tržní ceny zdarma</strong> (analýza cenových map).</li>
+          <li>✅ Profesionální prezentaci (home staging, profi fotografie, videoprohlídky).</li>
+          <li>✅ Cílenou inzerci na největších realitních serverech a sociálních sítích.</li>
+          <li>✅ Kompletní právní servis (advokátní úschova peněz, rezervační smlouvy).</li>
+        </ul>
+
+        <p>
+          Hledáte spolehlivého partnera pro prodej nemovitosti? Rád s Vámi proberu možnosti u dobré kávy. Stačí mi zanechat zprávu.
+        </p>
+      </div>
+
+
+      
+      <div id="nabidky">
+        <div class="section-label">Aktuální portfolio</div>
+        <h2 class="section-title">Nemovitosti k prodeji a pronájmu</h2>
+
+        <div class="property-grid">
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/6d/6d88e7c5a93b0dc476706db2c15eecf5.jpg"
+                   alt="Prodej rodinného domu, 100m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">100 000 Kč</span>
+            </div>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej rodinného domu, 100m²</h3>
+              <p class="property-card__desc">Grand Cabana v prestižním resortu Mesca Soma Bay nabízí exkluzivní spojení soukromí, designu a prvotřídního životního stylu se soukromou pláží a golfem.
 
 Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
           </div>
-        </div>
-        
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/40/404c1d620b218c2f4433af8d888f51c1.jpg"
-                 alt="Prodej bytu 3+kk, 59m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">359 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej bytu 3+kk, 59m²</h3>
-            <p class="property-card__desc">Tento apartmán 3+kk o celkové ploše 67 m² se nachází ve zvýšeném přízemí a nabízí promyšlený prostor plný světla a harmonie. Dominantou je obývací pokoj s kuchyňským koutem, ideální místo pro klidná rána i večery s…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/40/404c1d620b218c2f4433af8d888f51c1.jpg"
+                   alt="Prodej bytu 3+kk, 59m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">359 000 Kč</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
-          </div>
-        </div>
-        
-        <div class="property-card">
-          <div class="property-card__img-wrap">
-            <img class="property-card__img"
-                 src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/d0/d0f9aa4db449482679492b2fb27fee0b.jpg"
-                 alt="Prodej bytu 2+kk, 51m²"
-                 loading="lazy">
-            <span class="property-card__tag">PRODEJ</span>
-            <span class="property-card__price">251 000 Kč</span>
-          </div>
-          <div class="property-card__body">
-            <h3 class="property-card__title">Prodej bytu 2+kk, 51m²</h3>
-            <p class="property-card__desc">Apartmán 2+kk v komplexu Sun Wave nabízí prostor, který je jednoduchý, funkční a příjemný na každodenní život. Nachází se ve druhém patře a působí světlým, otevřeným dojmem. Obývací pokoj s kuchyňským koutem tvoří hlavní…</p>
-            <div class="property-card__meta">
-              <span>🏠 Nemovitost</span>
-              <span>📍 Česká republika</span>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej bytu 3+kk, 59m²</h3>
+              <p class="property-card__desc">Tento apartmán 3+kk o celkové ploše 67 m² se nachází ve zvýšeném přízemí a nabízí promyšlený prostor plný světla a harmonie. Dominantou je obývací pokoj s kuchyňským koutem, ideální místo pro klidná rána i večery s…</p>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
             </div>
-            <span class="property-card__cta">Zobrazit detail →</span>
           </div>
+          
+          <div class="property-card">
+            <div class="property-card__img-wrap">
+              <img class="property-card__img"
+                   src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5040237/d0/d0f9aa4db449482679492b2fb27fee0b.jpg"
+                   alt="Prodej bytu 2+kk, 51m² - nemovitost na prodej"
+                   loading="lazy">
+              <span class="property-card__tag">PRODEJ</span>
+              <span class="property-card__price">251 000 Kč</span>
+            </div>
+            <div class="property-card__body">
+              <h3 class="property-card__title">Prodej bytu 2+kk, 51m²</h3>
+              <p class="property-card__desc">Apartmán 2+kk v komplexu Sun Wave nabízí prostor, který je jednoduchý, funkční a příjemný na každodenní život. Nachází se ve druhém patře a působí světlým, otevřeným dojmem. Obývací pokoj s kuchyňským koutem tvoří hlavní…</p>
+              <div class="property-card__meta">
+                <span>🏠 Nemovitost</span>
+                <span>📍 Česká republika</span>
+              </div>
+              <span class="property-card__cta">Detail nemovitosti →</span>
+            </div>
+          </div>
+          
         </div>
-        
       </div>
 
       
       <div class="trust-badges">
-        <div class="trust-badge">✅ Ověřený makléř</div>
-        <div class="trust-badge">🏆 Top prodejce 2024</div>
-        <div class="trust-badge">🔒 Bezpečná transakce</div>
-        <div class="trust-badge">📋 Smlouva zajištěna</div>
+        <div class="trust-badge">✅ Certifikovaný makléř</div>
+        <div class="trust-badge">🏆 Realitní osobnost roku</div>
+        <div class="trust-badge">🔒 Bezpečná transakce (ověřeno)</div>
+        <div class="trust-badge">📋 Právní servis v ceně</div>
       </div>
     </div>
 
@@ -562,7 +616,7 @@ Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…
       
       <div class="sidebar-card">
         <div class="section-label">Kontakt</div>
-        <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;">Spojte se s makléřem</h3>
+        <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;">Spojte se se mnou</h3>
 
         <div class="contact-row">
           <div class="icon-circle" style="background:#fef3c7;">
@@ -572,7 +626,7 @@ Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…
             </svg>
           </div>
           <div>
-            <div class="contact-row__label">Email</div>
+            <div class="contact-row__label">E-mail</div>
             <div class="contact-row__value">info@mojenemovitostumore.cz</div>
           </div>
         </div>
@@ -585,7 +639,7 @@ Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…
           </div>
           <div>
             <div class="contact-row__label">Telefon</div>
-            <div class="contact-row__value">Na vyžádání</div>
+            <div class="contact-row__value">+420 777 XXX XXX</div>
           </div>
         </div>
 
@@ -598,24 +652,24 @@ Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…
           </div>
           <div>
             <div class="contact-row__label">Dostupnost</div>
-            <div class="contact-row__value">Po–Pá, 9:00–18:00</div>
+            <div class="contact-row__value">Po–Pá, 8:00–18:00</div>
           </div>
         </div>
 
         <a href="mailto:info@mojenemovitostumore.cz" class="btn-primary" style="width:100%;justify-content:center;margin-top:20px;">
-          Napsat zprávu →
+          Nezávazně poptat služby →
         </a>
       </div>
 
       
       <div class="sidebar-card sidebar-card--dark">
-        <div class="section-label">Plný profil</div>
+        <div class="section-label">Reference a historie</div>
         <p style="font-size:14px;color:#d1d5db;line-height:1.6;margin:0 0 16px;">
-          Zobrazit kompletní historii prodejů, reference klientů a veškeré nabídky makléře.
+          Zobrazit kompletní historii prodejů, reference spokojených klientů a certifikáty makléře.
         </p>
         <a href="https://www.realitniservery.cz/realitni-makleri/angelina-vasileva-85405/" target="_blank" rel="noopener"
            style="color:#f59e0b;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;">
-          Realitní servery.cz ↗
+          Prohlédnout reference ↗
         </a>
       </div>
 
@@ -624,7 +678,6 @@ Nabízíme k prodeji výjimečnou nemovitost v prestižní lokalitě Soma Bay…
   </div>
 
 </div>
-
   </main>
 
   <script src="/assets/app.js" defer></script>
