@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Yellow — Digital Hub</title>
+  <meta name="description" content="A clean hub for my work: drone, video, and projects." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/web/roman-kucera/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+
+  <script defer src="/js/smooth-water-ripples.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<div class="container mx-auto px-4 py-8" x-data="{ maxPrice: 20000000 }">
+    <!-- Profil makléře -->
+    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-6 rounded-xl shadow-sm mb-12">
+        <img src="/assets/images/export_makleri/76232.jpg" 
+             alt="Roman Kučera" 
+             class="w-48 h-48 rounded-full object-cover shadow-md"
+             onerror="this.src='/assets/images/potensic-fallback.jpg.jpg'">
+        
+        <div>
+            <h1 class="text-3xl font-bold">Roman Kučera</h1>
+            <p class="text-blue-600 font-medium">Realitní makléř</p>
+            <div class="mt-4 flex gap-4">
+                <a href="mailto:roman.kucera@sklady.cz" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                    <span>📧</span> roman.kucera@sklady.cz
+                </a>
+            </div>
+            <a href="https://www.realitniservery.cz/realitni-makleri/roman-kucera-76232/" target="_blank" class="mt-4 inline-block text-sm text-gray-400 underline">
+                Původní profil na RealitníServery.cz
+            </a>
+        </div>
+    </div>
+
+    <!-- Filtr ceny (pomocí Alpine.js pro okamžitou reakci) -->
+    <div class="mb-8 bg-gray-50 p-4 rounded-lg">
+        <label class="block text-sm font-bold mb-2">Filtrovat podle ceny: <span x-text="new Intl.NumberFormat('cs-CZ').format(maxPrice)"></span> Kč</label>
+        <input type="range" min="0" max="30000000" step="500000" x-model="maxPrice" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+    </div>
+
+    <!-- Seznam nabídek -->
+    <h2 class="text-2xl font-bold mb-6">Aktuální nabídky</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="1045 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5025688/3f/3f30c015cc63272dc73e1009025201e6.jpg" alt="Pronájem skladu, 1045m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    1 045 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Pronájem skladu, 1045m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V průmyslovém a skladovém areálu v Otovicích u Karlových Varů nabízíme k pronájmu skladovou halu s vlastním sociálním a administrativním zázemím.K dispozici skladová hala o velikosti:•  1 045,71 m2  skladová plocha•  …</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="2800 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5025688/a8/a8d28e441b3ae567588b10b0fa481ac9.jpg" alt="Pronájem komerčního pozemku, 2800m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    2 800 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Pronájem komerčního pozemku, 2800m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V průmyslovém a skladovém areálu v Otovicích u Karlových Varů nabízíme k pronájmu zpevněné venkovní plochy vhodné pro odstavování techniky, skladování materiálu nebo umístění mobilních hal a kontejnerových buněk.K dispozici…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="1900 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5025688/72/72e8f7c12b910e6eb847e9c77ca273ae.jpg" alt="Pronájem skladu, 1900m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    1 900 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Pronájem skladu, 1900m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V průmyslovém a skladovém areálu v Otovicích u Karlových Varů nabízíme k pronájmu skladovou halu s vlastním sociálním a administrativním zázemím.K dispozici skladová hala o velikosti:•  1 907,23 m2  skladová plocha•    63,26…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>

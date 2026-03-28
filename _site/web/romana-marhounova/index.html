@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Yellow — Digital Hub</title>
+  <meta name="description" content="A clean hub for my work: drone, video, and projects." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/web/romana-marhounova/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+
+  <script defer src="/js/smooth-water-ripples.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<div class="container mx-auto px-4 py-8" x-data="{ maxPrice: 20000000 }">
+    <!-- Profil makléře -->
+    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-6 rounded-xl shadow-sm mb-12">
+        <img src="/assets/images/export_makleri/91079.jpg" 
+             alt="Romana Marhounová" 
+             class="w-48 h-48 rounded-full object-cover shadow-md"
+             onerror="this.src='/assets/images/potensic-fallback.jpg.jpg'">
+        
+        <div>
+            <h1 class="text-3xl font-bold">Romana Marhounová</h1>
+            <p class="text-blue-600 font-medium">Realitní makléř</p>
+            <div class="mt-4 flex gap-4">
+                <a href="mailto:marhounova@fondrealit.cz" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                    <span>📧</span> marhounova@fondrealit.cz
+                </a>
+            </div>
+            <a href="https://www.realitniservery.cz/realitni-makleri/romana-marhounova-91079/" target="_blank" class="mt-4 inline-block text-sm text-gray-400 underline">
+                Původní profil na RealitníServery.cz
+            </a>
+        </div>
+    </div>
+
+    <!-- Filtr ceny (pomocí Alpine.js pro okamžitou reakci) -->
+    <div class="mb-8 bg-gray-50 p-4 rounded-lg">
+        <label class="block text-sm font-bold mb-2">Filtrovat podle ceny: <span x-text="new Intl.NumberFormat('cs-CZ').format(maxPrice)"></span> Kč</label>
+        <input type="range" min="0" max="30000000" step="500000" x-model="maxPrice" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+    </div>
+
+    <!-- Seznam nabídek -->
+    <h2 class="text-2xl font-bold mb-6">Aktuální nabídky</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="8071 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5007523/00/00bd3fb93ef2a01b0f16ad648c48cd28.jpg" alt="Prodej zemědělské půdy, 8071m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    8 071 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej zemědělské půdy, 8071m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V jihočeské obci Hrudkov, část města Vyšší Brod v okrese Český Krumlov, která se nachází asi 2,5 km na severovýchod od Vyššího Brodu, nabízíme v osadě Lachovice k prodeji pozemek o výměře 8 071 m2. Dle katastru nemovitostí…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="785 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5007523/de/de5d56707fa59d817a31718a4cd9a386.jpg" alt="Prodej zemědělské půdy, 785m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    785 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej zemědělské půdy, 785m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V jihočeské vesničce Hroznějovice, část města Hluboká nad Vltavou v okrese České Budějovice, nabízíme k prodeji pozemek o výměře 785 m2. Dle katastru nemovitostí je pozemek veden jako trvalý travní porost. Pozemek se dle…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="23659 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5007523/0e/0e6e3b374bf43eb596782f6d442cac7a.jpg" alt="Prodej lesa, 23659m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    23 659 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej lesa, 23659m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V jihočeské obci Lipí, která se nachází v okrese České Budějovice zhruba 9,5 km jihozápadně od Českých Budějovic, nabízíme k prodeji pozemky o celkové výměře 23 659 m2. Dle katastru nemovitostí jsou pozemky vedeny jako lesní…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Yellow — Digital Hub</title>
+  <meta name="description" content="A clean hub for my work: drone, video, and projects." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/web/richard-loryk/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+
+  <script defer src="/js/smooth-water-ripples.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<div class="container mx-auto px-4 py-8" x-data="{ maxPrice: 20000000 }">
+    <!-- Profil makléře -->
+    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-6 rounded-xl shadow-sm mb-12">
+        <img src="/assets/images/export_makleri/68883.jpg" 
+             alt="Richard Loryk" 
+             class="w-48 h-48 rounded-full object-cover shadow-md"
+             onerror="this.src='/assets/images/potensic-fallback.jpg.jpg'">
+        
+        <div>
+            <h1 class="text-3xl font-bold">Richard Loryk</h1>
+            <p class="text-blue-600 font-medium">Realitní makléř</p>
+            <div class="mt-4 flex gap-4">
+                <a href="mailto:loryk@reality-proradost.cz" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                    <span>📧</span> loryk@reality-proradost.cz
+                </a>
+            </div>
+            <a href="https://www.realitniservery.cz/realitni-makleri/richard-loryk-68883/" target="_blank" class="mt-4 inline-block text-sm text-gray-400 underline">
+                Původní profil na RealitníServery.cz
+            </a>
+        </div>
+    </div>
+
+    <!-- Filtr ceny (pomocí Alpine.js pro okamžitou reakci) -->
+    <div class="mb-8 bg-gray-50 p-4 rounded-lg">
+        <label class="block text-sm font-bold mb-2">Filtrovat podle ceny: <span x-text="new Intl.NumberFormat('cs-CZ').format(maxPrice)"></span> Kč</label>
+        <input type="range" min="0" max="30000000" step="500000" x-model="maxPrice" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+    </div>
+
+    <!-- Seznam nabídek -->
+    <h2 class="text-2xl font-bold mb-6">Aktuální nabídky</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="245 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/1261614/02/0288efae9d067a228fb89c9251d9749a.jpg" alt="Prodej bytu 2+kk, 45m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    245 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej bytu 2+kk, 45m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">Krásná nemovitost 50 m. od moře s parkovacím místem.
+
+Rádi by jste si vychutnávali italskou atmosféru a dívali se na západ slunce ?
+
+Nabízíme vám prosvětlený dvoupokojový apartmán v jedné z nejoblíbenějších oblasti Alba…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="378 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/1261614/0b/0bf6e137563a801d18d2c7f29c67ef98.jpg" alt="Prodej bytu 3+kk, 78m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    378 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej bytu 3+kk, 78m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">Mimořádná příležitost apartmán s bočním výhledem na moře a parkovacím stáním.
+
+Představujeme vám zrekonstruovaný apartmán jen pár kroků od moře s krásným výhledem. Byt s bočním výhledem na moře nabízí ideální kombinaci…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="31117 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/1261614/a3/a3f1278dcb44f304d88c2e1e3121309d.jpg" alt="Prodej bytu 3+1, 117m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    31 117 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej bytu 3+1, 117m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">V samotném srdci oblíbeného letoviska Silvi Marina, přímo na pobřežní promenádě Via Garibaldi, v první řadě u moře a jen pár kroků od Piazza dei Pini, nabízíme k prodeji prostorný apartmán s dechberoucím výhledem na Jaderské…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>

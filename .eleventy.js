@@ -6,6 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "site/api": "api" });
   eleventyConfig.addPassthroughCopy("site/drone-promo");
   eleventyConfig.addWatchTarget("site/api/");
+  eleventyConfig.addPassthroughCopy("site/assets/images/export_makleri");
 
   // --- NOVÉ FILTRY PRO MAKLÉŘE ---
   eleventyConfig.addFilter("localeString", function(value) {
@@ -14,11 +15,12 @@ module.exports = function(eleventyConfig) {
   });
 
   // --- KONFIGURACE ADRESÁŘŮ ---
-  return {
+    return {
     dir: {
       input: "site",
       output: "_site",
-      includes: "_includes" // Složka: site/_includes
+      includes: "_includes",
+      data: "_data"    // ← přidej toto
     }
   };
 };

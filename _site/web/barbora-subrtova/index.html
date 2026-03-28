@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Yellow — Digital Hub</title>
+  <meta name="description" content="A clean hub for my work: drone, video, and projects." />
+
+  <link rel="stylesheet" href="/assets/style.css">
+  
+
+  <link rel="canonical" href="https://iamyellow.dev/web/barbora-subrtova/" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#0B0C10">
+
+  <script defer src="/js/smooth-water-ripples.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Go home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Yellow</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/#focus">Focus</a>
+      <a href="/#paths">Explore</a>
+      <a href="/projects/">Projects</a>
+      <a href="/#links">Links</a>
+    </nav>
+  </header>
+
+  <main id="top" style="padding-top: 70px;">
+    
+<div class="container mx-auto px-4 py-8" x-data="{ maxPrice: 20000000 }">
+    <!-- Profil makléře -->
+    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-6 rounded-xl shadow-sm mb-12">
+        <img src="/assets/images/export_makleri/99040.jpg" 
+             alt="Barbora Šubrtová" 
+             class="w-48 h-48 rounded-full object-cover shadow-md"
+             onerror="this.src='/assets/images/potensic-fallback.jpg.jpg'">
+        
+        <div>
+            <h1 class="text-3xl font-bold">Barbora Šubrtová</h1>
+            <p class="text-blue-600 font-medium">Realitní makléř</p>
+            <div class="mt-4 flex gap-4">
+                <a href="mailto:barbora.subrtova@investujdopole.cz" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                    <span>📧</span> barbora.subrtova@investujdopole.cz
+                </a>
+            </div>
+            <a href="https://www.realitniservery.cz/realitni-makleri/barbora-subrtova-99040/" target="_blank" class="mt-4 inline-block text-sm text-gray-400 underline">
+                Původní profil na RealitníServery.cz
+            </a>
+        </div>
+    </div>
+
+    <!-- Filtr ceny (pomocí Alpine.js pro okamžitou reakci) -->
+    <div class="mb-8 bg-gray-50 p-4 rounded-lg">
+        <label class="block text-sm font-bold mb-2">Filtrovat podle ceny: <span x-text="new Intl.NumberFormat('cs-CZ').format(maxPrice)"></span> Kč</label>
+        <input type="range" min="0" max="30000000" step="500000" x-model="maxPrice" class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+    </div>
+
+    <!-- Seznam nabídek -->
+    <h2 class="text-2xl font-bold mb-6">Aktuální nabídky</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="13272 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5047474/8b/8b4f8b2d42f965913f12bc47f15dddfe.jpg" alt="Prodej lesa, 13272m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    13 272 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej lesa, 13272m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">U nás nakupujete přímo od vlastníka – bez prostředníků a bez zbytečných výdajů navíc!k.ú. KunžakLV č. 1756 o výměře 13272 m2• Parcela č. 1457/12 - o výměře 3490 m2 (Trvalý travní porost)• Parcela č. 1474 - o výměře 9782 m2 …</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="10469 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5047474/5a/5ae81daa87d6649df09002741e5b1738.jpg" alt="Prodej zemědělské půdy, 10469m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    10 469 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej zemědělské půdy, 10469m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">U nás nakupujete přímo od vlastníka – bez prostředníků a bez zbytečných výdajů navíc!k.ú. Životice u KasejovicLV č. 170 o výměře 10469 m2•	Parcela č. 390/1 - o výměře 10469 m2 (Orná půda)Přístupová cesta je zajištěna přes…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+             x-show="4837 <= maxPrice">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://img-cache.ceskereality.cz/nemovitosti/320x320_jpg/5047474/e3/e350113047e82ceecb455c33c21ef32a.jpg" alt="Prodej lesa, 4837m²" class="w-full h-full object-cover">
+                <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-sm font-bold">
+                    4 837 Kč
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="font-bold text-lg mb-2">Prodej lesa, 4837m²</h3>
+                <p class="text-gray-600 text-sm line-clamp-3">Již 10 let jsme vaše pravá ruka přes investice do pozemků. Připojte se i vy k celé řadě investorů, kteří v pozemcích našli stabilní a výnosnou investici.Nabízíme Vám ke koupi les v katastrálním území Čepřovice, LV č. 222 o…</p>
+                <button class="mt-4 w-full bg-gray-900 text-white py-2 rounded-lg font-bold hover:bg-black transition-colors">
+                    Detail nemovitosti
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+  </main>
+
+  <script src="/assets/app.js" defer></script>
+  
+</body>
+</html>
