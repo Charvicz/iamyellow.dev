@@ -1,0 +1,156 @@
+/* CENTROVÁNÍ CELÉHO BLOKU */
+.certificates-container {
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+}
+
+/* GRID - 2 SLUPCE NA DESKTOPU */
+#cert-list.cert-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2.5rem !important;
+  margin-top: 2rem !important;
+}
+
+/* KARTA CERTIFIKÁTU */
+.cert {
+  max-width: 480px !important;
+  margin: 0 auto !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
+  background: transparent !important; /* Pokud máš tmavý layout */
+}
+
+.cert:hover {
+  transform: scale(1.02) !important;
+}
+
+/* RÁMEČEK OBRÁZKU - PŘESNĚ JAKO NA FOTCE */
+.cert-frame {
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  background: #111 !important; /* Černé pozadí rámečku */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* OBRÁZEK UVNITŘ RÁMEČKU */
+.cert-frame img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* MOBILNÍ VERZE - 1 SLOUPEC */
+@media (max-width: 850px) {
+  #cert-list.cert-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* FULLSCREEN MODAL */
+#cert-modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0,0,0,0.95) !important;
+  z-index: 9999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2rem !important;
+}
+
+#cert-modal.active {
+  display: flex !important;
+}
+
+.modal-content {
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  background: rgba(0,0,0,0.95) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  position: relative !important;
+  text-align: center !important;
+  box-shadow: 0 25px 50px rgba(80, 79, 79, 0.5) !important;
+}
+
+.modal-close {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1.5rem !important;
+  background: rgba(255,255,255,0.95) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.modal-close:hover {
+  background: rgba(255,255,255,1) !important;
+}
+
+#modal-image {
+  max-width: 100% !important;
+  max-height: 65vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  margin-bottom: 1rem !important;
+}
+
+.modal-desc h3 {
+  margin: 0 0 0.5rem 0 !important;
+  color: #333 !important;
+  font-size: 1.3rem !important;
+}
+
+.modal-desc p {
+  margin: 0 !important;
+  color: #666 !important;
+  font-size: 1rem !important;
+}
+
+/* VŽDY 2 CERTIFIKÁTY VEDLE SEBE - FLEXBOX */
+.certificates-container {
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+#cert-list.cert-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 2rem !important;
+  justify-content: center !important;
+  margin-top: 2rem !important;
+}
+
+.cert {
+  flex: 0 0 calc(50% - 1rem) !important;  /* PŘESNĚ 50% - gap/2 */
+  max-width: 480px !important;
+}
+
+/* MOBIL */
+@media (max-width: 1050px) {
+  .cert {
+    flex: 0 0 100% !important;  /* PLNÁ ŠÍŘKA */
+  }
+}
