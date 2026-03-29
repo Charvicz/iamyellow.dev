@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>3D Models | iamyellow</title>
+  <title>3D modely dronem</title>
   <meta name="description" content="A clean hub for my work: drone, video, and projects." />
 
   <link rel="stylesheet" href="/assets/style.css">
@@ -42,81 +42,42 @@
 
   <main id="top" style="padding-top: 70px;">
     
-<section class="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__content container">
-    <div class="hero__copy">
-      <p class="eyebrow">DRONE / 3D MODELS</p>
-      <h1>3D modely zachycené dronem.</h1>
-      <p class="hero__lead">Interaktivní galerie ve vysoké kvalitě, ready pro AR/VR.</p>
-
-      <div class="hero__actions">
-        <a href="#models" class="btn btn--primary">Zobrazit modely</a>
-      </div>
-    </div>
-
-    <div class="hero__visual">
-      <iframe 
-        src="https://poly.cam/capture/3abf713d-af68-4b54-bc80-883f9f9fd379/embed" 
-        title="Polycam capture viewer" 
-        style="height:100%;width:100%;max-height:720px;max-width:1280px;min-height:280px;min-width:280px" 
-        frameborder="0">
-      </iframe>
-    </div>
+<section class="section models-hero">
+  <div class="section-head">
+    <h1>3D modely z dronu</h1>
+    <p>Interaktivní scany realit, firem a prostorů. Polycam viewer.</p>
+  </div>
+  
+  <div class="model-viewer">
+    <iframe 
+      src="https://poly.cam/capture/3abf713d-af68-4b54-bc80-883f9f9fd379/embed" 
+      title="3D model" 
+      frameborder="0">
+    </iframe>
   </div>
 </section>
 
-<section class="controls container" id="about">
-  <div class="controls__left">
-    <h2>Vyber model</h2>
+<section class="section models-grid">
+  <div class="section-head">
+    <h2>Další modely</h2>
   </div>
-  <div class="controls__right">
-    <button class="chip is-active" data-filter="all">Vše</button>
-    <button class="chip" data-filter="industrial">Průmysl</button>
-    <button class="chip" data-filter="urban">Město</button>
-    <button class="chip" data-filter="nature">Příroda</button>
+
+  <div class="models-list">
+    <div class="model-item">
+      <iframe src="https://poly.cam/capture/YOUR-ID-1/embed" title="Model 1"></iframe>
+      <h3>Model 1</h3>
+    </div>
+
+    <div class="model-item">
+      <iframe src="https://poly.cam/capture/YOUR-ID-2/embed" title="Model 2"></iframe>
+      <h3>Model 2</h3>
+    </div>
+
+    <div class="model-item">
+      <iframe src="https://poly.cam/capture/YOUR-ID-3/embed" title="Model 3"></iframe>
+      <h3>Model 3</h3>
+    </div>
   </div>
-</section>
-
-<section class="models container" id="models">
-  <article class="model-card" data-category="industrial">
-    <div class="model-card__media">
-      <div class="model-card__badge">Průmysl</div>
-      <div class="model-card__preview"></div>
-    </div>
-    <div class="model-card__body">
-      <h3>Hangár Scan</h3>
-      <div class="model-card__meta">
-        <span>8.1M bodů</span>
-      </div>
-    </div>
-  </article>
-
-  <article class="model-card" data-category="urban">
-    <div class="model-card__media">
-      <div class="model-card__badge">Město</div>
-      <div class="model-card__preview"></div>
-    </div>
-    <div class="model-card__body">
-      <h3>City Block</h3>
-      <div class="model-card__meta">
-        <span>6.5M bodů</span>
-      </div>
-    </div>
-  </article>
-
-  <article class="model-card" data-category="nature">
-    <div class="model-card__media">
-      <div class="model-card__badge">Příroda</div>
-      <div class="model-card__preview"></div>
-    </div>
-    <div class="model-card__body">
-      <h3>Forest Edge</h3>
-      <div class="model-card__meta">
-        <span>4.2M bodů</span>
-      </div>
-    </div>
-  </article>
 </section>
   </main>
 
