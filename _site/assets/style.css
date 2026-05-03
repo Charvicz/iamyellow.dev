@@ -870,15 +870,3 @@ body::after{
     rgba(11,12,16,1)
   );
 }
-
-#now .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-@media (max-width: 900px) {
-  #now .grid {
-    grid-template-columns: 1fr;
-  }
-}
