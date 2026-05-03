@@ -173,22 +173,17 @@ function renderVideo(video) {
 
   const videoId = video.id.videoId;
   const title = video.snippet.title;
-  const thumb = video.snippet.thumbnails.high.url;
 
   el.innerHTML = `
-    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-      <img src="${thumb}" alt="${title}" style="width:100%; border-radius:12px;">
-    </a>
-    <p style="margin-top:10px;"><b>${title}</b></p>
+    <p style="margin-bottom:10px;"><b>${title}</b></p>
     <iframe 
       src="https://www.youtube.com/embed/${videoId}" 
       frameborder="0" 
       allowfullscreen
-      style="width:100%; aspect-ratio:16/9; border-radius:12px; margin-top:10px;">
+      style="width:100%; aspect-ratio:16/9; border-radius:12px;">
     </iframe>
   `;
 }
-
 // 4) init
 async function initYT() {
   try {
