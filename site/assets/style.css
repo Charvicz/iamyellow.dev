@@ -254,7 +254,7 @@ h1{
   max-width: var(--max);
   margin: 0 auto;
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
 .path{
@@ -762,7 +762,7 @@ html.theme-danger body{
 
 /* NOW cards should fill the grid (2 cards = 2x6 columns) */
 .now-card{
-  grid-column: span 6;
+  grid-column: 4;
 }
 
 @media (max-width: 900px){
