@@ -146,3 +146,60 @@ s.src = "/assets/theme-panel.js?v=2";
 s.defer = true;
 document.head.appendChild(s);
 
+const API_KEY = "AIzaSyBL3R_YphGX8Nphf61DWhn-XQwH3GyyVhE"; // tvoje (test)
+const CHANNEL_HANDLE = "iamyellowdev";
+
+// 1) získání channel ID z handle
+async function getChannelId() {
+  const res = await fetch(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${CHANNEL_HANDLE}&key=${API_KEY}`
+  );
+  const data = await res.json();
+  return data.items[0].snippet.channelId;
+}
+
+// 2) získání posledního videa
+async function getLatestVideo(channelId) {
+  const res = await fetch(
+    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`
+  );
+  const data = await res.json();
+  return data.items[0];
+}
+
+// 3) render
+function renderVideo(video) {
+  const el = document.getElementById("latestVideo");
+
+  const videoId = video.id.videoId;
+  const title = video.snippet.title;
+  const thumb = video.snippet.thumbnails.high.url;
+
+  el.innerHTML = `
+    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+      <img src="${thumb}" alt="${title}" style="width:100%; border-radius:12px;">
+    </a>
+    <p style="margin-top:10px;"><b>${title}</b></p>
+    <iframe 
+      src="https://www.youtube.com/embed/${videoId}" 
+      frameborder="0" 
+      allowfullscreen
+      style="width:100%; aspect-ratio:16/9; border-radius:12px; margin-top:10px;">
+    </iframe>
+  `;
+}
+
+// 4) init
+async function initYT() {
+  try {
+    const channelId = await getChannelId();
+    const video = await getLatestVideo(channelId);
+    renderVideo(video);
+  } catch (e) {
+    document.getElementById("latestVideo").innerHTML =
+      "<p class='muted'>Failed to load video.</p>";
+    console.error(e);
+  }
+}
+
+initYT();
