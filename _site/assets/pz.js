@@ -239,6 +239,11 @@ const elResults = document.getElementById('results');
 
 const fmt = new Intl.NumberFormat('cs-CZ');
 
+function roundDownTo5(n) {
+  if (!Number.isFinite(n)) return NaN;
+  return Math.floor(n / 10) * 10 + (n % 10 <= 5 ? 5 : -5);
+}
+
 function normalizeRow(row) {
   const [cat, minP, maxP, code, pzPrice] = row;
   const min = Math.min(minP, maxP);
@@ -259,9 +264,7 @@ function fillCategories() {
     .join('');
 }
 
-
 function getBracket(category, productPrice) {
-  // vezmeme všechny řádky, které sedí do pásma (inclusive)
   const matching = rows.filter(r =>
     r.cat === category &&
     productPrice >= r.min &&
@@ -270,7 +273,6 @@ function getBracket(category, productPrice) {
 
   if (!matching.length) return null;
 
-  // přehledně: pásmo bereme z prvního matchu (v datech jsou u pásma vždy 4 varianty)
   const { min, max } = matching[0];
   const bracketRows = matching.filter(r => r.min === min && r.max === max);
 
@@ -283,7 +285,7 @@ function renderSummary({ category, planeo, market, diff, bracket }) {
   elSummary.hidden = false;
   elSummary.innerHTML = `
     <div class="sum">
-      <div class="sum__row"><span>Kategorie</span<b>${CATEGORY_LABELS[category] || category}</b></div>
+      <div class="sum__row"><span>Kategorie</span><b>${CATEGORY_LABELS[category] || category}</b></div>
       <div class="sum__row"><span>Planeo</span><b>${fmt.format(planeo)} Kč</b></div>
       <div class="sum__row"><span>Trh</span><b>${fmt.format(market)} Kč</b></div>
       <div class="sum__row"><span>Rozdíl (Planeo − trh)</span><b class="${diffClass}">${fmt.format(diff)} Kč</b></div>
@@ -319,34 +321,33 @@ function renderResults(diff, bracket) {
   }
 
   const cards = bracket.items
-  .sort((a, b) => a.pzPrice - b.pzPrice)
-  .map(item => {
-    const fits = diff >= item.pzPrice;
-    const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
+    .sort((a, b) => a.pzPrice - b.pzPrice)
+    .map(item => {
+      const fits = diff >= item.pzPrice;
+      const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
 
-    // ✅ cena produktu když je PZ "zadarmo" (jen pro zelené)
-    const planeo = Number(elPlaneo.value) || 0;
-    const priceIfFree = planeo - item.pzPrice;
+      const planeo = Number(elPlaneo.value) || 0;
+      const priceIfFree = planeo - item.pzPrice;
 
-    return `
-      <div class="pz__item ${fits ? 'fit' : 'nofit'}">
-        <div class="pz__itemTop">
-          <div class="pz__title">${labelFor(item.code)}</div>
-          <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
+      return `
+        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
+          <div class="pz__itemTop">
+            <div class="pz__title">${labelFor(item.code)}</div>
+            <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
+          </div>
+          <div class="pz__meta">
+            ${
+              fits
+                ? `<span class="tag tag--good">jde to</span>
+                   <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
+                   <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
+                : `<span class="tag tag--bad">nejde to</span>
+                   <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
+            }
+          </div>
         </div>
-        <div class="pz__meta">
-          ${
-            fits
-              ? `<span class="tag tag--good">jde to</span>
-                 <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
-                 <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
-              : `<span class="tag tag--bad">nejde to</span>
-                 <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
-          }
-        </div>
-      </div>
-    `;
-  }).join('');
+      `;
+    }).join('');
 
   elResults.innerHTML = `
     <h2>Varianty v pásmu</h2>
@@ -362,7 +363,9 @@ function readNumber(el) {
 function calculate() {
   const category = elCategory.value;
   const planeo = readNumber(elPlaneo);
-  const market = readNumber(elMarket);
+
+  const marketRaw = readNumber(elMarket);
+  const market = roundDownTo5(marketRaw);
 
   if (!Number.isFinite(planeo) || !Number.isFinite(market)) {
     elSummary.hidden = false;
@@ -393,7 +396,6 @@ fillCategories();
 elCalc.addEventListener('click', calculate);
 elReset.addEventListener('click', resetAll);
 
-// Enter = spočítat
 [elPlaneo, elMarket].forEach(inp => {
   inp.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') calculate();
