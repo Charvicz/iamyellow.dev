@@ -372,7 +372,8 @@ function calculate() {
   }
 
   const diff = planeo - market;
-  const bracket = getBracket(category, planeo);
+  const basePrice = Math.min(planeo, market);
+  const bracket = getBracket(category, basePrice);
 
   renderSummary({ category, planeo, market, diff, bracket });
   renderResults(diff, bracket);
