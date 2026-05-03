@@ -762,7 +762,7 @@ html.theme-danger body{
 
 /* NOW cards should fill the grid (2 cards = 2x6 columns) */
 .now-card{
-  grid-column: 4;
+  grid-column: span 4;
 }
 
 @media (max-width: 900px){
