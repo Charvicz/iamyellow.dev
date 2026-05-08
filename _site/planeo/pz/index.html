@@ -89,39 +89,45 @@
 
       <div class="pz__actions">
         <button id="calcBtn" class="btn">Spočítat</button>
-        <button id="resetBtn" class="btn btn--ghost" type="button">
+
+        <button
+          id="resetBtn"
+          class="btn btn--ghost"
+          type="button"
+        >
           Reset
         </button>
       </div>
     </div>
 
-    <div class="pz__summary" id="summary" hidden></div>
+    <div
+      class="pz__summary"
+      id="summary"
+      hidden
+    ></div>
   </div>
 
-  <!-- PŮVODNÍ PZ -->
-  <div class="pz__results" id="results"></div>
-  <div class="pz__results" id="pnpResults"></div>
+  <!-- PZ -->
+  <div
+    class="pz__results"
+    id="results"
+  ></div>
 
-  <!-- NOVÉ PNP -->
+  <!-- PNP -->
   <div class="pz__results pz__results--pnp">
-    <h2>PNP</h2>
     <div id="pnpResults"></div>
   </div>
 
   <footer class="pz__footer">
     <p class="hint">
-      Tip: Rozdíl = <b>Planeo − trh</b>. Když je rozdíl ≤ 0,
+      Tip: Rozdíl = <b>Planeo − trh</b>.
+      Když je rozdíl ≤ 0,
       tak se “do rozdílu” nevejde nic.
     </p>
   </footer>
 </section>
 
 <link rel="stylesheet" href="/assets/pz.css">
-
-<script>
-  // zpřístupní data globálně
-  window.warranty_pnp = warranty_pnp || [];
-</script>
 
 <script src="/assets/pz.js"></script>
   </main>

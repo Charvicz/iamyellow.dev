@@ -628,7 +628,10 @@ function calculate() {
 
   renderSummary({ category, planeo, market, diff, bracket });
   renderResults(diff, bracket);
-}
+
+  const pnpBracket = getPNPBracket(category, basePrice);
+  renderPNPResults(pnpBracket);
+  }
 
 function resetAll() {
   elPlaneo.value = '';
@@ -636,6 +639,7 @@ function resetAll() {
   elSummary.hidden = true;
   elSummary.innerHTML = '';
   elResults.innerHTML = '';
+  elPnpResults.innerHTML = '';
   elPlaneo.focus();
 }
 
