@@ -229,6 +229,190 @@ const warranty_data = [
   ['MOBIL', 50000, 59999, '3R_VIP', 7999],
 ];
 
+const warranty_pnp = [
+  // TV
+  ['TV', 0, 4999, '1R', 329],
+  ['TV', 0, 4999, '2R', 659],
+
+  ['TV', 5000, 9999, '1R', 549],
+  ['TV', 5000, 9999, '2R', 949],
+
+  ['TV', 10000, 19999, '1R', 879],
+  ['TV', 10000, 19999, '2R', 1499],
+
+  ['TV', 20000, 29999, '1R', 1199],
+  ['TV', 20000, 29999, '2R', 2199],
+
+  ['TV', 30000, 39999, '1R', 1399],
+  ['TV', 30000, 39999, '2R', 2599],
+
+  ['TV', 40000, 49999, '1R', 1649],
+  ['TV', 40000, 49999, '2R', 3199],
+
+  ['TV', 50000, 59999, '1R', 2099],
+  ['TV', 50000, 59999, '2R', 3899],
+
+  ['TV', 60000, 69999, '1R', 2199],
+  ['TV', 60000, 69999, '2R', 4199],
+
+  ['TV', 70000, 79999, '1R', 2499],
+  ['TV', 70000, 79999, '2R', 4599],
+
+  ['TV', 80000, 99999, '1R', 3699],
+  ['TV', 80000, 99999, '2R', 4999],
+
+  ['TV', 100000, 124999, '1R', 4999],
+  ['TV', 100000, 124999, '2R', 5999],
+
+  // BILA TECHNIKA
+  ['BILA', 500, 999, '1R', 129],
+  ['BILA', 500, 999, '2R', 249],
+
+  ['BILA', 1000, 1999, '1R', 299],
+  ['BILA', 1000, 1999, '2R', 399],
+
+  ['BILA', 2000, 2999, '1R', 329],
+  ['BILA', 2000, 2999, '2R', 499],
+
+  ['BILA', 3000, 5499, '1R', 449],
+  ['BILA', 3000, 5499, '2R', 749],
+
+  ['BILA', 5500, 7499, '1R', 499],
+  ['BILA', 5500, 7499, '2R', 879],
+
+  ['BILA', 7500, 9999, '1R', 659],
+  ['BILA', 7500, 9999, '2R', 1149],
+
+  ['BILA', 10000, 14999, '1R', 879],
+  ['BILA', 10000, 14999, '2R', 1249],
+
+  ['BILA', 15000, 19999, '1R', 1049],
+  ['BILA', 15000, 19999, '2R', 1649],
+
+  ['BILA', 20000, 29999, '1R', 1249],
+  ['BILA', 20000, 29999, '2R', 1899],
+
+  ['BILA', 30000, 39999, '1R', 1299],
+  ['BILA', 30000, 39999, '2R', 2099],
+
+  ['BILA', 40000, 59999, '1R', 1499],
+  ['BILA', 40000, 59999, '2R', 2499],
+
+  ['BILA', 60000, 79999, '1R', 1799],
+  ['BILA', 60000, 79999, '2R', 2999],
+
+  // MOBILY / SMART WATCH
+  ['MOBIL', 1200, 2999, '1R', 499],
+  ['MOBIL', 1200, 2999, '2R', 949],
+  ['MOBIL', 1200, 2999, '2R_VIP', 1599],
+
+  ['MOBIL', 3000, 5999, '1R', 999],
+  ['MOBIL', 3000, 5999, '2R', 1599],
+  ['MOBIL', 3000, 5999, '2R_VIP', 2599],
+
+  ['MOBIL', 6000, 8999, '1R', 1049],
+  ['MOBIL', 6000, 8999, '2R', 1799],
+  ['MOBIL', 6000, 8999, '2R_VIP', 2999],
+
+  ['MOBIL', 9000, 11999, '1R', 1549],
+  ['MOBIL', 9000, 11999, '2R', 2399],
+  ['MOBIL', 9000, 11999, '2R_VIP', 3899],
+
+  ['MOBIL', 12000, 14999, '1R', 1649],
+  ['MOBIL', 12000, 14999, '2R', 2849],
+  ['MOBIL', 12000, 14999, '2R_VIP', 4799],
+
+  ['MOBIL', 15000, 17999, '1R', 1899],
+  ['MOBIL', 15000, 17999, '2R', 3099],
+  ['MOBIL', 15000, 17999, '2R_VIP', 5199],
+
+  ['MOBIL', 18000, 19999, '1R', 1999],
+  ['MOBIL', 18000, 19999, '2R', 3749],
+  ['MOBIL', 18000, 19999, '2R_VIP', 5999],
+
+  ['MOBIL', 20000, 24999, '1R', 2999],
+  ['MOBIL', 20000, 24999, '2R', 4699],
+  ['MOBIL', 20000, 24999, '2R_VIP', 8499],
+
+  ['MOBIL', 25000, 29999, '1R', 3499],
+  ['MOBIL', 25000, 29999, '2R', 5249],
+  ['MOBIL', 25000, 29999, '2R_VIP', 8999],
+
+  ['MOBIL', 30000, 34999, '1R', 4199],
+  ['MOBIL', 30000, 34999, '2R', 5999],
+  ['MOBIL', 30000, 34999, '2R_VIP', 9999],
+
+  // APPLE
+  ['APPLE', 1200, 2999, '1R', 349],
+  ['APPLE', 1200, 2999, '2R', 699],
+
+  ['APPLE', 3000, 5999, '1R', 699],
+  ['APPLE', 3000, 5999, '2R', 1149],
+
+  ['APPLE', 6000, 8999, '1R', 799],
+  ['APPLE', 6000, 8999, '2R', 1349],
+
+  ['APPLE', 9000, 11999, '1R', 1149],
+  ['APPLE', 9000, 11999, '2R', 1759],
+
+  ['APPLE', 12000, 14999, '1R', 1199],
+  ['APPLE', 12000, 14999, '2R', 2099],
+
+  ['APPLE', 15000, 17999, '1R', 1399],
+  ['APPLE', 15000, 17999, '2R', 2249],
+
+  ['APPLE', 18000, 19999, '1R', 1799],
+  ['APPLE', 18000, 19999, '2R', 2749],
+
+  ['APPLE', 20000, 24999, '1R', 2199],
+  ['APPLE', 20000, 24999, '2R', 3449],
+
+  ['APPLE', 25000, 29999, '1R', 2599],
+  ['APPLE', 25000, 29999, '2R', 3849],
+
+  ['APPLE', 30000, 34999, '1R', 2999],
+  ['APPLE', 30000, 34999, '2R', 4399],
+
+  ['APPLE', 35000, 39999, '1R', 3299],
+  ['APPLE', 35000, 39999, '2R', 4699],
+
+  ['APPLE', 40000, 49999, '1R', 3849],
+  ['APPLE', 40000, 49999, '2R', 4949],
+
+  ['APPLE', 50000, 59999, '1R', 4399],
+  ['APPLE', 50000, 59999, '2R', 5499],
+
+  // NTB / PC / TAB / GAMING / AUDIO / FOTO / IT
+  ['NTB_PC', 500, 999, '1R', 129],
+  ['NTB_PC', 500, 999, '2R', 249],
+
+  ['NTB_PC', 1000, 1999, '1R', 249],
+  ['NTB_PC', 1000, 1999, '2R', 399],
+
+  ['NTB_PC', 2000, 2999, '1R', 439],
+  ['NTB_PC', 2000, 2999, '2R', 639],
+
+  ['NTB_PC', 3000, 4999, '1R', 539],
+  ['NTB_PC', 3000, 4999, '2R', 949],
+
+  ['NTB_PC', 5000, 9999, '1R', 659],
+  ['NTB_PC', 5000, 9999, '2R', 1199],
+
+  ['NTB_PC', 10000, 19999, '1R', 999],
+  ['NTB_PC', 10000, 19999, '2R', 1799],
+
+  ['NTB_PC', 20000, 29999, '1R', 1649],
+  ['NTB_PC', 20000, 29999, '2R', 2999],
+
+  ['NTB_PC', 30000, 39999, '1R', 2199],
+  ['NTB_PC', 30000, 39999, '2R', 4149],
+
+  ['NTB_PC', 40000, 49999, '1R', 2649],
+  ['NTB_PC', 40000, 49999, '2R', 4499],
+
+  ['NTB_PC', 50000, 59999, '1R', 3149],
+  ['NTB_PC', 50000, 59999, '2R', 5399],
+];
 const elCategory = document.getElementById('category');
 const elPlaneo = document.getElementById('planeoPrice');
 const elMarket = document.getElementById('marketPrice');
@@ -236,6 +420,7 @@ const elCalc = document.getElementById('calcBtn');
 const elReset = document.getElementById('resetBtn');
 const elSummary = document.getElementById('summary');
 const elResults = document.getElementById('results');
+const elPnpResults = document.getElementById('pnpResults');
 
 const fmt = new Intl.NumberFormat('cs-CZ');
 
@@ -306,6 +491,69 @@ function labelFor(code) {
     case '3R_VIP': return 'PZ 3 roky VIP';
     default: return code;
   }
+}
+
+function labelForPNP(code) {
+  switch (code) {
+    case '1R': return 'PNP 1 rok';
+    case '2R': return 'PNP 2 roky';
+    case '2R_VIP': return 'PNP 2 roky VIP';
+    default: return code;
+  }
+}
+
+function getPNPBracket(category, productPrice) {
+  const matching = warranty_pnp.filter(r =>
+    r[0] === category &&
+    productPrice >= Math.min(r[1], r[2]) &&
+    productPrice <= Math.max(r[1], r[2])
+  );
+
+  if (!matching.length) return null;
+
+  const min = Math.min(matching[0][1], matching[0][2]);
+  const max = Math.max(matching[0][1], matching[0][2]);
+
+  return matching.filter(r =>
+    Math.min(r[1], r[2]) === min &&
+    Math.max(r[1], r[2]) === max
+  );
+}
+
+function renderPNPResults(bracket) {
+  if (!elPnpResults) return;
+
+  elPnpResults.innerHTML = '';
+
+  if (!bracket || !bracket.length) {
+    elPnpResults.innerHTML = `
+      <div class="pz__empty">
+        Pro tuto kategorii není PNP tabulka.
+      </div>
+    `;
+    return;
+  }
+
+  const cards = bracket
+    .sort((a, b) => a[4] - b[4])
+    .map(item => {
+      const code = item[3];
+      const price = item[4];
+
+      return `
+        <div class="pz__item fit">
+          <div class="pz__itemTop">
+            <div class="pz__title">${labelForPNP(code)}</div>
+            <div class="pz__price">${fmt.format(price)} Kč</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+  elPnpResults.innerHTML = `
+    <h2>PNP varianty</h2>
+    <div class="pz__list">${cards}</div>
+  `;
 }
 
 function renderResults(diff, bracket) {
