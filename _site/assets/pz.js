@@ -384,10 +384,10 @@ function roundDownTo5(n) {
 }
 
 function normalizeRow(row) {
-  const [cat, minP, maxP, code, price] = row;
+  const [cat, minP, maxP, code, pzPrice] = row;
   const min = Math.min(minP, maxP);
   const max = Math.max(minP, maxP);
-  return { cat, min, max, code, price };
+  return { cat, min, max, code, pzPrice };
 }
 
 const rows = warranty_data.map(normalizeRow);
