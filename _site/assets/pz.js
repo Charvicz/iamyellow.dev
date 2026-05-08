@@ -1,4 +1,4 @@
-// assets/pz.js
+/* assets/pz.js */
 const CATEGORY_LABELS = {
   MOBIL: "Telefon",
   BILA: "Bílá",
@@ -8,7 +8,7 @@ const CATEGORY_LABELS = {
 };
 
 const warranty_data = [
-  // category, minPrice, maxPrice, code, warrantyPrice
+  // TV
   ['TV', 0, 4999, '1R', 399],
   ['TV', 0, 4999, '2R', 599],
   ['TV', 0, 4999, '3R', 999],
@@ -58,6 +58,7 @@ const warranty_data = [
   ['TV', 100000, 124999, '3R', 7499],
   ['TV', 100000, 124999, '3R_VIP', 9499],
 
+  // BILA
   ['BILA', 500, 999, '1R', 119],
   ['BILA', 500, 999, '2R', 159],
   ['BILA', 500, 999, '3R', 199],
@@ -107,6 +108,7 @@ const warranty_data = [
   ['BILA', 60000, 79999, '3R', 5999],
   ['BILA', 60000, 79999, '3R_VIP', 7699],
 
+  // NTB_PC
   ['NTB_PC', 500, 999, '1R', 199],
   ['NTB_PC', 500, 999, '2R', 249],
   ['NTB_PC', 500, 999, '3R', 299],
@@ -152,6 +154,7 @@ const warranty_data = [
   ['NTB_PC', 50000, 59999, '3R', 6499],
   ['NTB_PC', 50000, 59999, '3R_VIP', 7499],
 
+  // ZAHRADA
   ['ZAHRADA', 500, 1499, '1R', 189],
   ['ZAHRADA', 500, 1499, '2R', 249],
   ['ZAHRADA', 500, 1499, '3R', 329],
@@ -197,7 +200,7 @@ const warranty_data = [
   ['ZAHRADA', 60000, 69999, '3R', 8999],
   ['ZAHRADA', 60000, 69999, '3R_VIP', 9999],
 
-  // Pozn.: tady máš v datech tuple (5000, 4999) – to je opačně. V kódu to ošetřuju.
+  // MOBIL (note the swapped min/max in the original – we normalize later)
   ['MOBIL', 5000, 4999, '1R', 499],
   ['MOBIL', 5000, 9999, '1R', 879],
   ['MOBIL', 5000, 9999, '2R', 1249],
@@ -233,71 +236,50 @@ const warranty_pnp = [
   // TV
   ['TV', 0, 4999, '1R', 329],
   ['TV', 0, 4999, '2R', 659],
-
   ['TV', 5000, 9999, '1R', 549],
   ['TV', 5000, 9999, '2R', 949],
-
   ['TV', 10000, 19999, '1R', 879],
   ['TV', 10000, 19999, '2R', 1499],
-
   ['TV', 20000, 29999, '1R', 1199],
   ['TV', 20000, 29999, '2R', 2199],
-
   ['TV', 30000, 39999, '1R', 1399],
   ['TV', 30000, 39999, '2R', 2599],
-
   ['TV', 40000, 49999, '1R', 1649],
   ['TV', 40000, 49999, '2R', 3199],
-
   ['TV', 50000, 59999, '1R', 2099],
   ['TV', 50000, 59999, '2R', 3899],
-
   ['TV', 60000, 69999, '1R', 2199],
   ['TV', 60000, 69999, '2R', 4199],
-
   ['TV', 70000, 79999, '1R', 2499],
   ['TV', 70000, 79999, '2R', 4599],
-
   ['TV', 80000, 99999, '1R', 3699],
   ['TV', 80000, 99999, '2R', 4999],
-
   ['TV', 100000, 124999, '1R', 4999],
   ['TV', 100000, 124999, '2R', 5999],
 
   // BILA TECHNIKA
   ['BILA', 500, 999, '1R', 129],
   ['BILA', 500, 999, '2R', 249],
-
   ['BILA', 1000, 1999, '1R', 299],
   ['BILA', 1000, 1999, '2R', 399],
-
   ['BILA', 2000, 2999, '1R', 329],
   ['BILA', 2000, 2999, '2R', 499],
-
   ['BILA', 3000, 5499, '1R', 449],
   ['BILA', 3000, 5499, '2R', 749],
-
   ['BILA', 5500, 7499, '1R', 499],
   ['BILA', 5500, 7499, '2R', 879],
-
   ['BILA', 7500, 9999, '1R', 659],
   ['BILA', 7500, 9999, '2R', 1149],
-
   ['BILA', 10000, 14999, '1R', 879],
   ['BILA', 10000, 14999, '2R', 1249],
-
   ['BILA', 15000, 19999, '1R', 1049],
   ['BILA', 15000, 19999, '2R', 1649],
-
   ['BILA', 20000, 29999, '1R', 1249],
   ['BILA', 20000, 29999, '2R', 1899],
-
   ['BILA', 30000, 39999, '1R', 1299],
   ['BILA', 30000, 39999, '2R', 2099],
-
   ['BILA', 40000, 59999, '1R', 1499],
   ['BILA', 40000, 59999, '2R', 2499],
-
   ['BILA', 60000, 79999, '1R', 1799],
   ['BILA', 60000, 79999, '2R', 2999],
 
@@ -305,39 +287,30 @@ const warranty_pnp = [
   ['MOBIL', 1200, 2999, '1R', 499],
   ['MOBIL', 1200, 2999, '2R', 949],
   ['MOBIL', 1200, 2999, '2R_VIP', 1599],
-
   ['MOBIL', 3000, 5999, '1R', 999],
   ['MOBIL', 3000, 5999, '2R', 1599],
   ['MOBIL', 3000, 5999, '2R_VIP', 2599],
-
   ['MOBIL', 6000, 8999, '1R', 1049],
   ['MOBIL', 6000, 8999, '2R', 1799],
   ['MOBIL', 6000, 8999, '2R_VIP', 2999],
-
   ['MOBIL', 9000, 11999, '1R', 1549],
   ['MOBIL', 9000, 11999, '2R', 2399],
   ['MOBIL', 9000, 11999, '2R_VIP', 3899],
-
   ['MOBIL', 12000, 14999, '1R', 1649],
   ['MOBIL', 12000, 14999, '2R', 2849],
   ['MOBIL', 12000, 14999, '2R_VIP', 4799],
-
   ['MOBIL', 15000, 17999, '1R', 1899],
   ['MOBIL', 15000, 17999, '2R', 3099],
   ['MOBIL', 15000, 17999, '2R_VIP', 5199],
-
   ['MOBIL', 18000, 19999, '1R', 1999],
   ['MOBIL', 18000, 19999, '2R', 3749],
   ['MOBIL', 18000, 19999, '2R_VIP', 5999],
-
   ['MOBIL', 20000, 24999, '1R', 2999],
   ['MOBIL', 20000, 24999, '2R', 4699],
   ['MOBIL', 20000, 24999, '2R_VIP', 8499],
-
   ['MOBIL', 25000, 29999, '1R', 3499],
   ['MOBIL', 25000, 29999, '2R', 5249],
   ['MOBIL', 25000, 29999, '2R_VIP', 8999],
-
   ['MOBIL', 30000, 34999, '1R', 4199],
   ['MOBIL', 30000, 34999, '2R', 5999],
   ['MOBIL', 30000, 34999, '2R_VIP', 9999],
@@ -345,74 +318,54 @@ const warranty_pnp = [
   // APPLE
   ['APPLE', 1200, 2999, '1R', 349],
   ['APPLE', 1200, 2999, '2R', 699],
-
   ['APPLE', 3000, 5999, '1R', 699],
   ['APPLE', 3000, 5999, '2R', 1149],
-
   ['APPLE', 6000, 8999, '1R', 799],
   ['APPLE', 6000, 8999, '2R', 1349],
-
   ['APPLE', 9000, 11999, '1R', 1149],
   ['APPLE', 9000, 11999, '2R', 1759],
-
   ['APPLE', 12000, 14999, '1R', 1199],
   ['APPLE', 12000, 14999, '2R', 2099],
-
   ['APPLE', 15000, 17999, '1R', 1399],
   ['APPLE', 15000, 17999, '2R', 2249],
-
   ['APPLE', 18000, 19999, '1R', 1799],
   ['APPLE', 18000, 19999, '2R', 2749],
-
   ['APPLE', 20000, 24999, '1R', 2199],
   ['APPLE', 20000, 24999, '2R', 3449],
-
   ['APPLE', 25000, 29999, '1R', 2599],
   ['APPLE', 25000, 29999, '2R', 3849],
-
   ['APPLE', 30000, 34999, '1R', 2999],
   ['APPLE', 30000, 34999, '2R', 4399],
-
   ['APPLE', 35000, 39999, '1R', 3299],
   ['APPLE', 35000, 39999, '2R', 4699],
-
   ['APPLE', 40000, 49999, '1R', 3849],
   ['APPLE', 40000, 49999, '2R', 4949],
-
   ['APPLE', 50000, 59999, '1R', 4399],
   ['APPLE', 50000, 59999, '2R', 5499],
 
   // NTB / PC / TAB / GAMING / AUDIO / FOTO / IT
   ['NTB_PC', 500, 999, '1R', 129],
   ['NTB_PC', 500, 999, '2R', 249],
-
   ['NTB_PC', 1000, 1999, '1R', 249],
   ['NTB_PC', 1000, 1999, '2R', 399],
-
   ['NTB_PC', 2000, 2999, '1R', 439],
   ['NTB_PC', 2000, 2999, '2R', 639],
-
   ['NTB_PC', 3000, 4999, '1R', 539],
   ['NTB_PC', 3000, 4999, '2R', 949],
-
   ['NTB_PC', 5000, 9999, '1R', 659],
   ['NTB_PC', 5000, 9999, '2R', 1199],
-
   ['NTB_PC', 10000, 19999, '1R', 999],
   ['NTB_PC', 10000, 19999, '2R', 1799],
-
   ['NTB_PC', 20000, 29999, '1R', 1649],
   ['NTB_PC', 20000, 29999, '2R', 2999],
-
   ['NTB_PC', 30000, 39999, '1R', 2199],
   ['NTB_PC', 30000, 39999, '2R', 4149],
-
   ['NTB_PC', 40000, 49999, '1R', 2649],
   ['NTB_PC', 40000, 49999, '2R', 4499],
-
   ['NTB_PC', 50000, 59999, '1R', 3149],
   ['NTB_PC', 50000, 59999, '2R', 5399],
 ];
+
 const elCategory = document.getElementById('category');
 const elPlaneo = document.getElementById('planeoPrice');
 const elMarket = document.getElementById('marketPrice');
@@ -421,6 +374,7 @@ const elReset = document.getElementById('resetBtn');
 const elSummary = document.getElementById('summary');
 const elResults = document.getElementById('results');
 const elPnpResults = document.getElementById('pnpResults');
+const elComboResults = document.getElementById('comboResults'); // <-- new
 
 const fmt = new Intl.NumberFormat('cs-CZ');
 
@@ -430,10 +384,10 @@ function roundDownTo5(n) {
 }
 
 function normalizeRow(row) {
-  const [cat, minP, maxP, code, pzPrice] = row;
+  const [cat, minP, maxP, code, price] = row;
   const min = Math.min(minP, maxP);
   const max = Math.max(minP, maxP);
-  return { cat, min, max, code, pzPrice };
+  return { cat, min, max, code, price };
 }
 
 const rows = warranty_data.map(normalizeRow);
@@ -462,25 +416,6 @@ function getBracket(category, productPrice) {
   const bracketRows = matching.filter(r => r.min === min && r.max === max);
 
   return { min, max, items: bracketRows };
-}
-
-function renderSummary({ category, planeo, market, diff, bracket }) {
-  const diffClass = diff > 0 ? 'ok' : (diff === 0 ? 'meh' : 'bad');
-
-  elSummary.hidden = false;
-  elSummary.innerHTML = `
-    <div class="sum">
-      <div class="sum__row"><span>Kategorie</span><b>${CATEGORY_LABELS[category] || category}</b></div>
-      <div class="sum__row"><span>Planeo</span><b>${fmt.format(planeo)} Kč</b></div>
-      <div class="sum__row"><span>Trh</span><b>${fmt.format(market)} Kč</b></div>
-      <div class="sum__row"><span>Rozdíl (Planeo − trh)</span><b class="${diffClass}">${fmt.format(diff)} Kč</b></div>
-      ${
-        bracket
-          ? `<div class="sum__row"><span>Pásmo</span><b>${fmt.format(bracket.min)} – ${fmt.format(bracket.max)} Kč</b></div>`
-          : `<div class="sum__row"><span>Pásmo</span><b class="bad">Nenalezeno v databázi</b></div>`
-      }
-    </div>
-  `;
 }
 
 function labelFor(code) {
@@ -518,6 +453,74 @@ function getPNPBracket(category, productPrice) {
     Math.min(r[1], r[2]) === min &&
     Math.max(r[1], r[2]) === max
   );
+}
+
+/* ---------- RENDERERS ---------- */
+
+function renderSummary({ category, planeo, market, diff, bracket }) {
+  const diffClass = diff > 0 ? 'ok' : (diff === 0 ? 'meh' : 'bad');
+
+  elSummary.hidden = false;
+  elSummary.innerHTML = `
+    <div class="sum">
+      <div class="sum__row"><span>Kategorie</span><b>${CATEGORY_LABELS[category] || category}</b></div>
+      <div class="sum__row"><span>Planeo</span><b>${fmt.format(planeo)} Kč</b></div>
+      <div class="sum__row"><span>Trh</span><b>${fmt.format(market)} Kč</b></div>
+      <div class="sum__row"><span>Rozdíl (Planeo − trh)</span><b class="${diffClass}">${fmt.format(diff)} Kč</b></div>
+      ${
+        bracket
+          ? `<div class="sum__row"><span>Pásmo</span><b>${fmt.format(bracket.min)} – ${fmt.format(bracket.max)} Kč</b></div>`
+          : `<div class="sum__row"><span>Pásmo</span><b class="bad">Nenalezeno v databázi</b></div>`
+      }
+    </div>
+  `;
+}
+
+function renderResults(diff, bracket) {
+  elResults.innerHTML = '';
+
+  if (!bracket) {
+    elResults.innerHTML = `
+      <div class="pz__empty">
+        Nenašel jsem pásmo pro tuhle cenu/kategorii. (Buď je cena mimo rozsah, nebo chybí data.)
+      </div>
+    `;
+    return;
+  }
+
+  const cards = bracket.items
+    .sort((a, b) => a.pzPrice - b.pzPrice)
+    .map(item => {
+      const fits = diff >= item.pzPrice;
+      const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
+
+      const planeo = Number(elPlaneo.value) || 0;
+      const priceIfFree = planeo - item.pzPrice;
+
+      return `
+        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
+          <div class="pz__itemTop">
+            <div class="pz__title">${labelFor(item.code)}</div>
+            <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
+          </div>
+          <div class="pz__meta">
+            ${
+              fits
+                ? `<span class="tag tag--good">jde to</span>
+                   <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
+                   <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
+                : `<span class="tag tag--bad">nejde to</span>
+                   <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
+            }
+          </div>
+        </div>
+      `;
+    }).join('');
+
+  elResults.innerHTML = `
+    <h2>Varianty v pásmu</h2>
+    <div class="pz__list">${cards}</div>
+  `;
 }
 
 function renderPNPResults(diff, bracket) {
@@ -587,52 +590,71 @@ function renderPNPResults(diff, bracket) {
   `;
 }
 
-function renderResults(diff, bracket) {
-  elResults.innerHTML = '';
+/* ---------- COMBO LOGIC ---------- */
 
-  if (!bracket) {
-    elResults.innerHTML = `
+function renderComboResults(planeo, market, diff, pzBracket, pnpBracket) {
+  elComboResults.innerHTML = '';
+
+  if (!pzBracket || !pnpBracket) {
+    elComboResults.innerHTML = `<div class="pz__empty">Chybí data pro PZ nebo PNP.</div>`;
+    return;
+  }
+
+  let best = null;
+  let bestTotal = -1;
+
+  // iterate over all PZ and PNP options in the brackets
+  for (const pz of pzBracket.items) {
+    for (const pnp of pnpBracket) {
+      const pzPrice = pz.pzPrice;
+      const pnpPrice = pnp[4]; // warranty_pnp entries are [cat, min, max, code, price]
+      const total = pzPrice + pnpPrice;
+
+      // condition: market + total ≤ planeo * 1.10  (i.e. within 10% reserve)
+      if (market + total <= planeo * 1.10) {
+        if (total > bestTotal) {
+          bestTotal = total;
+          best = { pz, pnp, pzPrice, pnpPrice, total };
+        }
+      }
+    }
+  }
+
+  if (!best) {
+    elComboResults.innerHTML = `
       <div class="pz__empty">
-        Nenašel jsem pásmo pro tuhle cenu/kategorii. (Buď je cena mimo rozsah, nebo chybí data.)
+        Žádná kombinace PZ + PNP se nevejde do 10 % rezervy.
       </div>
     `;
     return;
   }
 
-  const cards = bracket.items
-    .sort((a, b) => a.pzPrice - b.pzPrice)
-    .map(item => {
-      const fits = diff >= item.pzPrice;
-      const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
+  const { pz, pnp, pzPrice, pnpPrice, total } = best;
+  const remaining = planeo - (market + total);
+  const remainingPct = ((planeo - (market + total)) / planeo) * 100;
 
-      const planeo = Number(elPlaneo.value) || 0;
-      const priceIfFree = planeo - item.pzPrice;
-
-      return `
-        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
-          <div class="pz__itemTop">
-            <div class="pz__title">${labelFor(item.code)}</div>
-            <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
-          </div>
-          <div class="pz__meta">
-            ${
-              fits
-                ? `<span class="tag tag--good">jde to</span>
-                   <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
-                   <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
-                : `<span class="tag tag--bad">nejde to</span>
-                   <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
-            }
-          </div>
-        </div>
-      `;
-    }).join('');
-
-  elResults.innerHTML = `
-    <h2>Varianty v pásmu</h2>
-    <div class="pz__list">${cards}</div>
+  elComboResults.innerHTML = `
+    <h2>Nejvhodnější kombinace PZ + PNP</h2>
+    <div class="pz__item fit">
+      <div class="pz__itemTop">
+        <div class="pz__title">${labelFor(pz.code)} + ${labelForPNP(pnp[3])}</div>
+        <div class="pz__price">${fmt.format(total)} Kč</div>
+      </div>
+      <div class="pz__meta">
+        <span class="tag tag--good">jde to</span>
+        <span class="muted">
+          zbývá ${fmt.format(remaining)} Kč (${remainingPct.toFixed(1)} %)
+        </span>
+        <span class="muted">
+          | produkt s PZ+PNP zdarma:
+          <b>${fmt.format(planeo - total)} Kč</b>
+        </span>
+      </div>
+    </div>
   `;
 }
+
+/* ---------- MAIN LOGIC ---------- */
 
 function readNumber(el) {
   const n = Number(el.value);
@@ -650,19 +672,21 @@ function calculate() {
     elSummary.hidden = false;
     elSummary.innerHTML = `<div class="pz__error">Hoď tam obě ceny pls (čísla).</div>`;
     elResults.innerHTML = '';
+    elPnpResults.innerHTML = '';
+    elComboResults.innerHTML = '';
     return;
   }
 
   const diff = planeo - market;
-  const basePrice = Math.min(planeo, market);
-  const bracket = getBracket(category, basePrice);
-
-  renderSummary({ category, planeo, market, diff, bracket });
-  renderResults(diff, bracket);
-
+  const basePrice = Math.min(planeo, market); // used for bracket lookup
+  const pzBracket = getBracket(category, basePrice);
   const pnpBracket = getPNPBracket(category, basePrice);
+
+  renderSummary({ category, planeo, market, diff, bracket: pzBracket });
+  renderResults(diff, pzBracket);
   renderPNPResults(diff, pnpBracket);
-  }
+  renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
+}
 
 function resetAll() {
   elPlaneo.value = '';
@@ -671,9 +695,11 @@ function resetAll() {
   elSummary.innerHTML = '';
   elResults.innerHTML = '';
   elPnpResults.innerHTML = '';
+  elComboResults.innerHTML = '';
   elPlaneo.focus();
 }
 
+/* ---------- INIT ---------- */
 fillCategories();
 
 elCalc.addEventListener('click', calculate);
