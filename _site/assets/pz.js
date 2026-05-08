@@ -520,7 +520,7 @@ function getPNPBracket(category, productPrice) {
   );
 }
 
-function renderPNPResults(bracket) {
+function renderPNPResults(diff, bracket) {
   if (!elPnpResults) return;
 
   elPnpResults.innerHTML = '';
@@ -540,15 +540,46 @@ function renderPNPResults(bracket) {
       const code = item[3];
       const price = item[4];
 
+      const fits = diff >= price;
+      const delta = fits
+        ? (diff - price)
+        : (price - diff);
+
+      const planeo = Number(elPlaneo.value) || 0;
+      const priceIfFree = planeo - price;
+
       return `
-        <div class="pz__item fit">
+        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
           <div class="pz__itemTop">
             <div class="pz__title">${labelForPNP(code)}</div>
             <div class="pz__price">${fmt.format(price)} Kč</div>
           </div>
+
+          <div class="pz__meta">
+            ${
+              fits
+                ? `
+                  <span class="tag tag--good">jde to</span>
+                  <span class="muted">
+                    zbývá ${fmt.format(delta)} Kč
+                  </span>
+                  <span class="muted">
+                    | produkt s PNP zdarma:
+                    <b>${fmt.format(priceIfFree)} Kč</b>
+                  </span>
+                `
+                : `
+                  <span class="tag tag--bad">nejde to</span>
+                  <span class="muted">
+                    chybí ${fmt.format(delta)} Kč
+                  </span>
+                `
+            }
+          </div>
         </div>
       `;
-    }).join('');
+    })
+    .join('');
 
   elPnpResults.innerHTML = `
     <h2>PNP varianty</h2>
@@ -630,7 +661,7 @@ function calculate() {
   renderResults(diff, bracket);
 
   const pnpBracket = getPNPBracket(category, basePrice);
-  renderPNPResults(pnpBracket);
+  renderPNPResults(diff, pnpBracket);
   }
 
 function resetAll() {
