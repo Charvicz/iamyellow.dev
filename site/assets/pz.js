@@ -753,7 +753,7 @@ function calculate() {
   renderSummary({ category, planeo, market, diff, bracket: pzBracket });
   renderResults(diff, pzBracket);
   renderPNPResults(diff, pnpBracket);
-  renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
+  //renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
 
   const instantHtml = renderInstantExchange(
     diff,

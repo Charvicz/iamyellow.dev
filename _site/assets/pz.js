@@ -544,50 +544,120 @@ function renderSummary({ category, planeo, market, diff, bracket }) {
   `;
 }
 
-function renderResults(diff, bracket) {
+function renderResults(diff, bracket, pnpBracket, instantExchange) {
   elResults.innerHTML = '';
 
   if (!bracket) {
     elResults.innerHTML = `
       <div class="pz__empty">
-        Nenašel jsem pásmo pro tuhle cenu/kategorii. (Buď je cena mimo rozsah, nebo chybí data.)
+        Nenašel jsem pásmo pro tuhle cenu/kategorii.
       </div>
     `;
     return;
   }
 
-  const cards = bracket.items
-    .sort((a, b) => a.pzPrice - b.pzPrice)
-    .map(item => {
-      const fits = diff >= item.pzPrice;
-      const delta = fits ? (diff - item.pzPrice) : (item.pzPrice - diff);
+  const allItems = [];
 
-      const planeo = Number(elPlaneo.value) || 0;
-      const priceIfFree = planeo - item.pzPrice;
+  // PZ
+  bracket.items.forEach(item => {
+    allItems.push({
+      type: 'PZ',
+      label: labelFor(item.code),
+      price: item.pzPrice
+    });
+  });
 
-      return `
-        <div class="pz__item ${fits ? 'fit' : 'nofit'}">
-          <div class="pz__itemTop">
-            <div class="pz__title">${labelFor(item.code)}</div>
-            <div class="pz__price">${fmt.format(item.pzPrice)} Kč</div>
+  // PNP
+  if (pnpBracket?.length) {
+    pnpBracket.forEach(item => {
+      allItems.push({
+        type: 'PNP',
+        label: labelForPNP(item[3]),
+        price: item[4]
+      });
+    });
+  }
+
+  // Okamžitá výměna
+  if (instantExchange) {
+    allItems.push({
+      type: 'OV',
+      label: 'Okamžitá výměna',
+      price: instantExchange.price
+    });
+  }
+
+  const fitting = [];
+  const notFitting = [];
+
+  allItems.forEach(item => {
+    if (diff >= item.price) {
+      fitting.push(item);
+    } else {
+      notFitting.push(item);
+    }
+  });
+
+  fitting.sort((a, b) => b.price - a.price);
+  notFitting.sort((a, b) => a.price - b.price);
+
+  const finalList = [...fitting, ...notFitting];
+
+  const cards = finalList.map(item => {
+    const fits = diff >= item.price;
+
+    const delta = fits
+      ? diff - item.price
+      : item.price - diff;
+
+    const planeo = Number(elPlaneo.value) || 0;
+    const priceIfFree = planeo - item.price;
+
+    return `
+      <div class="pz__item ${fits ? 'fit' : 'nofit'}">
+        <div class="pz__itemTop">
+          <div class="pz__title">
+            ${item.label}
           </div>
-          <div class="pz__meta">
-            ${
-              fits
-                ? `<span class="tag tag--good">jde to</span>
-                   <span class="muted">zbývá ${fmt.format(delta)} Kč</span>
-                   <span class="muted">| produkt s PZ zdarma: <b>${fmt.format(priceIfFree)} Kč</b></span>`
-                : `<span class="tag tag--bad">nejde to</span>
-                   <span class="muted">chybí ${fmt.format(delta)} Kč</span>`
-            }
+
+          <div class="pz__price">
+            ${fmt.format(item.price)} Kč
           </div>
         </div>
-      `;
-    }).join('');
+
+        <div class="pz__meta">
+          ${
+            fits
+              ? `
+                <span class="tag tag--good">jde to</span>
+
+                <span class="muted">
+                  zbývá ${fmt.format(delta)} Kč
+                </span>
+
+                <span class="muted">
+                  | zdarma do:
+                  <b>${fmt.format(priceIfFree)} Kč</b>
+                </span>
+              `
+              : `
+                <span class="tag tag--bad">nejde to</span>
+
+                <span class="muted">
+                  chybí ${fmt.format(delta)} Kč
+                </span>
+              `
+          }
+        </div>
+      </div>
+    `;
+  }).join('');
 
   elResults.innerHTML = `
-    <h2>Varianty v pásmu</h2>
-    <div class="pz__list">${cards}</div>
+    <h2>Varianty</h2>
+    <div class="pz__list">
+      ${cards}
+    </div>
   `;
 }
 
@@ -753,7 +823,7 @@ function calculate() {
   renderSummary({ category, planeo, market, diff, bracket: pzBracket });
   renderResults(diff, pzBracket);
   renderPNPResults(diff, pnpBracket);
-  renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
+  //renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
 
   const instantHtml = renderInstantExchange(
     diff,
