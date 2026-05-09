@@ -437,6 +437,74 @@ function labelForPNP(code) {
   }
 }
 
+const instantExchangeData = [
+  { min: 200, max: 500, price: 59 },
+  { min: 501, max: 1000, price: 129 },
+  { min: 1001, max: 1800, price: 269 },
+  { min: 1801, max: 3500, price: 369 },
+  { min: 3501, max: 5000, price: 599 },
+];
+
+function getInstantExchange(productPrice) {
+  return instantExchangeData.find(item =>
+    productPrice >= item.min &&
+    productPrice <= item.max
+  );
+}
+
+function renderInstantExchange(diff, marketPrice, category) {
+  if (category !== 'BILA') return '';
+
+  if (marketPrice > 5000) return '';
+
+  const exchange = getInstantExchange(marketPrice);
+
+  if (!exchange) return '';
+
+  const fits = diff >= exchange.price;
+  const delta = fits
+    ? diff - exchange.price
+    : exchange.price - diff;
+
+  const planeo = Number(elPlaneo.value) || 0;
+  const priceIfFree = planeo - exchange.price;
+
+  return `
+    <h2>Okamžitá výměna</h2>
+
+    <div class="pz__list">
+      <div class="pz__item ${fits ? 'fit' : 'nofit'}">
+        <div class="pz__itemTop">
+          <div class="pz__title">Okamžitá výměna</div>
+          <div class="pz__price">${fmt.format(exchange.price)} Kč</div>
+        </div>
+
+        <div class="pz__meta">
+          ${
+            fits
+              ? `
+                <span class="tag tag--good">jde to</span>
+                <span class="muted">
+                  zbývá ${fmt.format(delta)} Kč
+                </span>
+                <span class="muted">
+                  | produkt s výměnou zdarma:
+                  <b>${fmt.format(priceIfFree)} Kč</b>
+                </span>
+              `
+              : `
+                <span class="tag tag--bad">nejde to</span>
+                <span class="muted">
+                  chybí ${fmt.format(delta)} Kč
+                </span>
+              `
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function getPNPBracket(category, productPrice) {
   const matching = warranty_pnp.filter(r =>
     r[0] === category &&
@@ -686,6 +754,16 @@ function calculate() {
   renderResults(diff, pzBracket);
   renderPNPResults(diff, pnpBracket);
   renderComboResults(planeo, market, diff, pzBracket, pnpBracket);
+
+  const instantHtml = renderInstantExchange(
+    diff,
+    market,
+    category
+  );
+
+  if (instantHtml) {
+    elResults.innerHTML += instantHtml;
+  }
 }
 
 function resetAll() {
